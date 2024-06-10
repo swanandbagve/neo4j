@@ -1,0 +1,1615 @@
+@prefix : <http://example.com/financial-instrument-ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix fibo-fbc-fi-fi: <https://spec.edmcouncil.org/fibo/ontology/FBC/FinancialInstruments/FinancialInstruments/> .
+@prefix fibo-fnd-dt-fd: <https://spec.edmcouncil.org/fibo/ontology/FND/DatesAndTimes/FinancialDates/> .
+@prefix fibo-fnd-acc-4217: <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/ISO4217-CurrencyCodes/> .
+@prefix fibo-fnd-utl-av: <https://spec.edmcouncil.org/fibo/ontology/FND/Utilities/AnnotationVocabulary/> .
+@prefix fibo-fnd-arr-rt: <https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/Ratings/> .
+@prefix fibo-fnd-acc-aeq: <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/AccountingEquity/> .
+@prefix fibo-fnd-org-fm: <https://spec.edmcouncil.org/fibo/ontology/FND/Organizations/FormalOrganizations/> .
+@prefix fibo-fnd-law-jur: <https://spec.edmcouncil.org/fibo/ontology/FND/Law/Jurisdiction/> .
+@prefix fibo-fnd-plc-cty: <https://spec.edmcouncil.org/fibo/ontology/FND/Places/Countries/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://mandg.com/financial-instrument-ontology> a owl:Ontology ;
+  dc:title "Financial Instrument Ontology for PoC1 - Data for AI" ;
+  dc:description "An ontology for representing financial instruments and their attributes." ;
+  dc:creator "Martin Mitchell // Data Architecture // M&G" ;
+  owl:versionInfo "0.92" ;
+  vann:preferredNamespacePrefix "fio" ;
+  vann:preferredNamespaceUri <http://example.com/financial-instrument-ontology#> .
+
+:FinancialInstrument a owl:Class ;
+  rdfs:subClassOf fibo-fbc-fi-fi:FinancialInstrument ;
+  fibo-fnd-utl-av:explanatoryNote "A financial instrument with additional attributes specific to this ontology." .
+
+:PubliclyListedInstrument a owl:Class ;
+  rdfs:subClassOf :FinancialInstrument ;
+  fibo-fnd-utl-av:explanatoryNote "A financial instrument that is publicly traded on an exchange." .
+
+:PrivateInstrument a owl:Class ;
+  rdfs:subClassOf :FinancialInstrument ;
+  fibo-fnd-utl-av:explanatoryNote "A financial instrument that is not publicly traded and is typically held by private investors." .
+
+:FixedIncomeInstrument a owl:Class ;
+  rdfs:subClassOf :PubliclyListedInstrument ;
+  fibo-fnd-utl-av:explanatoryNote "A financial instrument that provides a return in the form of fixed periodic payments and the eventual return of principal at maturity." .
+
+:EquityInstrument a owl:Class ;
+  rdfs:subClassOf :PubliclyListedInstrument ;
+  fibo-fnd-utl-av:explanatoryNote "A financial instrument that represents ownership in a company and provides a claim on its assets and earnings." .
+
+:DerivativeInstrument a owl:Class ;
+  rdfs:subClassOf :PubliclyListedInstrument ;
+  fibo-fnd-utl-av:explanatoryNote "A financial instrument whose value is derived from an underlying asset, index, or reference rate." .
+
+:CorporateBond a owl:Class ;
+  rdfs:subClassOf :FixedIncomeInstrument ;
+  fibo-fnd-utl-av:explanatoryNote "A bond issued by a corporation to raise money for various purposes, such as expanding business, making acquisitions, or refinancing existing debt." .
+
+:GovernmentBond a owl:Class ;
+  rdfs:subClassOf :FixedIncomeInstrument ;
+  fibo-fnd-utl-av:explanatoryNote "A bond issued by a national government to support government spending and obligations." .
+
+:TreasuryNote a owl:Class ;
+  rdfs:subClassOf :GovernmentBond ;
+  fibo-fnd-utl-av:explanatoryNote "A marketable U.S. government debt security with a fixed interest rate and a maturity between one and 10 years." .
+
+:MunicipalBond a owl:Class ;
+  rdfs:subClassOf :FixedIncomeInstrument ;
+  fibo-fnd-utl-av:explanatoryNote "A bond issued by a state, municipality, or county to finance its capital expenditures, including the construction of highways, bridges, or schools." .
+
+:CommonStock a owl:Class ;
+  rdfs:subClassOf :EquityInstrument ;
+  fibo-fnd-utl-av:explanatoryNote "A type of equity security that represents ownership in a company and entitles the holder to a proportional claim on its assets and profits." .
+
+:PreferredStock a owl:Class ;
+  rdfs:subClassOf :EquityInstrument ;
+  fibo-fnd-utl-av:explanatoryNote "A type of equity security that entitles the holder to a fixed dividend and a claim on assets that is senior to common stock but junior to bonds." .
+
+:hasTradeDate a owl:DatatypeProperty ;
+  rdfs:subPropertyOf fibo-fnd-dt-fd:hasObservationDate ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:label "Trade Date" ;
+  rdfs:comment "The date on which a trade is executed."@en ;
+  skos:altLabel "ASOF_DATE" .
+
+:hasSettlementDate a owl:DatatypeProperty ;
+  rdfs:subPropertyOf fibo-fnd-dt-fd:hasSettlementDate ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:label "Settlement Date" ;
+  rdfs:comment "The date on which a trade is settled, meaning the actual exchange of securities and payment between the buyer and seller."@en ;
+  skos:altLabel "HoldingDate" .
+
+:hasIdentifier a owl:ObjectProperty ;
+  rdfs:subPropertyOf fibo-fbc-fi-fi:hasIdentifier ;
+  rdfs:label "Identifier" .
+
+:hasCusip a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasIdentifier ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:label "CUSIP" ;
+  rdfs:comment "Committee on Uniform Securities Identification Procedures (CUSIP) number, which is a nine-character alphanumeric code that identifies a North American financial security for the purposes of facilitating clearing and settlement of trades."@en ;
+  skos:altLabel "BCusip" .
+
+:hasSedol a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasIdentifier ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:label "SEDOL" ;
+  rdfs:comment "Stock Exchange Daily Official List (SEDOL) number, which is a seven-character alphanumeric code that identifies a security traded on the London Stock Exchange."@en ;
+  skos:altLabel "Sedol" .
+
+:hasIsin a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasIdentifier ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:label "ISIN" ;
+  rdfs:comment "International Securities Identification Number (ISIN), which is a 12-character alphanumeric code that identifies a security traded on global markets."@en ;
+  skos:altLabel "ISIN" .
+
+:hasTicker a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasIdentifier ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:label "Ticker" ;
+  rdfs:comment "Ticker symbol, which is an abbreviation used to uniquely identify publicly traded shares of a particular stock or security."@en ;
+  skos:altLabel "Ticker" .
+
+:hasName a owl:DatatypeProperty ;
+  rdfs:subPropertyOf fibo-fbc-fi-fi:hasName ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:label "Instrument Name" ;
+  rdfs:comment "The name of the financial instrument."@en ;
+  skos:altLabel "InstrumentName" .
+
+:hasAlias a owl:DatatypeProperty ;
+  rdfs:subPropertyOf fibo-fbc-fi-fi:hasAlias ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:label "Instrument Alias" ;
+  rdfs:comment "An alias or alternative name for the financial instrument."@en ;
+  skos:altLabel "InstrumentAlias" .
+
+:hasCurrency a owl:ObjectProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range fibo-fnd-acc-4217:Currency .
+
+:hasCurrencyCode a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasCurrency ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:label "Currency Code" ;
+  rdfs:comment "The ISO 4217 currency code in which the financial instrument is denominated."@en ;
+  skos:altLabel "CurrencyCode" .
+
+:Country a owl:Class ;
+  rdfs:subClassOf fibo-fnd-plc-cty:Country ;
+  fibo-fnd-utl-av:explanatoryNote "Represents a country related to the financial instrument." .
+
+:hasCountryName a owl:DatatypeProperty ;
+  rdfs:domain :Country ;
+  rdfs:range xsd:string ;
+  rdfs:label "Country Name" ;
+  rdfs:comment "The name of the country."@en .
+
+:hasCountryCode a owl:DatatypeProperty ;
+  rdfs:domain :Country ;
+  rdfs:range xsd:string ;
+  rdfs:label "Country Code" ;
+  rdfs:comment "The ISO 3166-1 alpha-2 code of the country."@en .
+
+:hasIssueCountry a owl:ObjectProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range :Country ;
+  rdfs:label "Issue Country" ;
+  rdfs:comment "The country where the financial instrument was issued."@en .
+
+:hasIssueCountryName a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:string ;
+  rdfs:label "Issue Country Name" ;
+  rdfs:comment "The name of the country where the financial instrument was issued."@en ;
+  rdfs:subPropertyOf [
+    a owl:Restriction ;
+    owl:onProperty :hasIssueCountry ;
+    owl:onClass :Country ;
+    owl:qualifiedCardinality 1 ;
+    owl:onDataRange xsd:string
+  ] .
+
+:hasIssueCountryCode a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:string ;
+  rdfs:label "Issue Country Code" ;
+  rdfs:comment "The ISO 3166-1 alpha-2 country code where the financial instrument was issued."@en ;
+  rdfs:subPropertyOf [
+    a owl:Restriction ;
+    owl:onProperty :hasIssueCountry ;
+    owl:onClass :Country ;
+    owl:qualifiedCardinality 1 ;
+    owl:onDataRange xsd:string
+  ] .
+
+:hasRiskCountry a owl:ObjectProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range :Country ;
+  rdfs:label "Risk Country" ;
+  rdfs:comment "The country representing the risk associated with the financial instrument."@en .
+
+:hasRiskCountryName a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:string ;
+  rdfs:label "Risk Country Name" ;
+  rdfs:comment "The name of the country representing the risk associated with the financial instrument."@en ;
+  rdfs:subPropertyOf [
+    a owl:Restriction ;
+    owl:onProperty :hasRiskCountry ;
+    owl:onClass :Country ;
+    owl:qualifiedCardinality 1 ;
+    owl:onDataRange xsd:string
+  ] .
+
+:hasRiskCountryCode a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:string ;
+  rdfs:label "Risk Country Code" ;
+  rdfs:comment "The ISO 3166-1 alpha-2 country code representing the risk associated with the financial instrument."@en ;
+  rdfs:subPropertyOf [
+    a owl:Restriction ;
+    owl:onProperty :hasRiskCountry ;
+    owl:onClass :Country ;
+    owl:qualifiedCardinality 1 ;
+    owl:onDataRange xsd:string
+  ] .
+
+:hasIncorporationCountry a owl:ObjectProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range :Country ;
+  rdfs:label "Incorporation Country" ;
+  rdfs:comment "The country where the issuer of the financial instrument is incorporated."@en .
+
+:hasIncorporationCountryName a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:string ;
+  rdfs:label "Incorporation Country Name" ;
+  rdfs:comment "The name of the country where the issuer of the financial instrument is incorporated."@en ;
+  rdfs:subPropertyOf [
+    a owl:Restriction ;
+    owl:onProperty :hasIncorporationCountry ;
+    owl:onClass :Country ;
+    owl:qualifiedCardinality 1 ;
+    owl:onDataRange xsd:string
+  ] .
+
+:isESGBond a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:boolean ;
+  rdfs:label "Is ESG Bond" ;
+  rdfs:comment "Indicates whether the fixed income instrument is an Environmental, Social, and Governance (ESG) bond according to M&G's classification."@en ;
+  skos:altLabel "DebtMG_ESG_BondFlag" .
+
+:hasESGBondType a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:string ;
+  rdfs:label "ESG Bond Type" ;
+  rdfs:comment "The type of ESG bond according to M&G's classification."@en ;
+  skos:altLabel "DebtMG_ESG_BondType" .
+
+:isConvertible a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:boolean ;
+  rdfs:label "Is Convertible" ;
+  rdfs:comment "Indicates whether the fixed income instrument is convertible into another security."@en ;
+  skos:altLabel "DebtConvertibleFlag" .
+
+:hasMaturityDate a owl:ObjectProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Maturity Date" ;
+  rdfs:comment "The date on which the principal amount of the fixed income instrument becomes due and payable."@en .
+
+:hasEarliestMaturityDate a owl:ObjectProperty ;
+  rdfs:subPropertyOf :hasMaturityDate ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Earliest Maturity Date" ;
+  rdfs:comment "The earliest date on which the fixed income instrument can mature or be called."@en ;
+  skos:altLabel "EarliestMaturityOrCall" .
+
+:hasLatestMaturityDate a owl:ObjectProperty ;
+  rdfs:subPropertyOf :hasMaturityDate ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Latest Maturity Date" ;
+  rdfs:comment "The latest date on which the fixed income instrument can mature."@en ;
+  skos:altLabel "LatestMaturity" .
+
+:hasFMPMaturityDate a owl:ObjectProperty ;
+  rdfs:subPropertyOf :hasMaturityDate ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "FMP Maturity Date" ;
+  rdfs:comment "The maturity date of the fixed income instrument according to M&G's Fixed Maturity Product (FMP) classification."@en ;
+  skos:altLabel "FMPMaturity" .
+
+:hasCallDate a owl:ObjectProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Call Date" ;
+  rdfs:comment "The date on which the issuer of the fixed income instrument can redeem the instrument prior to its maturity date."@en .
+
+:hasEarliestCallDate a owl:ObjectProperty ;
+  rdfs:subPropertyOf :hasCallDate ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Earliest Call Date" ;
+  rdfs:comment "The earliest date on which the issuer of the fixed income instrument can exercise the call option."@en ;
+  skos:altLabel "EarliestNextCallDate" .
+
+:hasLatestCallDate a owl:ObjectProperty ;
+  rdfs:subPropertyOf :hasCallDate ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Latest Call Date" ;
+  rdfs:comment "The latest date on which the issuer of the fixed income instrument can exercise the call option."@en ;
+  skos:altLabel "LatestNextCallDate" .
+
+:hasNextCallDate a owl:ObjectProperty ;
+  rdfs:subPropertyOf :hasCallDate ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Next Call Date" ;
+  rdfs:comment "The next date on which the issuer of the fixed income instrument can exercise the call option."@en ;
+  skos:altLabel "NextCallDate" .
+
+:hasAmountOutstanding a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Amount Outstanding" ;
+  rdfs:comment "The total principal amount of the fixed income instrument that has been issued and remains outstanding."@en ;
+  skos:altLabel "AmountOutstanding" .
+
+:CallableFlag a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:string ;
+  rdfs:label "Is Callable" ;
+  rdfs:comment "Indicates whether the issuer of the fixed income instrument has the right to redeem the instrument prior to its maturity date."@en ;
+  skos:altLabel "CallableFlag" ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:oneOf (
+      :Callable  
+      :NotCallable 
+    )
+  ] .
+
+# Allowable Values for CallableFlag
+
+:Callable a owl:NamedIndividual ;
+  rdfs:label "Callable" ;
+  rdfs:comment "The issuer has the right to redeem the bond before maturity."@en .
+
+:NotCallable a owl:NamedIndividual ;
+  rdfs:label "Not Callable" ;
+  rdfs:comment "The issuer does not have the right to redeem the bond before maturity."@en .
+
+:hasMakeWholeCallProvision a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:boolean ;
+  rdfs:label "Has Make Whole Call Provision" ;
+  rdfs:comment "Indicates whether the fixed income instrument has a make-whole call provision, which allows the issuer to redeem the instrument at a predetermined price or formula prior to maturity."@en ;
+  skos:altLabel "MakeWholeCallFlag" .
+
+:hasNextCallPrice a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Next Call Price" ;
+  rdfs:comment "The price at which the issuer of the fixed income instrument can redeem the instrument on the next call date."@en ;
+  skos:altLabel "NextCallPrice" .
+
+:hasCallNotice a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:integer ;
+  rdfs:label "Call Notice (Days)" ;
+  rdfs:comment "The number of days notice required for the issuer of the fixed income instrument to exercise the call option."@en ;
+  skos:altLabel "CallDaysNotice" .
+
+:hasCallSchedule a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:string ;
+  rdfs:label "Call Schedule" ;
+  rdfs:comment "The schedule or terms under which the issuer of the fixed income instrument can exercise the call option."@en ;
+  skos:altLabel "WhenCallable" ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:oneOf (
+      :Anytime  
+      :Annual
+      :Onetime
+      :SemiAnnual  
+      :Quarterly
+      :Monthly
+    )
+  ] .
+
+# Allowable Values for hasCallSchedule
+
+:Anytime a owl:NamedIndividual ;
+  rdfs:label "Anytime" ;
+  rdfs:comment "The issuer can call the bond at any time after a specified date."@en .
+
+:Annual a owl:NamedIndividual ;
+  rdfs:label "Annual" ;
+  rdfs:comment "The issuer can call the bond on specific dates annually."@en .
+
+:Onetime a owl:NamedIndividual ;
+  rdfs:label "Onetime" ;
+  rdfs:comment "The issuer has only one opportunity to call the bond on a specific date."@en .
+
+:SemiAnnual a owl:NamedIndividual ;  
+  rdfs:label "Semi-Annual" ;
+  rdfs:comment "The issuer can call the bond on specific dates semi-annually."@en .
+
+:Quarterly a owl:NamedIndividual ;
+  rdfs:label "Quarterly" ;
+  rdfs:comment "The issuer can call the bond on specific dates quarterly."@en .
+
+:Monthly a owl:NamedIndividual ;
+  rdfs:label "Monthly" ;
+  rdfs:comment "The issuer can call the bond on specific dates monthly."@en .
+  
+  
+:hasMakeWholeCallSpread a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Make Whole Call Spread" ;
+  rdfs:comment "The spread over the benchmark rate used to determine the make-whole call price for the fixed income instrument."@en ;
+  skos:altLabel "MakeWholeCallSpread" .
+
+:isPutable a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:boolean ;
+  rdfs:label "Is Putable" ;
+  rdfs:comment "Indicates whether the holder of the fixed income instrument has the right to demand early repayment of the principal amount."@en ;
+  skos:altLabel "PutableFlag" .
+
+:hasPutNotice a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:integer ;
+  rdfs:label "Put Notice (Days)" ;
+  rdfs:comment "The number of days notice required for the holder of the fixed income instrument to exercise the put option."@en ;
+  skos:altLabel "PutDaysNotice" .
+
+:hasDebtRanking a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range :DebtRankingValue ;
+  rdfs:label "Debt Ranking" ;
+  rdfs:comment "The seniority or ranking of the fixed income instrument in the issuer's capital structure. Allowable values are: Senior Secured (debt that is backed by collateral and has the highest priority claim on the issuer's assets), Senior Unsecured (debt that is not backed by collateral but still has a higher priority claim compared to subordinated debt), Senior Subordinated (debt that ranks below senior unsecured debt but above other subordinated debt), Subordinated (debt that ranks below both senior secured and senior unsecured debt), Junior Subordinated (debt that ranks below all other types of debt and has the lowest priority claim on assets), Mezzanine (debt that typically ranks between senior debt and equity, often with features such as convertibility or warrants), Preferred (a type of equity security that ranks above common stock but below debt), and Common (equity securities that represent ownership and rank below all types of debt and preferred stock)."@en ;
+  skos:altLabel "DebtCapitalRanking" .
+
+:DebtRankingValue a rdfs:Datatype ;
+owl:equivalentClass [
+  a rdfs:Datatype ;
+  owl:oneOf (
+		"Senior Secured"
+		"Senior Unsecured"
+		"Senior Subordinated"
+		"Subordinated"
+		"Junior Subordinated"
+		"Mezzanine"
+		"Preferred"
+		"Common"
+)
+] .
+  
+:hasPaymentType a owl:DatatypeProperty ;
+    rdfs:domain :FixedIncomeInstrument ;
+    rdfs:range xsd:string ; 
+    rdfs:label "Payment Type"@en ;
+    rdfs:comment "The type of payment or cash flow associated with the fixed income instrument, such as interest or principal."@en ;
+    skos:altLabel "PaymentType" ;
+    owl:equivalentClass [ 
+        a owl:Class ;
+        owl:oneOf (
+            :FIXED 
+            :FIX-FLOAT 
+            :ZERO 
+            :FLOAT
+        )
+    ] .
+
+# Allowable Values for hasPaymentType
+:FIXED a owl:NamedIndividual ;
+    rdfs:label "FIXED"@en ;
+    rdfs:comment "The bond pays a fixed coupon rate throughout its life."@en .
+
+:FIX-FLOAT a owl:NamedIndividual ;
+    rdfs:label "FIX-FLOAT"@en ;
+    rdfs:comment "The bond's coupon rate is fixed for an initial period, then switches to a floating rate based on a reference rate."@en .
+
+:ZERO a owl:NamedIndividual ;
+    rdfs:label "ZERO"@en ;
+    rdfs:comment "The bond does not pay periodic interest payments (coupons). It is issued at a discount and redeemed at par at maturity."@en .
+
+:FLOAT a owl:NamedIndividual ;
+    rdfs:label "FLOAT"@en ;
+    rdfs:comment "The bond's coupon rate resets periodically based on a reference rate, such as LIBOR."@en . 
+
+:hasEmbeddedOptionType a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:string ;
+  rdfs:label "Embedded Option Type" ;
+  rdfs:comment "The type of option embedded within the fixed income instrument, such as call, put, or conversion."@en ;
+  skos:altLabel "EmbeddedOptionType" ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:oneOf (
+      :CALL
+      :PUT
+      :PUTCALL
+    )
+  ] .
+
+# Allowable Values for hasEmbeddedOptionType
+
+:CALL a owl:NamedIndividual ;
+  rdfs:label "CALL" ;
+  rdfs:comment "The issuer has the right, but not the obligation, to redeem the bond before maturity at a specified price."@en .
+
+:PUT a owl:NamedIndividual ;
+  rdfs:label "PUT" ;
+  rdfs:comment "The bondholder has the right, but not the obligation, to sell the bond back to the issuer before maturity at a specified price."@en .
+
+:PUTCALL a owl:NamedIndividual ;
+  rdfs:label "PUTCALL" ;
+  rdfs:comment "The bond has both call and put options embedded."@en .
+
+
+:hasCouponRate a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Coupon Rate" ;
+  rdfs:comment "The annual interest rate paid by the issuer of the fixed income instrument to the holder, expressed as a percentage of the principal amount."@en ;
+  skos:altLabel "DebtCouponRate" .
+
+:hasCouponFrequency a owl:DatatypeProperty ;
+    rdfs:domain :FixedIncomeInstrument ;
+    rdfs:range [
+        a owl:Class ;
+        owl:oneOf ( 
+            :A 
+            :S
+            :Q
+            :M
+            :D182  # Use a NamedIndividual for '182'
+            :D29   # Use a NamedIndividual for '29'
+            :T
+        )
+    ] ;
+    rdfs:label "Coupon Frequency" ;
+    rdfs:comment "The frequency at which interest payments are made on the fixed income instrument."@en ;
+    skos:altLabel "DebtCouponFrequency" .
+
+# Allowable Values (as Named Individuals)
+
+:A a owl:NamedIndividual ;
+  rdfs:label "A" ;
+  rdfs:comment "The bond pays coupons annually."@en .
+
+:S a owl:NamedIndividual ;
+  rdfs:label "S" ;
+  rdfs:comment "The bond pays coupons semi-annually. This is more frequent than annual payments and may be preferred by investors who desire a more regular income stream."@en .
+
+:Q a owl:NamedIndividual ;
+  rdfs:label "Q" ;
+  rdfs:comment "The bond pays coupons quarterly. This is more frequent than semi-annual or annual payments and may be preferred by investors who desire a more regular income stream."@en .
+
+:M a owl:NamedIndividual ;
+  rdfs:label "M" ;
+  rdfs:comment "The bond pays coupons monthly. This is the most frequent payment schedule and may be preferred by investors who desire a very regular income stream."@en .
+
+:D182 a owl:NamedIndividual ;  # '182' is not a valid IRI, so we prefix it with 'D'
+  rdfs:label "182" ;
+  rdfs:comment "The bond pays coupons every 182 days, which is approximately semi-annually."@en .
+
+:D29 a owl:NamedIndividual ;  # Same for '29'
+  rdfs:label "29" ;
+  rdfs:comment "The bond pays coupons every 29 days, which is approximately monthly."@en .
+
+:T a owl:NamedIndividual ;
+  rdfs:label "T" ;
+  rdfs:comment "The bond pays coupons on a non-standard schedule, which may vary depending on the terms of the bond."@en .
+
+:hasBaselIIIDesignation a owl:DatatypeProperty ;
+    rdfs:domain :FinancialInstrument ;  
+    rdfs:range xsd:string ;
+    rdfs:label "Basel III Designation"@en ;
+    rdfs:comment "The regulatory capital classification of a financial instrument under the Basel III framework."@en ;
+    skos:altLabel "Basel Designation"@en ;
+    owl:equivalentClass [ 
+        a owl:Class ;
+        owl:oneOf (
+            :NoDesignation
+            :Tier2
+            :AdditionalTier1
+        )
+    ] .
+
+# Basel III Designations (updated based on dataset values)
+:NoDesignation a owl:NamedIndividual ;
+    rdfs:label "No Designation"@en ;
+    rdfs:comment "The financial instrument does not fall under any specific Basel III capital designation."@en .
+
+:Tier2 a owl:NamedIndividual ;
+    rdfs:label "Tier 2"@en ;
+    rdfs:comment "Tier 2 capital: Includes instruments that are less loss-absorbing than CET1 and Additional Tier 1, such as certain types of debt. Provides supplementary loss absorption capacity."@en .
+
+:AdditionalTier1 a owl:NamedIndividual ;
+    rdfs:label "Additional Tier 1"@en ;
+    rdfs:comment "Additional Tier 1 capital: Includes instruments that are subordinated to deposits and other liabilities, and can absorb losses in going concern situations. More loss-absorbing than Tier 2, but less than CET1."@en .
+
+:hasIssuerID a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:string ;
+  rdfs:label "Issuer ID" ;
+  rdfs:comment "The unique identifier assigned by Bloomberg to the issuer of the financial instrument."@en ;
+  skos:altLabel "BRS_IssuerID" .
+
+:hasIssuerName a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:string ;
+  rdfs:label "Issuer Name" ;
+  rdfs:comment "The legal name of the issuer of the financial instrument."@en ;
+  skos:altLabel "OrganisationName" .
+
+:hasPrice a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Price" ;
+  rdfs:comment "The current market price of the financial instrument."@en ;
+  skos:altLabel "Price" .
+
+:hasConvexity a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Convexity" ;
+  rdfs:comment "A measure of the curvature of the relationship between bond prices and bond yields, indicating the sensitivity of bond prices to changes in interest rates."@en ;
+  skos:altLabel "Convexity" .
+
+:hasYield a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Yield" ;
+  rdfs:comment "The annual rate of return on the fixed income instrument, expressed as a percentage."@en ;
+  skos:altLabel "Yield" .
+
+:hasYieldToMaturity a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasYield ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Yield to Maturity" ;
+  rdfs:comment "The total return anticipated on the fixed income instrument if it is held until maturity, expressed as an annual rate."@en ;
+  skos:altLabel "YieldToMaturity" .
+
+:hasYieldToCall a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasYield ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Yield to Call" ;
+  rdfs:comment "The total return anticipated on the fixed income instrument if it is held until the next call date, expressed as an annual rate."@en ;
+  skos:altLabel "YieldToCall" .
+
+:hasYieldToWorst a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasYield ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Yield to Worst" ;
+  rdfs:comment "The lowest potential yield that an investor can expect to receive on the fixed income instrument, assuming the issuer does not default."@en ;
+  skos:altLabel "YieldToWorst" .
+
+:hasYieldToOptimum a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasYield ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Yield to Optimum" ;
+  rdfs:comment "The yield on the fixed income instrument assuming it is called on the optimal call date, which minimizes the yield to the issuer."@en ;
+  skos:altLabel "YieldToOptimise" .
+
+:hasSpreadDuration a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Spread Duration" ;
+  rdfs:comment "A measure of the sensitivity of the fixed income instrument's price to changes in the spread over the benchmark rate."@en ;
+  skos:altLabel "SpreadDuration" .
+
+:hasOptionAdjustedSpread a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Option Adjusted Spread" ;
+  rdfs:comment "The spread over the benchmark rate that equates the theoretical present value of the cash flows of the fixed income instrument, taking into account any embedded options, to its market price."@en ;
+  skos:altLabel "OptionAdjustedSpread" .
+
+:hasZSpread a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Z-Spread" ;
+  rdfs:comment "The constant spread over the entire benchmark spot rate curve that makes the discounted cash flows of the fixed income instrument equal to its present value."@en ;
+  skos:altLabel "ZSpread" .
+
+:hasESpread a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "E-Spread" ;
+  rdfs:comment "The constant spread over the Euribor curve that makes the discounted cash flows of the fixed income instrument equal to its present value."@en ;
+  skos:altLabel "ESpread" .
+
+:hasOASLibor a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "OAS (Libor)" ;
+  rdfs:comment "The spread over the Libor curve that equates the theoretical present value of the cash flows of the fixed income instrument, taking into account any embedded options, to its market price."@en ;
+  skos:altLabel "OAS_Libor" .
+
+:hasOptionAdjustedDuration a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Option Adjusted Duration" ;
+  rdfs:comment "A measure of the sensitivity of the fixed income instrument's price to changes in the benchmark rate, taking into account any embedded options."@en ;
+  skos:altLabel "OptionAdjustedDuration" .
+
+:hasKeyRateDuration a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:decimal .
+
+:hasKeyRateDuration3M a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasKeyRateDuration ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Key Rate Duration (3M)" ;
+  rdfs:comment "The sensitivity of the fixed income instrument's price to changes in the 3-month benchmark rate."@en ;
+  skos:altLabel "KeyRateDuration_3M" .
+
+:hasKeyRateDuration1Y a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasKeyRateDuration ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Key Rate Duration (1Y)" ;
+  rdfs:comment "The sensitivity of the fixed income instrument's price to changes in the 1-year benchmark rate."@en ;
+  skos:altLabel "KeyRateDuration_1Y" .
+
+:hasKeyRateDuration2Y a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasKeyRateDuration ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Key Rate Duration (2Y)" ;
+  rdfs:comment "The sensitivity of the fixed income instrument's price to changes in the 2-year benchmark rate."@en ;
+  skos:altLabel "KeyRateDuration_2Y" .
+
+:hasKeyRateDuration3Y a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasKeyRateDuration ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Key Rate Duration (3Y)" ;
+  rdfs:comment "The sensitivity of the fixed income instrument's price to changes in the 3-year benchmark rate."@en ;
+  skos:altLabel "KeyRateDuration_3Y" .
+
+:hasKeyRateDuration5Y a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasKeyRateDuration ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Key Rate Duration (5Y)" ;
+  rdfs:comment "The sensitivity of the fixed income instrument's price to changes in the 5-year benchmark rate."@en ;
+  skos:altLabel "KeyRateDuration_5Y" .
+
+:hasKeyRateDuration7Y a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasKeyRateDuration ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Key Rate Duration (7Y)" ;
+  rdfs:comment "The sensitivity of the fixed income instrument's price to changes in the 7-year benchmark rate."@en ;
+  skos:altLabel "KeyRateDuration_7Y" .
+
+:hasKeyRateDuration10Y a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasKeyRateDuration ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Key Rate Duration (10Y)" ;
+  rdfs:comment "The sensitivity of the fixed income instrument's price to changes in the 10-year benchmark rate."@en ;
+  skos:altLabel "KeyRateDuration_10Y" .
+
+:hasKeyRateDuration15Y a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasKeyRateDuration ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Key Rate Duration (15Y)" ;
+  rdfs:comment "The sensitivity of the fixed income instrument's price to changes in the 15-year benchmark rate."@en ;
+  skos:altLabel "KeyRateDuration_15Y" .
+
+:hasKeyRateDuration20Y a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasKeyRateDuration ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Key Rate Duration (20Y)" ;
+  rdfs:comment "The sensitivity of the fixed income instrument's price to changes in the 20-year benchmark rate."@en ;
+  skos:altLabel "KeyRateDuration_20Y" .
+
+:hasKeyRateDuration25Y a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasKeyRateDuration ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Key Rate Duration (25Y)" ;
+  rdfs:comment "The sensitivity of the fixed income instrument's price to changes in the 25-year benchmark rate."@en ;
+  skos:altLabel "KeyRateDuration_25Y" .
+
+:hasKeyRateDuration30Y a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasKeyRateDuration ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:label "Key Rate Duration (30Y)" ;
+  rdfs:comment "The sensitivity of the fixed income instrument's price to changes in the 30-year benchmark rate."@en ;
+  skos:altLabel "KeyRateDuration_30Y" .
+
+:hasMacaulayDuration a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Macaulay Duration" ;
+  rdfs:comment "The weighted average term to maturity of the cash flows of the fixed income instrument, where the weights are the present values of each cash flow as a percentage of the instrument's price."@en ;
+  skos:altLabel "MacaulayDuration" .
+
+:hasModifiedDuration a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Modified Duration" ;
+  rdfs:comment "A measure of the sensitivity of the fixed income instrument's price to changes in its yield, calculated as the Macaulay duration divided by one plus the yield."@en ;
+  skos:altLabel "ModifiedDuration" .
+
+:hasModifiedDurationToCall a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Modified Duration to Call" ;
+  rdfs:comment "The modified duration of the fixed income instrument assuming it is called on the next call date."@en ;
+  skos:altLabel "ModifiedDurationToCall" .
+
+:hasModifiedDurationToWorst a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Modified Duration to Worst" ;
+  rdfs:comment "The modified duration of the fixed income instrument assuming the worst-case scenario, such as the shortest possible time to call or maturity."@en ;
+  skos:altLabel "ModifiedDurationToWorst" .
+
+:hasCreditRating a owl:ObjectProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range :CreditRating .
+
+:CreditRating a owl:Class ;
+  rdfs:subClassOf fibo-fnd-arr-rt:Rating ;
+  fibo-fnd-utl-av:explanatoryNote "Represents a credit rating associated with a financial instrument." .
+
+:FitchCreditRating a owl:Class ;
+rdfs:subClassOf :CreditRating ;
+rdfs:label "Fitch Credit Rating" ;
+rdfs:comment "The credit rating assigned by Fitch Ratings to a fixed income instrument or issuer, reflecting their assessment of the creditworthiness and the likelihood of default. The ratings range from 'AAA' (highest credit quality) to 'C' (lowest credit quality), with '+' and '-' modifiers to indicate relative standing within a rating category. Other rating symbols include 'RD' (restricted default), 'NR' (not rated), 'PIF' (paid in full), and 'WD' (withdrawn)." .
+:hasFitchCreditRating a owl:ObjectProperty ;
+rdfs:domain :FixedIncomeInstrument ;
+rdfs:range :FitchCreditRating ;
+rdfs:label "has Fitch credit rating" .
+:AAA a :FitchCreditRating ; rdfs:label "AAA" ; rdfs:comment "Highest credit quality. Denotes the lowest expectation of default risk. Assigned only in cases of exceptionally strong capacity for payment of financial commitments. This capacity is highly unlikely to be adversely affected by foreseeable events." .
+:AA\+ a :FitchCreditRating ; rdfs:label "AA+" ; rdfs:comment "Very high credit quality. Denotes expectations of very low default risk. Indicates very strong capacity for payment of financial commitments. This capacity is not significantly vulnerable to foreseeable events." .
+:AA a :FitchCreditRating ; rdfs:label "AA" ; rdfs:comment "Very high credit quality. Denotes expectations of very low default risk. Indicates very strong capacity for payment of financial commitments. This capacity is not significantly vulnerable to foreseeable events." .
+:AA\- a :FitchCreditRating ; rdfs:label "AA-" ; rdfs:comment "Very high credit quality. Denotes expectations of very low default risk. Indicates very strong capacity for payment of financial commitments. This capacity is not significantly vulnerable to foreseeable events." .
+:A\+ a :FitchCreditRating ; rdfs:label "A+" ; rdfs:comment "High credit quality. Denotes expectations of low default risk. The capacity for payment of financial commitments is considered strong. This capacity may, nevertheless, be more vulnerable to adverse business or economic conditions than is the case for higher ratings." .
+:A a :FitchCreditRating ; rdfs:label "A" ; rdfs:comment "High credit quality. Denotes expectations of low default risk. The capacity for payment of financial commitments is considered strong. This capacity may, nevertheless, be more vulnerable to adverse business or economic conditions than is the case for higher ratings." .
+:A\- a :FitchCreditRating ; rdfs:label "A-" ; rdfs:comment "High credit quality. Denotes expectations of low default risk. The capacity for payment of financial commitments is considered strong. This capacity may, nevertheless, be more vulnerable to adverse business or economic conditions than is the case for higher ratings." .
+:BBB\+ a :FitchCreditRating ; rdfs:label "BBB+" ; rdfs:comment "Good credit quality. Indicates that expectations of default risk are currently low. The capacity for payment of financial commitments is considered adequate, but adverse business or economic conditions are more likely to impair this capacity." .
+:BBB a :FitchCreditRating ; rdfs:label "BBB" ; rdfs:comment "Good credit quality. Indicates that expectations of default risk are currently low. The capacity for payment of financial commitments is considered adequate, but adverse business or economic conditions are more likely to impair this capacity." .
+:BBB\- a :FitchCreditRating ; rdfs:label "BBB-" ; rdfs:comment "Good credit quality. Indicates that expectations of default risk are currently low. The capacity for payment of financial commitments is considered adequate, but adverse business or economic conditions are more likely to impair this capacity." .
+:BB\+ a :FitchCreditRating ; rdfs:label "BB+" ; rdfs:comment "Speculative. Indicates an elevated vulnerability to default risk, particularly in the event of adverse changes in business or economic conditions over time; however, business or financial flexibility exists that supports the servicing of financial commitments." .
+:BB a :FitchCreditRating ; rdfs:label "BB" ; rdfs:comment "Speculative. Indicates an elevated vulnerability to default risk, particularly in the event of adverse changes in business or economic conditions over time; however, business or financial flexibility exists that supports the servicing of financial commitments." .
+:BB\- a :FitchCreditRating ; rdfs:label "BB-" ; rdfs:comment "Speculative. Indicates an elevated vulnerability to default risk, particularly in the event of adverse changes in business or economic conditions over time; however, business or financial flexibility exists that supports the servicing of financial commitments." .
+:B\+ a :FitchCreditRating ; rdfs:label "B+" ; rdfs:comment "Highly speculative. Indicates that material default risk is present, but a limited margin of safety remains. Financial commitments are currently being met; however, capacity for continued payment is vulnerable to deterioration in the business and economic environment." .
+:B a :FitchCreditRating ; rdfs:label "B" ; rdfs:comment "Highly speculative. Indicates that material default risk is present, but a limited margin of safety remains. Financial commitments are currently being met; however, capacity for continued payment is vulnerable to deterioration in the business and economic environment." .
+:B\- a :FitchCreditRating ; rdfs:label "B-" ; rdfs:comment "Highly speculative. Indicates that material default risk is present, but a limited margin of safety remains. Financial commitments are currently being met; however, capacity for continued payment is vulnerable to deterioration in the business and economic environment." .
+:CCC\+ a :FitchCreditRating ; rdfs:label "CCC+" ; rdfs:comment "Substantial credit risk. Default is a real possibility." .
+:CCC a :FitchCreditRating ; rdfs:label "CCC" ; rdfs:comment "Substantial credit risk. Default is a real possibility." .
+:CCC\- a :FitchCreditRating ; rdfs:label "CCC-" ; rdfs:comment "Substantial credit risk. Default is a real possibility." .
+:CC a :FitchCreditRating ; rdfs:label "CC" ; rdfs:comment "Very high levels of credit risk. Default of some kind appears probable." .
+:C a :FitchCreditRating ; rdfs:label "C" ; rdfs:comment "Exceptionally high levels of credit risk. Default appears imminent or inevitable." .
+:RD a :FitchCreditRating ; rdfs:label "RD" ; rdfs:comment "Restricted default. Indicates an issuer that, in Fitch's opinion, has experienced an uncured payment default or distressed debt exchange on a bond, loan, or other material financial obligation but has not entered into bankruptcy filings, administration, receivership, liquidation, or other formal winding-up procedure and has not otherwise ceased operating." .
+:NR a :FitchCreditRating ; rdfs:label "NR" ; rdfs:comment "Not rated. Indicates that Fitch does not publicly rate the associated issuer or issue." .
+:PIF a :FitchCreditRating ; rdfs:label "PIF" ; rdfs:comment "Paid in full. Denotes a security that is paid in full, matured, called, or refinanced." .
+:WD a :FitchCreditRating ; rdfs:label "WD" ; rdfs:comment "Withdrawn. Indicates that the rating has been withdrawn and the issue or issuer is no longer rated by Fitch." .
+
+:MoodysCreditRating a owl:Class ;
+rdfs:subClassOf :CreditRating ;
+rdfs:label "Moody's Credit Rating" ;
+rdfs:comment "The credit rating assigned by Moody's Investors Service to a fixed income instrument or issuer, reflecting their assessment of the creditworthiness and the likelihood of default. The ratings range from 'Aaa' (highest credit quality) to 'C' (lowest credit quality), with numeric modifiers (1, 2, 3) to indicate relative standing within a rating category. 'NR' indicates that the instrument or issuer is not rated by Moody's." .
+:hasMoodysCreditRating a owl:ObjectProperty ;
+rdfs:domain :FixedIncomeInstrument ;
+rdfs:range :MoodysCreditRating ;
+rdfs:label "has Moody's credit rating" .
+
+:Aaa a :MoodysCreditRating ; rdfs:label "Aaa" ; rdfs:comment "Obligations rated Aaa are judged to be of the highest quality, subject to the lowest level of credit risk." .
+:Aa1 a :MoodysCreditRating ; rdfs:label "Aa1" ; rdfs:comment "Obligations rated Aa are judged to be of high quality and are subject to very low credit risk. The modifier 1 indicates that the obligation ranks in the higher end of its generic rating category." .
+:Aa2 a :MoodysCreditRating ; rdfs:label "Aa2" ; rdfs:comment "Obligations rated Aa are judged to be of high quality and are subject to very low credit risk. The modifier 2 indicates a mid-range ranking within the generic rating category." .
+:Aa3 a :MoodysCreditRating ; rdfs:label "Aa3" ; rdfs:comment "Obligations rated Aa are judged to be of high quality and are subject to very low credit risk. The modifier 3 indicates a ranking in the lower end of the generic rating category." .
+:A1 a :MoodysCreditRating ; rdfs:label "A1" ; rdfs:comment "Obligations rated A are judged to be upper-medium grade and are subject to low credit risk. The modifier 1 indicates that the obligation ranks in the higher end of its generic rating category." .
+:A2 a :MoodysCreditRating ; rdfs:label "A2" ; rdfs:comment "Obligations rated A are judged to be upper-medium grade and are subject to low credit risk. The modifier 2 indicates a mid-range ranking within the generic rating category." .
+:A3 a :MoodysCreditRating ; rdfs:label "A3" ; rdfs:comment "Obligations rated A are judged to be upper-medium grade and are subject to low credit risk. The modifier 3 indicates a ranking in the lower end of the generic rating category." .
+:Baa1 a :MoodysCreditRating ; rdfs:label "Baa1" ; rdfs:comment "Obligations rated Baa are judged to be medium-grade and subject to moderate credit risk and as such may possess certain speculative characteristics. The modifier 1 indicates that the obligation ranks in the higher end of its generic rating category." .
+:Baa2 a :MoodysCreditRating ; rdfs:label "Baa2" ; rdfs:comment "Obligations rated Baa are judged to be medium-grade and subject to moderate credit risk and as such may possess certain speculative characteristics. The modifier 2 indicates a mid-range ranking within the generic rating category." .
+:Baa3 a :MoodysCreditRating ; rdfs:label "Baa3" ; rdfs:comment "Obligations rated Baa are judged to be medium-grade and subject to moderate credit risk and as such may possess certain speculative characteristics. The modifier 3 indicates a ranking in the lower end of the generic rating category." .
+:Ba1 a :MoodysCreditRating ; rdfs:label "Ba1" ; rdfs:comment "Obligations rated Ba are judged to be speculative and are subject to substantial credit risk. The modifier 1 indicates that the obligation ranks in the higher end of its generic rating category." .
+:Ba2 a :MoodysCreditRating ; rdfs:label "Ba2" ; rdfs:comment "Obligations rated Ba are judged to be speculative and are subject to substantial credit risk. The modifier 2 indicates a mid-range ranking within the generic rating category." .
+:Ba3 a :MoodysCreditRating ; rdfs:label "Ba3" ; rdfs:comment "Obligations rated Ba are judged to be speculative and are subject to substantial credit risk. The modifier 3 indicates a ranking in the lower end of the generic rating category." .
+:B1 a :MoodysCreditRating ; rdfs:label "B1" ; rdfs:comment "Obligations rated B are considered speculative and are subject to high credit risk. The modifier 1 indicates that the obligation ranks in the higher end of its generic rating category." .
+:B2 a :MoodysCreditRating ; rdfs:label "B2" ; rdfs:comment "Obligations rated B are considered speculative and are subject to high credit risk. The modifier 2 indicates a mid-range ranking within the generic rating category." .
+:B3 a :MoodysCreditRating ; rdfs:label "B3" ; rdfs:comment "Obligations rated B are considered speculative and are subject to high credit risk. The modifier 3 indicates a ranking in the lower end of the generic rating category." .
+:Caa1 a :MoodysCreditRating ; rdfs:label "Caa1" ; rdfs:comment "Obligations rated Caa are judged to be speculative, of poor standing and are subject to very high credit risk. The modifier 1 indicates that the obligation ranks in the higher end of its generic rating category." .
+:Caa2 a :MoodysCreditRating ; rdfs:label "Caa2" ; rdfs:comment "Obligations rated Caa are judged to be speculative, of poor standing and are subject to very high credit risk. The modifier 2 indicates a mid-range ranking within the generic rating category." .
+:Caa3 a :MoodysCreditRating ; rdfs:label "Caa3" ; rdfs:comment "Obligations rated Caa are judged to be speculative, of poor standing and are subject to very high credit risk. The modifier 3 indicates a ranking in the lower end of the generic rating category." .
+:Ca a :MoodysCreditRating ; rdfs:label "Ca" ; rdfs:comment "Obligations rated Ca are highly speculative and are likely in, or very near, default, with some prospect of recovery of principal and interest." .
+:C a :MoodysCreditRating ; rdfs:label "C" ; rdfs:comment "Obligations rated C are the lowest rated and are typically in default, with little prospect for recovery of principal or interest." .
+:NR a :MoodysCreditRating ; rdfs:label "NR" ; rdfs:comment "Indicates that Moody's Investors Service does not publicly rate the associated issuer or issue." .
+
+:StandardAndPoorsCreditRating a owl:Class ;
+rdfs:subClassOf :CreditRating ;
+rdfs:label "Standard & Poor's Credit Rating" ;
+rdfs:comment "The credit rating assigned by S&P Global Ratings to a fixed income instrument or issuer, reflecting their assessment of the creditworthiness and the likelihood of default. The ratings range from 'AAA' (highest credit quality) to 'D' (default), with '+' and '-' modifiers to indicate relative standing within a rating category. 'NR' indicates that the instrument or issuer is not rated by S&P." .
+:hasStandardAndPoorsCreditRating a owl:ObjectProperty ;
+rdfs:domain :FixedIncomeInstrument ;
+rdfs:range :StandardAndPoorsCreditRating ;
+rdfs:label "has Standard & Poor's credit rating" .
+:AAA a :StandardAndPoorsCreditRating ; rdfs:label "AAA" ; rdfs:comment "Extremely strong capacity to meet financial commitments. Highest rating." .
+:AA\+ a :StandardAndPoorsCreditRating ; rdfs:label "AA+" ; rdfs:comment "Very strong capacity to meet financial commitments." .
+:AA a :StandardAndPoorsCreditRating ; rdfs:label "AA" ; rdfs:comment "Very strong capacity to meet financial commitments." .
+:AA\- a :StandardAndPoorsCreditRating ; rdfs:label "AA-" ; rdfs:comment "Very strong capacity to meet financial commitments." .
+:A\+ a :StandardAndPoorsCreditRating ; rdfs:label "A+" ; rdfs:comment "Strong capacity to meet financial commitments, but somewhat susceptible to adverse economic conditions and changes in circumstances." .
+:A a :StandardAndPoorsCreditRating ; rdfs:label "A" ; rdfs:comment "Strong capacity to meet financial commitments, but somewhat susceptible to adverse economic conditions and changes in circumstances." .
+:A\- a :StandardAndPoorsCreditRating ; rdfs:label "A-" ; rdfs:comment "Strong capacity to meet financial commitments, but somewhat susceptible to adverse economic conditions and changes in circumstances." .
+:BBB\+ a :StandardAndPoorsCreditRating ; rdfs:label "BBB+" ; rdfs:comment "Adequate capacity to meet financial commitments, but more subject to adverse economic conditions." .
+:BBB a :StandardAndPoorsCreditRating ; rdfs:label "BBB" ; rdfs:comment "Adequate capacity to meet financial commitments, but more subject to adverse economic conditions." .
+:BBB\- a :StandardAndPoorsCreditRating ; rdfs:label "BBB-" ; rdfs:comment "Adequate capacity to meet financial commitments, but more subject to adverse economic conditions." .
+:BB\+ a :StandardAndPoorsCreditRating ; rdfs:label "BB+" ; rdfs:comment "Less vulnerable in the near-term but faces major ongoing uncertainties to adverse business, financial and economic conditions." .
+:BB a :StandardAndPoorsCreditRating ; rdfs:label "BB" ; rdfs:comment "Less vulnerable in the near-term but faces major ongoing uncertainties to adverse business, financial and economic conditions." .
+:BB\- a :StandardAndPoorsCreditRating ; rdfs:label "BB-" ; rdfs:comment "Less vulnerable in the near-term but faces major ongoing uncertainties to adverse business, financial and economic conditions." .
+:B\+ a :StandardAndPoorsCreditRating ; rdfs:label "B+" ; rdfs:comment "More vulnerable to adverse business, financial and economic conditions but currently has the capacity to meet financial commitments." .
+:B a :StandardAndPoorsCreditRating ; rdfs:label "B" ; rdfs:comment "More vulnerable to adverse business, financial and economic conditions but currently has the capacity to meet financial commitments." .
+:B\- a :StandardAndPoorsCreditRating ; rdfs:label "B-" ; rdfs:comment "More vulnerable to adverse business, financial and economic conditions but currently has the capacity to meet financial commitments." .
+:CCC\+ a :StandardAndPoorsCreditRating ; rdfs:label "CCC+" ; rdfs:comment "Currently vulnerable and dependent on favorable business, financial and economic conditions to meet financial commitments." .
+:CCC a :StandardAndPoorsCreditRating ; rdfs:label "CCC" ; rdfs:comment "Currently vulnerable and dependent on favorable business, financial and economic conditions to meet financial commitments." .
+:CCC\- a :StandardAndPoorsCreditRating ; rdfs:label "CCC-" ; rdfs:comment "Currently vulnerable and dependent on favorable business, financial and economic conditions to meet financial commitments." .
+:CC a :StandardAndPoorsCreditRating ; rdfs:label "CC" ; rdfs:comment "Highly vulnerable; default has not yet occurred, but is expected to be a virtual certainty." .
+:C a :StandardAndPoorsCreditRating ; rdfs:label "C" ; rdfs:comment "Currently highly vulnerable to non-payment, and ultimate recovery is expected to be lower than that of higher rated obligations." .
+:SD a :StandardAndPoorsCreditRating ; rdfs:label "SD" ; rdfs:comment "Selective default; the obligor has selectively defaulted on a specific issue or class of obligations but will continue to meet its payment obligations on other issues or classes of obligations." .
+:D a :StandardAndPoorsCreditRating ; rdfs:label "D" ; rdfs:comment "Default; the obligor has failed to pay one or more of its financial obligations when it came due." .
+:NR a :StandardAndPoorsCreditRating ; rdfs:label "NR" ; rdfs:comment "Indicates that S&P Global Ratings does not publicly rate the associated issuer or issue." .
+
+:MandGCreditRating a owl:Class ;
+rdfs:subClassOf :CreditRating ;
+rdfs:label "M&G's internal Credit Rating" ;
+rdfs:comment "The credit rating assigned by M&G's internal credit research team to a fixed income instrument or issuer, reflecting their assessment of the creditworthiness and the likelihood of default. The ratings range from 'AAA' (highest credit quality) to 'D' (default), with '+' and '-' modifiers to indicate relative standing within a rating category. 'NR' indicates that the instrument or issuer is not rated by M&G." .
+:hasMarketGradeCreditRating a owl:ObjectProperty ;
+rdfs:domain :FixedIncomeInstrument ;
+rdfs:range :MandGCreditRating ;
+rdfs:label "has Market Grade credit rating" .
+:AAA a :MandGCreditRating ; rdfs:label "AAA" ; rdfs:comment "Extremely strong capacity to meet financial commitments. Highest rating." .
+:AA\+ a :MandGCreditRating ; rdfs:label "AA+" ; rdfs:comment "Very strong capacity to meet financial commitments." .
+:AA a :MandGCreditRating ; rdfs:label "AA" ; rdfs:comment "Very strong capacity to meet financial commitments." .
+:AA\- a :MandGCreditRating ; rdfs:label "AA-" ; rdfs:comment "Very strong capacity to meet financial commitments." .
+:A\+ a :MandGCreditRating ; rdfs:label "A+" ; rdfs:comment "Strong capacity to meet financial commitments, but somewhat susceptible to adverse economic conditions and changes in circumstances." .
+:A a :MandGCreditRating ; rdfs:label "A" ; rdfs:comment "Strong capacity to meet financial commitments, but somewhat susceptible to adverse economic conditions and changes in circumstances." .
+:A\- a :MandGCreditRating ; rdfs:label "A-" ; rdfs:comment "Strong capacity to meet financial commitments, but somewhat susceptible to adverse economic conditions and changes in circumstances." .
+:BBB\+ a :MandGCreditRating ; rdfs:label "BBB+" ; rdfs:comment "Adequate capacity to meet financial commitments, but more subject to adverse economic conditions." .
+:BBB a :MandGCreditRating ; rdfs:label "BBB" ; rdfs:comment "Adequate capacity to meet financial commitments, but more subject to adverse economic conditions." .
+:BBB\- a :MandGCreditRating ; rdfs:label "BBB-" ; rdfs:comment "Adequate capacity to meet financial commitments, but more subject to adverse economic conditions." .
+:BB\+ a :MandGCreditRating ; rdfs:label "BB+" ; rdfs:comment "Less vulnerable in the near-term but faces major ongoing uncertainties to adverse business, financial and economic conditions." .
+:BB a :MandGCreditRating ; rdfs:label "BB" ; rdfs:comment "Less vulnerable in the near-term but faces major ongoing uncertainties to adverse business, financial and economic conditions." .
+:BB\- a :MandGCreditRating ; rdfs:label "BB-" ; rdfs:comment "Less vulnerable in the near-term but faces major ongoing uncertainties to adverse business, financial and economic conditions." .
+:B\+ a :MandGCreditRating ; rdfs:label "B+" ; rdfs:comment "More vulnerable to adverse business, financial and economic conditions but currently has the capacity to meet financial commitments." .
+:B a :MandGCreditRating ; rdfs:label "B" ; rdfs:comment "More vulnerable to adverse business, financial and economic conditions but currently has the capacity to meet financial commitments." .
+:B\- a :MandGCreditRating ; rdfs:label "B-" ; rdfs:comment "More vulnerable to adverse business, financial and economic conditions but currently has the capacity to meet financial commitments." .
+:CCC\+ a :MandGCreditRating ; rdfs:label "CCC+" ; rdfs:comment "Currently vulnerable and dependent on favorable business, financial and economic conditions to meet financial commitments." .
+:CCC a :MandGCreditRating ; rdfs:label "CCC" ; rdfs:comment "Currently vulnerable and dependent on favorable business, financial and economic conditions to meet financial commitments." .
+:CCC\- a :MandGCreditRating ; rdfs:label "CCC-" ; rdfs:comment "Currently vulnerable and dependent on favorable business, financial and economic conditions to meet financial commitments." .
+:CC\+ a :MandGCreditRating ; rdfs:label "CC+" ; rdfs:comment "Highly vulnerable; default has not yet occurred, but is expected to be a virtual certainty." .
+:CC a :MandGCreditRating ; rdfs:label "CC" ; rdfs:comment "Highly vulnerable; default has not yet occurred, but is expected to be a virtual certainty." .
+:C\- a :MandGCreditRating ; rdfs:label "C-" ; rdfs:comment "Currently highly vulnerable to non-payment, and ultimate recovery is expected to be lower than that of higher rated obligations." .
+:C a :MandGCreditRating ; rdfs:label "C" ; rdfs:comment "Currently highly vulnerable to non-payment, and ultimate recovery is expected to be lower than that of higher rated obligations." .
+:D a :MandGCreditRating ; rdfs:label "D" ; rdfs:comment "Default; the obligor has failed to pay one or more of its financial obligations when it came due." .
+:NR a :MandGCreditRating ; rdfs:label "NR" ; rdfs:comment "Indicates that M&G does not internally rate the associated issuer or issue." .
+
+
+:AverageConservativeExternalCreditQualityRank a owl:DatatypeProperty ;
+rdfs:domain :FixedIncomeInstrument ;
+rdfs:range xsd:integer ;
+rdfs:label "Average Conservative External Credit Quality Rank" ;
+rdfs:comment "The average credit quality rank of the financial instrument based on conservative external credit ratings, where 1 represents the highest credit quality and 24 represents the lowest credit quality." .
+
+:hasSecondHighestCreditRating a owl:ObjectProperty ;
+  rdfs:subPropertyOf :hasCreditRating ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:label "Second Highest Credit Rating" ;
+  rdfs:comment "The second highest credit rating assigned to the financial instrument among all credit rating agencies."@en ;
+  skos:altLabel "SecondHighestCreditRatingID" .
+
+:hasSectorClassification a owl:ObjectProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range :SectorClassification .
+
+:SectorClassification a owl:Class ;
+  fibo-fnd-utl-av:explanatoryNote "Represents a sector classification associated with a financial instrument." .
+
+:hasMerrillLynchL1SectorClassification a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasSectorClassification ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:label "Merrill Lynch Level 1 Sector Classification" ;
+  rdfs:comment "The level 1 sector classification of the financial instrument according to Merrill Lynch's proprietary industry classification system."@en ;
+  skos:altLabel "MerrillLynchSectorNameL1" .
+
+:hasMerrillLynchL2SectorClassification a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasSectorClassification ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:label "Merrill Lynch Level 2 Sector Classification" ;
+  rdfs:comment "The level 2 sector classification of the financial instrument according to Merrill Lynch's proprietary industry classification system."@en ;
+  skos:altLabel "MerrillLynchSectorNameL2" .
+
+:hasMerrillLynchL3SectorClassification a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasSectorClassification ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:label "Merrill Lynch Level 3 Sector Classification" ;
+  rdfs:comment "The level 3 sector classification of the financial instrument according to Merrill Lynch's proprietary industry classification system."@en ;
+  skos:altLabel "MerrillLynchSectorNameL3" .
+
+:hasMerrillLynchL4SectorClassification a owl:DatatypeProperty ;
+  rdfs:subPropertyOf :hasSectorClassification ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:label "Merrill Lynch Level 4 Sector Classification" ;
+  rdfs:comment "The level 4 sector classification of the financial instrument according to Merrill Lynch's proprietary industry classification system."@en ;
+  skos:altLabel "MerrillLynchSectorNameL4" .
+
+:hasFinancialClassification a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:string ;
+  rdfs:label "Financial Classification" ;
+  rdfs:comment "The classification of the financial instrument based on its financial characteristics, such as asset class, instrument type, or accounting treatment."@en ;
+  skos:altLabel "FinancialClassification" .
+
+:hasTotalBidSize a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Total Bid Size" ;
+  rdfs:comment "The total volume or quantity of bids for the financial instrument in the market."@en ;
+  skos:altLabel "TotalBid" .
+
+:hasTotalAskSize a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Total Ask Size" ;
+  rdfs:comment "The total volume or quantity of asks (offers) for the financial instrument in the market."@en ;
+  skos:altLabel "TotalAsk" .
+
+:hasIssuerCoveringAnalyst a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:string ;
+  rdfs:label "Issuer Covering Analyst" ;
+  rdfs:comment "The primary analyst responsible for covering and providing research on the issuer of the financial instrument."@en ;
+  skos:altLabel "IssuerCoveringAnalyst" .
+
+:hasIssuerSecondaryCoveringAnalyst a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:string ;
+  rdfs:label "Issuer Secondary Covering Analyst" ;
+  rdfs:comment "The secondary analyst responsible for covering and providing research on the issuer of the financial instrument."@en ;
+  skos:altLabel "IssuerSecondaryCoveringAnalyst" .
+
+:hasInternalL3Sector a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:string ;
+  rdfs:label "Internal Level 3 Sector" ;
+  rdfs:comment "The level 3 sector classification of the financial instrument according to M&G's internal sector classification system."@en ;
+  skos:altLabel "InternalSectorL3" .
+
+:hasInstrumentCoveringAnalyst a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:string ;
+  rdfs:label "Instrument Covering Analyst" ;
+  rdfs:comment "The primary analyst responsible for covering and providing research on the financial instrument."@en ;
+  skos:altLabel "InstrumentCoveringAnalyst" .
+
+:PreferredStatus a owl:Class ;
+  rdfs:label "Preferred Status" ;
+  rdfs:comment "Indicates the preferred status of an equity instrument. 'A' represents the highest level of preference, followed by 'B' and then 'C'." .
+
+:A a :PreferredStatus ;
+  rdfs:label "A" ;
+  rdfs:comment "The equity instrument has the highest level of preference among other preferred securities." .
+
+:B a :PreferredStatus ;
+  rdfs:label "B" ;
+  rdfs:comment "The equity instrument has a moderate level of preference, ranking below 'A' but above 'C'." .
+
+:C a :PreferredStatus ;
+  rdfs:label "C" ;
+  rdfs:comment "The equity instrument has the lowest level of preference among other preferred securities." .
+
+:IssuerCreditRating a owl:Class ;
+  rdfs:label "Issuer Credit Rating" ;
+  rdfs:comment "The credit rating assigned to the issuer of a financial instrument, indicating the issuer's creditworthiness and ability to meet its financial obligations. The ratings range from 'AAA' (highest credit quality) to 'D' (default), with '+' and '-' modifiers to indicate relative standing within a rating category. 'NR' indicates that the issuer is not rated." .
+
+:AAA a :IssuerCreditRating ; rdfs:label "AAA" ; rdfs:comment "The issuer has the highest credit quality and lowest expectation of default risk." .
+:AA\+ a :IssuerCreditRating ; rdfs:label "AA+" ; rdfs:comment "The issuer has very high credit quality and very low default risk." .
+:AA a :IssuerCreditRating ; rdfs:label "AA" ; rdfs:comment "The issuer has very high credit quality and very low default risk." .
+:AA\- a :IssuerCreditRating ; rdfs:label "AA-" ; rdfs:comment "The issuer has very high credit quality and very low default risk." .
+:A\+ a :IssuerCreditRating ; rdfs:label "A+" ; rdfs:comment "The issuer has high credit quality and low default risk." .
+:A a :IssuerCreditRating ; rdfs:label "A" ; rdfs:comment "The issuer has high credit quality and low default risk." .
+:A\- a :IssuerCreditRating ; rdfs:label "A-" ; rdfs:comment "The issuer has high credit quality and low default risk." .
+:BBB\+ a :IssuerCreditRating ; rdfs:label "BBB+" ; rdfs:comment "The issuer has adequate credit quality and moderate default risk." .
+:BBB a :IssuerCreditRating ; rdfs:label "BBB" ; rdfs:comment "The issuer has adequate credit quality and moderate default risk." .
+:BBB\- a :IssuerCreditRating ; rdfs:label "BBB-" ; rdfs:comment "The issuer has adequate credit quality and moderate default risk." .
+:BB\+ a :IssuerCreditRating ; rdfs:label "BB+" ; rdfs:comment "The issuer has speculative credit quality and substantial default risk." .
+:BB a :IssuerCreditRating ; rdfs:label "BB" ; rdfs:comment "The issuer has speculative credit quality and substantial default risk." .
+:BB\- a :IssuerCreditRating ; rdfs:label "BB-" ; rdfs:comment "The issuer has speculative credit quality and substantial default risk." .
+:B\+ a :IssuerCreditRating ; rdfs:label "B+" ; rdfs:comment "The issuer has highly speculative credit quality and high default risk." .
+:B a :IssuerCreditRating ; rdfs:label "B" ; rdfs:comment "The issuer has highly speculative credit quality and high default risk." .
+:B\- a :IssuerCreditRating ; rdfs:label "B-" ; rdfs:comment "The issuer has highly speculative credit quality and high default risk." .
+:CCC\+ a :IssuerCreditRating ; rdfs:label "CCC+" ; rdfs:comment "The issuer has very high default risk and is vulnerable to nonpayment." .
+:CCC a :IssuerCreditRating ; rdfs:label "CCC" ; rdfs:comment "The issuer has very high default risk and is vulnerable to nonpayment." .
+:CCC\- a :IssuerCreditRating ; rdfs:label "CCC-" ; rdfs:comment "The issuer has very high default risk and is vulnerable to nonpayment." .
+:CC a :IssuerCreditRating ; rdfs:label "CC" ; rdfs:comment "The issuer is highly vulnerable to nonpayment and default is imminent." .
+:CC\+ a :IssuerCreditRating ; rdfs:label "CC+" ; rdfs:comment "The issuer is highly vulnerable to nonpayment and default is imminent." .
+:C a :IssuerCreditRating ; rdfs:label "C" ; rdfs:comment "The issuer is currently highly vulnerable to nonpayment." .
+:D a :IssuerCreditRating ; rdfs:label "D" ; rdfs:comment "The issuer is in default." .
+:NR a :IssuerCreditRating ; rdfs:label "NR" ; rdfs:comment "The issuer is not rated." .
+
+:Outlook a owl:Class ;
+  rdfs:label "Outlook" ;
+  rdfs:comment "Indicates the expected future performance and creditworthiness of an issuer or financial instrument. 'Positive' indicates an expected improvement, 'Stable' indicates no significant changes expected, 'Negative' indicates an expected deterioration, and 'Uncertain' indicates unpredictable or unclear expectations. 'Not Rated' means no outlook has been assigned." .
+
+:Positive a :Outlook ; rdfs:label "Positive" ; rdfs:comment "The issuer or instrument is expected to improve in performance and creditworthiness." .
+:Stable a :Outlook ; rdfs:label "Stable" ; rdfs:comment "The issuer or instrument is expected to maintain its current performance and creditworthiness." .
+:Negative a :Outlook ; rdfs:label "Negative" ; rdfs:comment "The issuer or instrument is expected to deteriorate in performance and creditworthiness." .
+:Uncertain a :Outlook ; rdfs:label "Uncertain" ; rdfs:comment "The future performance and creditworthiness of the issuer or instrument are unpredictable or unclear." .
+:Not_Rated a :Outlook ; rdfs:label "Not Rated" ; rdfs:comment "No outlook has been assigned to the issuer or instrument." .
+:\- a :Outlook ; rdfs:label "-" ; rdfs:comment "The outlook information is not available or not applicable." .
+
+:EventRisk a owl:Class ;
+  rdfs:label "Event Risk" ;
+  rdfs:comment "Represents the risk of a significant event or development that could affect the creditworthiness or financial stability of an issuer or financial instrument. 'Low' indicates a low likelihood of such an event, 'Medium' indicates a moderate likelihood, and 'High' indicates a high likelihood. 'Not Rated' means no event risk assessment has been made." .
+
+:Low a :EventRisk ; rdfs:label "Low" ; rdfs:comment "There is a low likelihood of a significant event or development that could negatively impact the issuer or instrument." .
+:Medium a :EventRisk ; rdfs:label "Medium" ; rdfs:comment "There is a moderate likelihood of a significant event or development that could negatively impact the issuer or instrument." .
+:High a :EventRisk ; rdfs:label "High" ; rdfs:comment "There is a high likelihood of a significant event or development that could negatively impact the issuer or instrument." .
+:\-_EventRisk a :EventRisk ; rdfs:label "-" ; rdfs:comment "The event risk information is not available or not applicable." .
+
+:RiskListStatus a owl:Class ;
+  rdfs:label "Risk List Status" ;
+  rdfs:comment "Indicates the status of a financial instrument on an internal risk list, signaling specific risks or concerns associated with the instrument. 'At Risk' indicates the instrument is considered to have significant risks, 'To Watch' indicates the instrument requires close monitoring due to potential risks, and 'Restructured' indicates the instrument has undergone a restructuring process." .
+
+:At_Risk a :RiskListStatus ; rdfs:label "At Risk" ; rdfs:comment "The financial instrument is considered to have significant risks or concerns." .
+:To_Watch a :RiskListStatus ; rdfs:label "To Watch" ; rdfs:comment "The financial instrument requires close monitoring due to potential risks or concerns." .
+:Restructured a :RiskListStatus ; rdfs:label "Restructured" ; rdfs:comment "The financial instrument has undergone a restructuring process to address risks or concerns." .
+:\-_RiskListStatus a :RiskListStatus ; rdfs:label "-" ; rdfs:comment "The risk list status information is not available or not applicable." .
+
+:hasPreferredStatus a owl:ObjectProperty ;
+  rdfs:label "has Preferred Status" ;
+  rdfs:domain :EquityInstrument ;
+  rdfs:range :PreferredStatus .
+
+:hasIssuerCreditRating a owl:ObjectProperty ;
+  rdfs:label "has Issuer Credit Rating" ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range :IssuerCreditRating .
+
+:hasIssuerMarketGradeOutlook a owl:ObjectProperty ;
+  rdfs:label "has Issuer Market Grade Outlook" ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range :Outlook .
+
+:hasIssuerEventRisk a owl:ObjectProperty ;
+  rdfs:label "has Issuer Event Risk" ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range :EventRisk .
+
+:hasInstrumentMarketGradeOutlook a owl:ObjectProperty ;
+  rdfs:label "has Instrument Market Grade Outlook" ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range :Outlook .
+
+:hasInstrumentEventRisk a owl:ObjectProperty ;
+  rdfs:label "has Instrument Event Risk" ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range :EventRisk .
+
+:hasInstrumentRiskListStatus a owl:ObjectProperty ;
+  rdfs:label "has Instrument Risk List Status" ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range :RiskListStatus .
+  
+  
+  
+:hasInstrumentRiskListStatusComment a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:string ;
+  rdfs:label "Instrument Risk List Status Comment" ;
+  rdfs:comment "Additional comments or explanations regarding the risk list status of the financial instrument."@en ;
+  skos:altLabel "InsturmentRiskListStatusComment" .
+
+:hasESGEScore a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "ESG E Score" ;
+  rdfs:comment "The environmental score of the financial instrument based on M&G's proprietary ESG rating methodology."@en ;
+  skos:altLabel "MG_ESG_E_Score" .
+
+:hasESGGScore a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "ESG G Score" ;
+  rdfs:comment "The governance score of the financial instrument based on M&G's proprietary ESG rating methodology."@en ;
+  skos:altLabel "MG_ESG_G_Score" .
+
+:hasESGSScore a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "ESG S Score" ;
+  rdfs:comment "The social score of the financial instrument based on M&G's proprietary ESG rating methodology."@en ;
+  skos:altLabel "MG_ESG_S_Score" .
+
+:hasESGOverallScore a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "ESG Overall Score" ;
+  rdfs:comment "The overall ESG score of the financial instrument based on M&G's proprietary ESG rating methodology, considering environmental, social, and governance factors."@en ;
+  skos:altLabel "MG_ESG_Overall_Score" .
+
+:hasESGBondTypeDescription a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:string ;
+  rdfs:label "ESG Bond Type Description" ;
+  rdfs:comment "A description of the type of ESG bond, providing more information about its specific environmental, social, or governance characteristics."@en ;
+  skos:altLabel "MG_ESG_BondType_Description" .
+
+
+:hasRegionName a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:string ;
+  rdfs:label "Region Name" ;
+  rdfs:comment "The name of the geographic region associated with the financial instrument, such as the region where the issuer is located or the instrument is primarily traded."@en ;
+  skos:altLabel "RegionName" .
+
+:isHeldSecurity a owl:DatatypeProperty ;
+  rdfs:domain :FinancialInstrument ;
+  rdfs:range xsd:boolean ;
+  rdfs:label "Is Held Security" ;
+  rdfs:comment "Indicates whether the financial instrument is currently held in M&G's investment portfolios."@en ;
+  skos:altLabel "HeldSecurityFlag" .
+
+
+:ESGBondRAGStatus a owl:Class ;
+  rdfs:label "ESG Bond RAG Status" ;
+  rdfs:comment "The Red-Amber-Green (RAG) status of an ESG bond, indicating its overall ESG performance and alignment with the organization's ESG criteria. 'Green' represents the highest level of ESG performance, 'Amber' represents a moderate level of ESG performance with some areas for improvement, and 'Red' represents a low level of ESG performance with significant concerns." .
+
+:Green a :ESGBondRAGStatus ;
+  rdfs:label "Green" ;
+  rdfs:comment "The ESG bond demonstrates a high level of ESG performance and strong alignment with the organization's ESG criteria." .
+
+:Amber a :ESGBondRAGStatus ;
+  rdfs:label "Amber" ;
+  rdfs:comment "The ESG bond demonstrates a moderate level of ESG performance and has some areas for improvement to better align with the organization's ESG criteria." .
+
+:Red a :ESGBondRAGStatus ;
+  rdfs:label "Red" ;
+  rdfs:comment "The ESG bond demonstrates a low level of ESG performance and has significant concerns or misalignment with the organization's ESG criteria." .
+
+:SustainabilityResult a owl:Class ;
+  rdfs:label "Sustainability Result" ;
+  rdfs:comment "The result of a sustainability assessment, indicating whether an entity (e.g., security, issuer) meets the defined sustainability criteria. 'PASSED' indicates that the entity satisfies the sustainability criteria, 'FAILED' indicates that the entity does not meet the sustainability criteria, and 'NOT SCREENED' indicates that the entity has not been assessed against the sustainability criteria." .
+
+:PASSED a :SustainabilityResult ;
+  rdfs:label "PASSED" ;
+  rdfs:comment "The entity has satisfied the defined sustainability criteria." .
+
+:FAILED a :SustainabilityResult ;
+  rdfs:label "FAILED" ;
+  rdfs:comment "The entity has not met the defined sustainability criteria." .
+
+:NOT_SCREENED a :SustainabilityResult ;
+  rdfs:label "NOT SCREENED" ;
+  rdfs:comment "The entity has not been assessed against the defined sustainability criteria." .
+
+:DNSHResult a owl:Class ;
+  rdfs:label "DNSH Result" ;
+  rdfs:comment "The result of a 'Do No Significant Harm' (DNSH) assessment, indicating whether an entity (e.g., issuer) meets the DNSH criteria, which ensure that the entity's activities do not significantly harm environmental or social objectives. 'PASSED' indicates that the entity satisfies the DNSH criteria, 'FAILED' indicates that the entity does not meet the DNSH criteria, and 'NOT COVERED' indicates that the entity has not been assessed against the DNSH criteria." .
+
+:NOT_COVERED a :DNSHResult ;
+  rdfs:label "NOT COVERED" ;
+  rdfs:comment "The entity has not been assessed against the DNSH criteria." .
+
+:ActiveAverageWeightFlag a owl:Class ;
+  rdfs:label "Active Average Weight Flag" ;
+  rdfs:comment "Indicates whether a security is actively traded and its weight relative to the market average. 'Overweight' indicates that the security is actively traded and has a higher weight compared to the market average, 'Underweight' indicates that the security is actively traded but has a lower weight compared to the market average, and 'N/A' indicates that the security is not actively traded or its weight is not applicable." .
+
+:Overweight a :ActiveAverageWeightFlag ;
+  rdfs:label "Overweight" ;
+  rdfs:comment "The security is actively traded and has a higher weight compared to the market average." .
+
+:Underweight a :ActiveAverageWeightFlag ;
+  rdfs:label "Underweight" ;
+  rdfs:comment "The security is actively traded but has a lower weight compared to the market average." .
+
+:N_A a :ActiveAverageWeightFlag ;
+  rdfs:label "N/A" ;
+  rdfs:comment "The security is not actively traded or its weight is not applicable." .
+
+:hasESGBondRAGStatus a owl:ObjectProperty ;
+rdfs:label "has ESG Bond RAG Status" ;
+rdfs:domain :FixedIncomeInstrument ;
+rdfs:range :ESGBondRAGStatus .
+
+:hasSecuritySustainableResult a owl:ObjectProperty ;
+rdfs:label "has Security Sustainable Result" ;
+rdfs:domain :FixedIncomeInstrument ;
+rdfs:range :SustainabilityResult .
+
+:hasPositiveContributionEnvironmentResult a owl:ObjectProperty ;
+rdfs:label "has Positive Contribution Environment Result" ;
+rdfs:domain :FixedIncomeInstrument ;
+rdfs:range :SustainabilityResult .
+
+:hasPositiveContributionSocialResult a owl:ObjectProperty ;
+rdfs:label "has Positive Contribution Social Result" ;
+rdfs:domain :FixedIncomeInstrument ;
+rdfs:range :SustainabilityResult .
+
+:hasIssuerOverallDNSHResult a owl:ObjectProperty ;
+rdfs:label "has Issuer Overall DNSH Result" ;
+rdfs:domain :FixedIncomeInstrument ;
+rdfs:range :DNSHResult .
+
+:hasIssuerClimateEnvironmentResultComment a owl:ObjectProperty ;
+rdfs:label "has Issuer Climate Environment Result Comment" ;
+rdfs:domain :FixedIncomeInstrument ;
+rdfs:range :SustainabilityResult .
+
+:hasIssuerSocialResult a owl:ObjectProperty ;
+rdfs:label "has Issuer Social Result" ;
+rdfs:domain :FixedIncomeInstrument ;
+rdfs:range :SustainabilityResult .
+
+:hasIssuerOverallGoodGovernanceResult a owl:ObjectProperty ;
+rdfs:label "has Issuer Overall Good Governance Result" ;
+rdfs:domain :FixedIncomeInstrument ;
+rdfs:range :SustainabilityResult .
+
+:hasActiveAverageWeightFlag a owl:ObjectProperty ;
+rdfs:label "has Active Average Weight Flag" ;
+rdfs:domain :FixedIncomeInstrument ;
+rdfs:range :ActiveAverageWeightFlag .
+
+
+
+:isHighYield a owl:DatatypeProperty ;
+  rdfs:domain :FixedIncomeInstrument ;
+  rdfs:range xsd:boolean ;
+  rdfs:label "Is High Yield" ;
+  rdfs:comment "Indicates whether the fixed income instrument is classified as a high-yield security, typically associated with higher risk and higher potential returns."@en ;
+  skos:altLabel "HighYieldFlag" .
+
+:Fund a owl:Class ;
+  rdfs:subClassOf fibo-fnd-acc-aeq:CollectiveInvestmentVehicle ;
+  rdfs:label "Fund" ;
+  rdfs:comment "A collective investment scheme that pools money from investors to buy a portfolio of financial instruments, such as stocks, bonds, or other assets."@en .
+
+:hasFundName a owl:DatatypeProperty ;
+  rdfs:domain :Fund ;
+  rdfs:range xsd:string ;
+  rdfs:label "Fund Name" ;
+  rdfs:comment "The official name of the fund as specified in its offering documents."@en .
+
+:hasFundIdentifier a owl:DatatypeProperty ;
+  rdfs:domain :Fund ;
+  rdfs:range xsd:string ;
+  rdfs:label "Fund Identifier" ;
+  rdfs:comment "A unique identifier assigned to the fund, such as a CUSIP, ISIN, or other standardized identifier."@en .
+
+:hasFundManager a owl:ObjectProperty ;
+  rdfs:domain :Fund ;
+  rdfs:range fibo-fnd-org-fm:FormalOrganization ;
+  rdfs:label "Fund Manager" ;
+  rdfs:comment "The organization responsible for managing the fund and making investment decisions on behalf of the fund's investors."@en .
+
+:hasFundAdvisor a owl:ObjectProperty ;
+  rdfs:domain :Fund ;
+  rdfs:range fibo-fnd-org-fm:FormalOrganization ;
+  rdfs:label "Fund Advisor" ;
+  rdfs:comment "An organization that provides investment advice and recommendations to the fund manager."@en .
+
+:hasFundAsset a owl:ObjectProperty ;
+  rdfs:domain :Fund ;
+  rdfs:range :FinancialInstrument ;
+  rdfs:label "Fund Asset" ;
+  rdfs:comment "A financial instrument held by the fund as part of its investment portfolio."@en .
+
+:hasFundAssetAllocation a owl:DatatypeProperty ;
+  rdfs:domain :Fund ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Fund Asset Allocation" ;
+  rdfs:comment "The percentage of the fund's total assets invested in a specific asset class, sector, or geographic region."@en .
+
+:hasFundNav a owl:DatatypeProperty ;
+  rdfs:domain :Fund ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Fund Net Asset Value (NAV)" ;
+  rdfs:comment "The total value of the fund's assets minus its liabilities, divided by the number of outstanding shares."@en .
+
+:hasFundTotalAssets a owl:DatatypeProperty ;
+  rdfs:domain :Fund ;
+  rdfs:range xsd:decimal ;
+  rdfs:label "Fund Total Assets" ;
+  rdfs:comment "The total value of all assets held by the fund, including cash, securities, and other investments."@en .
+
+:hasFundCurrency a owl:ObjectProperty ;
+  rdfs:domain :Fund ;
+  rdfs:range fibo-fnd-acc-4217:Currency ;
+  rdfs:label "Fund Currency" ;
+  rdfs:comment "The currency in which the fund is denominated and its assets are valued."@en .
+
+:hasFundDomicile a owl:ObjectProperty ;
+  rdfs:domain :Fund ;
+  rdfs:range fibo-fnd-law-jur:Jurisdiction ;
+  rdfs:label "Fund Domicile" ;
+  rdfs:comment "The jurisdiction in which the fund is legally registered and regulated."@en .
+
+:hasFundInceptionDate a owl:DatatypeProperty ;
+  rdfs:domain :Fund ;
+  rdfs:range xsd:date ;
+  rdfs:label "Fund Inception Date" ;
+  rdfs:comment "The date on which the fund began its operations and started accepting investments."@en .
+
+
+
+:FinancialInstrument1 a :FixedIncomeInstrument, :CorporateBond ;
+  :hasTradeDate "2023-12-11"^^xsd:date ;
+  :hasSettlementDate "2023-12-11"^^xsd:date ;
+  :hasCusip "00185AAE4" ;
+  :hasSedol "BMJ14J4" ;
+  :hasIsin "XS1062493934" ;
+  :hasTicker "AON" ;
+  :hasName "AON PLC" ;
+  :hasAlias "AON 2.875% 14-May-2026" ;
+  :hasCurrencyCode "EUR" ;
+  :hasIssueCountry :GBR ;
+  :hasIssueCountryName "United Kingdom" ;
+  :hasRiskCountry :USA ;
+  :hasRiskCountryName "United States" ;
+  :hasIncorporationCountryName "Ireland" ;
+  :isESGBond false ;
+  :isConvertible false ;
+  :hasMaturityDate "2026-05-14"^^xsd:date ;
+  :hasFMPMaturityDate "2122-11-17"^^xsd:date ;
+  :hasEarliestMaturityDate "2023-12-11"^^xsd:date ;
+  :hasLatestMaturityDate "2221-10-24"^^xsd:date ;
+  :hasEarliestCallDate "2023-12-11"^^xsd:date ;
+  :hasLatestCallDate "2221-10-24"^^xsd:date ;
+  :hasAmountOutstanding 500000000 ;
+  :isCallable true ;
+  :hasMakeWholeCallProvision true ;
+  :hasNextCallDate "2026-02-14"^^xsd:date ;
+  :hasNextCallPrice 100 ;
+  :hasCallNotice 30 ;
+  :hasCallSchedule "Anytime" ;
+  :hasMakeWholeCallSpread 22 ;
+  :isPutable false ;
+  :hasDebtRanking "Senior Unsecured" ;
+  :hasPaymentType "FIXED" ;
+  :hasEmbeddedOptionType "CALL" ;
+  :hasCouponRate 2.875 ;
+  :hasCouponFrequency "A" ;
+  :hasBaselIIIDesignation "No Designation" ;
+  :hasIssuerID "F72069" ;
+  :hasIssuerName "AON PLC" ;
+  :hasPrice 97.6914 ;
+  :hasConvexity 0.00945 ;
+  :hasYield 3.88563 ;
+  :hasYieldToMaturity 3.88563 ;
+  :hasYieldToCall 3.98089 ;
+  :hasYieldToWorst 3.88563 ;
+  :hasYieldToOptimum 3.98089 ;
+  :hasSpreadDuration 2.23270664 ;
+  :hasOptionAdjustedSpread 125.07473 ;
+  :hasZSpread 84.24258 ;
+  :hasESpread 84.24257675 ;
+  :hasOASLibor 79.39403 ;
+  :hasOptionAdjustedDuration 2.21454 ;
+  :hasKeyRateDuration3M 0.00903 ;
+  :hasKeyRateDuration1Y 0.02475 ;
+  :hasKeyRateDuration2Y 1.45827 ;
+  :hasKeyRateDuration3Y 0.72248 ;
+  :hasKeyRateDuration5Y 0 ;
+  :hasKeyRateDuration7Y 0 ;
+  :hasKeyRateDuration10Y 0 ;
+  :hasKeyRateDuration15Y 0 ;
+  :hasKeyRateDuration20Y 0 ;
+  :hasKeyRateDuration25Y 0 ;
+  :hasKeyRateDuration30Y 0 ;
+  :hasMacaulayDuration 2.25 ;
+  :hasModifiedDuration 2.25165 ;
+  :hasModifiedDurationToCall 2.03777 ;
+  :hasModifiedDurationToWorst 2.25165 ;
+  :hasFitchCreditRating "BBB+" ;
+  :hasMoodysCreditRating "Baa2" ;
+  :hasStandardAndPoorsCreditRating "A-" ;
+  :hasMarketGradeCreditRating "BBB+" ;
+  :hasAverageConservativeExternalCreditQualityRank 8 ;
+  :hasSecondHighestCreditRating "BBB+" ;
+  :hasMerrillLynchL1SectorClassification "Corporate" ;
+  :hasMerrillLynchL2SectorClassification "Financial" ;
+  :hasMerrillLynchL3SectorClassification "Insurance" ;
+  :hasMerrillLynchL4SectorClassification "Insurance Brokerage" ;
+  :hasFinancialClassification "Financial" ;
+  :hasIssuerCreditRating "BBB+" ;
+  :hasIssuerCoveringAnalyst "Gregor Morris" ;
+  :hasIssuerMarketGradeOutlook "Stable" ;
+  :hasIssuerEventRisk "Low" ;
+  :hasInternalL3Sector "Insurance Brokerage" ;
+  :hasInstrumentCoveringAnalyst "Gregor Morris" ;
+  :hasInstrumentMarketGradeOutlook "Stable" ;
+  :hasInstrumentEventRisk "Low" ;
+  :hasSecuritySustainableResult "PASSED" ;
+  :hasPositiveContributionEnvironmentResult "PASSED" ;
+  :hasPositiveContributionSocialResult "PASSED" ;
+  :hasIssuerOverallDNSHResult "PASSED" ;
+  :hasIssuerClimateEnvironmentResultComment "PASSED" ;
+  :hasIssuerSocialResult "PASSED" ;
+  :hasIssuerOverallGoodGovernanceResult "PASSED" ;
+  :isHeldSecurity true ;
+  :isActivelyTraded "Overweight" ;
+  :isHighYield false .
+
+:FinancialInstrument2 a :FixedIncomeInstrument, :CorporateBond ;
+  :hasTradeDate "2023-12-11"^^xsd:date ;
+  :hasSettlementDate "2023-12-11"^^xsd:date ;
+  :hasCusip "00206RBZ4" ;
+  :hasSedol "BGDF7W4" ;
+  :hasIsin "XS0993148856" ;
+  :hasTicker "T" ;
+  :hasName "AT&T INC" ;
+  :hasAlias "T 3.500% 17-Dec-2025" ;
+  :hasCurrencyCode "EUR" ;
+  :hasIssueCountry :USA ;
+  :hasIssueCountryName "United States" ;
+  :hasRiskCountry :USA ;
+  :hasRiskCountryName "United States" ;
+  :hasIncorporationCountryName "United States" ;
+  :isESGBond false ;
+  :isConvertible false ;
+  :hasMaturityDate "2025-12-17"^^xsd:date ;
+  :hasFMPMaturityDate "2122-11-17"^^xsd:date ;
+  :hasEarliestMaturityDate "2023-12-11"^^xsd:date ;
+  :hasLatestMaturityDate "2221-10-24"^^xsd:date ;
+  :hasEarliestCallDate "2023-12-11"^^xsd:date ;
+  :hasLatestCallDate "2221-10-24"^^xsd:date ;
+  :hasAmountOutstanding 1000000000 ;
+  :isCallable true ;
+  :hasMakeWholeCallProvision true ;
+  :hasNextCallDate "2025-09-17"^^xsd:date ;
+  :hasNextCallPrice 100 ;
+  :hasCallNotice 30 ;
+  :hasCallSchedule "Onetime" ;
+  :hasMakeWholeCallSpread 30 ;
+  :isPutable false ;
+  :hasDebtRanking "Senior Unsecured" ;
+  :hasPaymentType "FIXED" ;
+  :hasEmbeddedOptionType "CALL" ;
+  :hasCouponRate 3.5 ;
+  :hasCouponFrequency "A" ;
+  :hasBaselIIIDesignation "No Designation" ;
+  :hasIssuerID "788350" ;
+  :hasIssuerName "AT&T INC" ;
+  :hasPrice 99.6866 ;
+  :hasConvexity -0.01832 ;
+  :hasYield 3.66461 ;
+  :hasYieldToMaturity 3.66461 ;
+  :hasYieldToCall 3.67211 ;
+  :hasYieldToWorst 3.66461 ;
+  :hasYieldToOptimum 3.66461 ;
+  :hasSpreadDuration 1.818448838 ;
+  :hasOptionAdjustedSpread 83.53388 ;
+  :hasZSpread 50.78614 ;
+  :hasESpread 50.78613704 ;
+  :hasOASLibor 39.039254 ;
+  :hasOptionAdjustedDuration 1.80311 ;
+  :hasKeyRateDuration3M 0 ;
+  :hasKeyRateDuration1Y 0.27315 ;
+  :hasKeyRateDuration2Y 1.51435 ;
+  :hasKeyRateDuration3Y 0.0156 ;
+  :hasKeyRateDuration5Y 0 ;
+  :hasKeyRateDuration7Y 0 ;
+  :hasKeyRateDuration10Y 0 ;
+  :hasKeyRateDuration15Y 0 ;
+  :hasKeyRateDuration20Y 0 ;
+  :hasKeyRateDuration25Y 0 ;
+  :hasKeyRateDuration30Y 0 ;
+  :hasMacaulayDuration 1.91 ;
+  :hasModifiedDuration 1.91248 ;
+  :hasModifiedDurationToCall 1.68973 ;
+  :hasModifiedDurationToWorst 1.91248 ;
+  :hasFitchCreditRating "BBB+" ;
+  :hasMoodysCreditRating "Baa2" ;
+  :hasStandardAndPoorsCreditRating "BBB" ;
+  :hasMarketGradeCreditRating "BBB" ;
+  :hasAverageConservativeExternalCreditQualityRank 9 ;
+  :hasSecondHighestCreditRating "BBB" ;
+  :hasMerrillLynchL1SectorClassification "Corporate" ;
+  :hasMerrillLynchL2SectorClassification "Industrials" ;
+  :hasMerrillLynchL3SectorClassification "Telecommunications" ;
+  :hasMerrillLynchL4SectorClassification "Telecom - Wireline Integrated & Services" ;
+  :hasFinancialClassification "Non Financial" ;
+  :hasIssuerCreditRating "BBB" ;
+  :hasIssuerCoveringAnalyst "Simon Duff" ;
+  :hasIssuerSecondaryCoveringAnalyst "Bradley Bull" ;
+  :hasIssuerMarketGradeOutlook "Stable" ;
+  :hasIssuerEventRisk "Medium" ;
+  :hasInternalL3Sector "Telecom - Wireline Integrated & Services" ;
+  :hasInstrumentCoveringAnalyst "Simon Duff" ;
+  :hasInstrumentMarketGradeOutlook "Stable" ;
+  :hasInstrumentEventRisk "Medium" ;
+  :hasESGEScore 74 ;
+  :hasESGGScore 64 ;
+  :hasESGSScore 63 ;
+  :hasESGOverallScore 67 ;
+  :hasSecuritySustainableResult "PASSED" ;
+  :hasPositiveContributionEnvironmentResult "PASSED" ;
+  :hasPositiveContributionSocialResult "FAILED" ;
+  :hasIssuerOverallDNSHResult "PASSED" ;
+  :hasIssuerClimateEnvironmentResultComment "PASSED" ;
+  :hasIssuerSocialResult "FAILED" ;
+  :hasIssuerOverallGoodGovernanceResult "PASSED" ;
+  :isHeldSecurity false ;
+  :isActivelyTraded "N/A" ;
+  :isHighYield false .
+
+:GBR a :Country ;
+  :hasCountryName "United Kingdom" ;
+  :hasCountryCode "GBR" .
+
+:USA a :Country ;
+  :hasCountryName "United States" ;
+  :hasCountryCode "USA" .

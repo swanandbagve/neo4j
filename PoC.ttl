@@ -15,13 +15,7 @@
 @prefix fibo-fnd-plc-cty: <https://spec.edmcouncil.org/fibo/ontology/FND/Places/Countries/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-<http://mandg.com/financial-instrument-ontology> a owl:Ontology ;
-  dc:title "Financial Instrument Ontology for PoC1 - Data for AI" ;
-  dc:description "An ontology for representing financial instruments and their attributes." ;
-  dc:creator "Martin Mitchell // Data Architecture // M&G" ;
-  owl:versionInfo "0.92" ;
-  vann:preferredNamespacePrefix "fio" ;
-  vann:preferredNamespaceUri <http://example.com/financial-instrument-ontology#> .
+
 
 :FinancialInstrument a owl:Class ;
   rdfs:subClassOf fibo-fbc-fi-fi:FinancialInstrument ;

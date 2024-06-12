@@ -16,6 +16,15 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 
+<http://ontology.com/financial-instrument-ontology> a owl:Ontology ;
+  dc:title "Financial Instrument Ontology for PoC1 - Data for AI" ;
+  dc:description "An ontology for representing financial instruments and their attributes." ;
+  dc:creator "Swanand Bagve" ;
+  owl:versionInfo "0.92" ;
+  vann:preferredNamespacePrefix "fio" ;
+  vann:preferredNamespaceUri <http://example.com/financial-instrument-ontology#> .
+
+
 
 :FinancialInstrument a owl:Class ;
   rdfs:subClassOf fibo-fbc-fi-fi:FinancialInstrument ;

@@ -1,0 +1,3375 @@
+#################################################################################################################
+##
+## V2.0 First draft of new ontology for Earnings report, based on Natwest Group 2023 Earnings Report
+## V2.1 Added new classes, relationships, datatypes and objecttypes to cover Citi Group 2023 Earnings Report
+## V2.2 Added new classes, relationships, datatypes and objecttypes to cover HSBC 2023 Earnings Report
+##
+#################################################################################################################
+
+@prefix : <https://www.example.com/earningsreport#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:EarningsReport a owl:Class.
+
+
+   #####################################
+#! ####      COMPANY OVERVIEW       ####
+   #####################################	
+
+#! Classes
+
+:CompanyOverview a owl:Class;
+    rdfs:subClassOf :EarningsReport.
+
+:CompanyInformation a owl:Class;
+    rdfs:subClassOf :CompanyOverview.
+
+:CompanyName a owl:Class;
+    rdfs:subClassOf :CompanyInformation.
+
+:TickerSymbol a owl:Class;
+    rdfs:subClassOf :CompanyInformation.
+
+:StockExchange a owl:Class;
+    rdfs:subClassOf :CompanyInformation.
+
+:Sector a owl:Class;
+    rdfs:subClassOf :CompanyInformation.
+
+:HeadquartersLocation a owl:Class;
+    rdfs:subClassOf :CompanyInformation.
+
+:GeographicLocations a owl:Class;
+    rdfs:subClassOf :CompanyInformation.
+
+:BusinessSegments a owl:Class;
+    rdfs:subClassOf :CompanyInformation.
+
+:InvestmentCase a owl:Class;
+    rdfs:subClassOf :CompanyInformation.
+
+:StrengthsAndOpportunities a owl:Class;
+    rdfs:subClassOf :InvestmentCase.
+
+:FinancialTargetsAndProjections a owl:Class;
+    rdfs:subClassOf :InvestmentCase.
+
+:ValuePropositionForInvestors a owl:Class;
+    rdfs:subClassOf :InvestmentCase.
+
+:BusinessModel a owl:Class;
+    rdfs:subClassOf :CompanyInformation.
+
+:RevenueStreams a owl:Class;
+    rdfs:subClassOf :BusinessModel.
+
+:KeyProductsAndServices a owl:Class;
+    rdfs:subClassOf :BusinessModel.
+
+:TargetMarkets a owl:Class;
+    rdfs:subClassOf :BusinessModel.
+
+:StrategicFramework a owl:Class;
+    rdfs:subClassOf :CompanyOverview.
+
+:MissionAndVision a owl:Class;
+    rdfs:subClassOf :StrategicFramework.
+
+:StrategicGoalsAndPriorities a owl:Class;
+    rdfs:subClassOf :StrategicFramework.
+
+:MissionAndValues a owl:Class;
+    rdfs:subClassOf :StrategicFramework.
+
+:CoreActivities a owl:Class;
+    rdfs:subClassOf :MissionAndValues.
+
+:StakeholderFocus a owl:Class;
+    rdfs:subClassOf :MissionAndValues.
+
+:EthicalConsiderations a owl:Class;
+    rdfs:subClassOf :MissionAndValues.
+
+:RiskManagementPhilosophy a owl:Class;
+    rdfs:subClassOf :MissionAndValues.
+
+:HistoryAndBackground a owl:Class;
+    rdfs:subClassOf :StrategicFramework.
+
+:FoundingDate a owl:Class;
+    rdfs:subClassOf :HistoryAndBackground.
+
+:KeyMilestones a owl:Class;
+    rdfs:subClassOf :HistoryAndBackground.
+
+:CorporateGovernance a owl:Class;
+    rdfs:subClassOf :CompanyOverview.
+
+:BoardOfDirectors a owl:Class;
+    rdfs:subClassOf :CorporateGovernance.
+
+:Composition a owl:Class;
+    rdfs:subClassOf :BoardOfDirectors.
+
+:OversightResponsibilities a owl:Class;
+    rdfs:subClassOf :BoardOfDirectors.
+
+:ExecutiveLeadership a owl:Class;
+    rdfs:subClassOf :CorporateGovernance.
+
+:KeyExecutivesAndRoles a owl:Class;
+    rdfs:subClassOf :ExecutiveLeadership.
+
+:Committees a owl:Class;
+    rdfs:subClassOf :CorporateGovernance.
+
+:RiskManagementCommittee a owl:Class;
+    rdfs:subClassOf :Committees.
+
+:AuditCommittee a owl:Class;
+    rdfs:subClassOf :Committees.
+
+:CompensationCommittee a owl:Class;
+    rdfs:subClassOf :Committees.
+
+:OtherRelevantCommittees a owl:Class;
+    rdfs:subClassOf :Committees.
+
+:HumanCapital a owl:Class;
+    rdfs:subClassOf :CompanyOverview.
+
+:Workforce a owl:Class;
+    rdfs:subClassOf :HumanCapital.
+
+:EmployeeCount a owl:Class;
+    rdfs:subClassOf :Workforce.
+
+:GeographicDistribution a owl:Class;
+    rdfs:subClassOf :Workforce.
+
+:DiversityAndInclusionMetrics a owl:Class;
+    rdfs:subClassOf :Workforce.
+
+:TalentManagement a owl:Class;
+    rdfs:subClassOf :HumanCapital.
+
+:RecruitmentAndRetention a owl:Class;
+    rdfs:subClassOf :TalentManagement.
+
+:TrainingAndDevelopment a owl:Class;
+    rdfs:subClassOf :TalentManagement.
+
+:PerformanceManagement a owl:Class;
+    rdfs:subClassOf :TalentManagement.
+
+:CompensationAndBenefits a owl:Class;
+    rdfs:subClassOf :HumanCapital.
+
+:SalaryAndBonusStructures a owl:Class;
+    rdfs:subClassOf :CompensationAndBenefits.
+
+:EquityBasedCompensation a owl:Class;
+    rdfs:subClassOf :CompensationAndBenefits.
+
+:EmployeeBenefits a owl:Class;
+    rdfs:subClassOf :CompensationAndBenefits.
+
+:ColleagueEngagementAndWellbeing a owl:Class;
+    rdfs:subClassOf :HumanCapital.
+
+:EmployeeSatisfactionSurveys a owl:Class;
+    rdfs:subClassOf :ColleagueEngagementAndWellbeing.
+
+:TurnoverRates a owl:Class;
+    rdfs:subClassOf :ColleagueEngagementAndWellbeing.
+
+:TrainingAndDevelopmentParticipation a owl:Class;
+    rdfs:subClassOf :ColleagueEngagementAndWellbeing.
+
+:CustomerSatisfactionAndAdvocacy a owl:Class;
+    rdfs:subClassOf :HumanCapital.
+
+:NetPromoterScore a owl:Class;
+    rdfs:subClassOf :CustomerSatisfactionAndAdvocacy.
+
+:CustomerEffortScore a owl:Class;
+    rdfs:subClassOf :CustomerSatisfactionAndAdvocacy.
+
+:ComplaintsAndResolutions a owl:Class;
+    rdfs:subClassOf :CustomerSatisfactionAndAdvocacy.
+
+:KeyManagementRisksAndMitigation a owl:Class;
+    rdfs:subClassOf :HumanCapital.
+
+:SuccessionPlanning a owl:Class;
+    rdfs:subClassOf :KeyManagementRisksAndMitigation.
+
+:RetentionStrategies a owl:Class;
+    rdfs:subClassOf :KeyManagementRisksAndMitigation.
+
+:CompensationBenchmarking a owl:Class;
+    rdfs:subClassOf :KeyManagementRisksAndMitigation.
+	
+:InvestorRelations a owl:Class;
+    rdfs:subClassOf :CompanyOverview.
+
+:ValueCreationModel a owl:Class;
+    rdfs:subClassOf :CompanyOverview.
+
+:CorporateCulture a owl:Class;
+    rdfs:subClassOf :CompanyOverview.
+
+:TechnologyAndInnovation a owl:Class;
+    rdfs:subClassOf :CompanyOverview.
+	
+:BusinessExitsAndDivestitures a owl:Class;
+    rdfs:subClassOf :CompanyOverview.
+
+:KeyManagementChanges a owl:Class;
+    rdfs:subClassOf :ExecutiveLeadership.
+
+:RiskAppetiteStatement a owl:Class;
+    rdfs:subClassOf :StrategicFramework.
+
+:InvestmentCase a owl:Class;
+    rdfs:subClassOf :CompanyInformation;
+    rdfs:comment "A comprehensive overview of why investors should consider investing in the company, including strengths, opportunities, and financial projections.".
+
+:ValueCreationModel a owl:Class;
+    rdfs:subClassOf :CompanyOverview;
+    rdfs:comment "A framework that illustrates how the company creates value for its stakeholders through its business activities and resources.".
+
+:CorporateCulture a owl:Class;
+    rdfs:subClassOf :CompanyOverview;
+    rdfs:comment "The shared values, attitudes, standards, and beliefs that characterize the organization and define its nature.".
+
+:TechnologyAndInnovation a owl:Class;
+    rdfs:subClassOf :CompanyOverview;
+    rdfs:comment "An overview of the company's technological capabilities, innovation initiatives, and digital transformation efforts.".
+
+:InvestorRelations a owl:Class;
+    rdfs:subClassOf :CompanyOverview;
+    rdfs:comment "Information about how the company communicates with its investors and the financial community.".
+#!!
+
+#! Relationships
+:CompanyOverview :hasPart :CompanyInformation.
+:CompanyOverview :hasPart :StrategicFramework.
+:CompanyOverview :hasPart :CorporateGovernance.
+:CompanyOverview :hasPart :HumanCapital.
+:CompanyOverview :hasPart :ValueCreationModel.
+:CompanyOverview :hasPart :CorporateCulture.
+:CompanyOverview :hasPart :TechnologyAndInnovation.
+:CompanyOverview :hasPart :InvestorRelations.
+:CompanyInformation :hasPart :CompanyName.
+:CompanyInformation :hasPart :TickerSymbol.
+:CompanyInformation :hasPart :StockExchange.
+:CompanyInformation :hasPart :Sector.
+:CompanyInformation :hasPart :HeadquartersLocation.
+:InvestmentCase :hasPart :StrengthsAndOpportunities.
+:InvestmentCase :hasPart :FinancialTargetsAndProjections.
+:InvestmentCase :hasPart :ValuePropositionForInvestors.
+:BusinessModel :hasPart :RevenueStreams.
+:BusinessModel :hasPart :KeyProductsAndServices.
+:BusinessModel :hasPart :TargetMarkets.
+:StrategicFramework :hasPart :MissionAndVision.
+:StrategicFramework :hasPart :StrategicGoalsAndPriorities.
+:StrategicFramework :hasPart :MissionAndValues.
+:StrategicFramework :hasPart :HistoryAndBackground.
+:StrategicFramework :hasPart :BusinessExitsAndDivestitures.
+:MissionAndValues :hasPart :CoreActivities.
+:MissionAndValues :hasPart :StakeholderFocus.
+:MissionAndValues :hasPart :EthicalConsiderations.
+:MissionAndValues :hasPart :RiskManagementPhilosophy.
+:HistoryAndBackground :hasPart :FoundingDate.
+:HistoryAndBackground :hasPart :KeyMilestones.
+:CorporateGovernance :hasPart :BoardOfDirectors.
+:CorporateGovernance :hasPart :ExecutiveLeadership.
+:CorporateGovernance :hasPart :Committees.
+:BoardOfDirectors :hasPart :Composition.
+:BoardOfDirectors :hasPart :OversightResponsibilities.
+:ExecutiveLeadership :hasPart :KeyExecutivesAndRoles.
+:Committees :hasPart :RiskManagementCommittee.
+:Committees :hasPart :AuditCommittee.
+
+#!!
+
+#! Data Type Properties
+:hasCompanyName a owl:DatatypeProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range xsd:string.
+
+:hasTickerSymbol a owl:DatatypeProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range xsd:string.
+
+:hasStockExchange a owl:DatatypeProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range xsd:string.
+
+:hasSector a owl:DatatypeProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range xsd:string.
+
+:hasHeadquartersLocation a owl:DatatypeProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range xsd:string.
+
+:hasGeographicLocation a owl:DatatypeProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range xsd:string.
+
+:hasBusinessSegment a owl:DatatypeProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range xsd:string.
+
+:hasStrength a owl:DatatypeProperty;
+    rdfs:domain :StrengthsAndOpportunities;
+    rdfs:range xsd:string.
+
+:hasOpportunity a owl:DatatypeProperty;
+    rdfs:domain :StrengthsAndOpportunities;
+    rdfs:range xsd:string.
+
+:hasFinancialTarget a owl:DatatypeProperty;
+    rdfs:domain :FinancialTargetsAndProjections;
+    rdfs:range xsd:string.
+
+:hasFinancialProjection a owl:DatatypeProperty;
+    rdfs:domain :FinancialTargetsAndProjections;
+    rdfs:range xsd:string.
+
+:hasRevenueStream a owl:DatatypeProperty;
+    rdfs:domain :RevenueStreams;
+    rdfs:range xsd:string.
+
+:hasKeyProductOrService a owl:DatatypeProperty;
+    rdfs:domain :KeyProductsAndServices;
+    rdfs:range xsd:string.
+
+:hasTargetMarket a owl:DatatypeProperty;
+    rdfs:domain :TargetMarkets;
+    rdfs:range xsd:string.
+
+:hasMissionStatement a owl:DatatypeProperty;
+    rdfs:domain :MissionAndVision;
+    rdfs:range xsd:string.
+
+:hasVisionStatement a owl:DatatypeProperty;
+    rdfs:domain :MissionAndVision;
+    rdfs:range xsd:string.
+
+:hasStrategicGoal a owl:DatatypeProperty;
+    rdfs:domain :StrategicGoalsAndPriorities;
+    rdfs:range xsd:string.
+
+:hasStrategicPriority a owl:DatatypeProperty;
+    rdfs:domain :StrategicGoalsAndPriorities;
+    rdfs:range xsd:string.
+
+:hasCoreActivity a owl:DatatypeProperty;
+    rdfs:domain :CoreActivities;
+    rdfs:range xsd:string.
+
+:hasStakeholderFocus a owl:DatatypeProperty;
+    rdfs:domain :StakeholderFocus;
+    rdfs:range xsd:string.
+
+:hasEthicalConsideration a owl:DatatypeProperty;
+    rdfs:domain :EthicalConsiderations;
+    rdfs:range xsd:string.
+
+:hasRiskManagementPhilosophy a owl:DatatypeProperty;
+    rdfs:domain :RiskManagementPhilosophy;
+    rdfs:range xsd:string.
+
+:hasFoundingDate a owl:DatatypeProperty;
+    rdfs:domain :HistoryAndBackground;
+    rdfs:range xsd:date.
+
+:hasKeyMilestone a owl:DatatypeProperty;
+    rdfs:domain :KeyMilestones;
+    rdfs:range xsd:string.
+
+:hasEmployeeCount a owl:DatatypeProperty;
+    rdfs:domain :Workforce;
+    rdfs:range xsd:integer.
+
+:hasDiversityAndInclusionMetric a owl:DatatypeProperty;
+    rdfs:domain :DiversityAndInclusionMetrics;
+    rdfs:range xsd:string.
+
+:hasSalaryStructure a owl:DatatypeProperty;
+    rdfs:domain :SalaryAndBonusStructures;
+    rdfs:range xsd:string.
+
+:hasBonusStructure a owl:DatatypeProperty;
+    rdfs:domain :SalaryAndBonusStructures;
+    rdfs:range xsd:string.
+
+:hasEquityBasedCompensation a owl:DatatypeProperty;
+    rdfs:domain :EquityBasedCompensation;
+    rdfs:range xsd:string.
+
+:hasEmployeeBenefit a owl:DatatypeProperty;
+    rdfs:domain :EmployeeBenefits;
+    rdfs:range xsd:string.
+
+:hasNetPromoterScore a owl:DatatypeProperty;
+    rdfs:domain :NetPromoterScore;
+    rdfs:range xsd:integer.
+
+:hasCustomerEffortScore a owl:DatatypeProperty;
+    rdfs:domain :CustomerEffortScore;
+    rdfs:range xsd:integer.
+	
+:hasComplaintType a owl:DatatypeProperty;
+    rdfs:domain :ComplaintsAndResolutions;
+    rdfs:range xsd:string.
+
+:hasResolutionStatus a owl:DatatypeProperty;
+    rdfs:domain :ComplaintsAndResolutions;
+    rdfs:range xsd:string.
+	
+:hasCompanyDescription a owl:DatatypeProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range xsd:string.
+
+:hasIndustry a owl:DatatypeProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range xsd:string.
+
+:hasMarketCapitalization a owl:DatatypeProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range xsd:decimal.
+
+:hasNumberOfEmployees a owl:DatatypeProperty;
+    rdfs:domain :Workforce;
+    rdfs:range xsd:integer.
+
+:hasCompanyWebsite a owl:DatatypeProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range xsd:anyURI.
+
+:hasFinancialYear a owl:DatatypeProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range xsd:gYear.
+
+:hasCoreValue a owl:DatatypeProperty;
+    rdfs:domain :MissionAndValues;
+    rdfs:range xsd:string.
+
+:hasCompetitiveAdvantage a owl:DatatypeProperty;
+    rdfs:domain :StrengthsAndOpportunities;
+    rdfs:range xsd:string.
+
+:hasMarketPosition a owl:DatatypeProperty;
+    rdfs:domain :CompetitiveLandscape;
+    rdfs:range xsd:string.
+
+:hasInnovationInitiative a owl:DatatypeProperty;
+    rdfs:domain :TechnologyAndInnovation;
+    rdfs:range xsd:string.
+
+:hasCultureDescription a owl:DatatypeProperty;
+    rdfs:domain :CorporateCulture;
+    rdfs:range xsd:string.
+
+:hasValueCreationDescription a owl:DatatypeProperty;
+    rdfs:domain :ValueCreationModel;
+    rdfs:range xsd:string.
+
+:hasInvestmentCase a owl:ObjectProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range :InvestmentCase.
+
+:hasBusinessExitsAndDivestitures a owl:ObjectProperty;
+    rdfs:domain :CompanyOverview;
+    rdfs:range :BusinessExitsAndDivestitures.
+
+:hasKeyManagementChanges a owl:ObjectProperty;
+    rdfs:domain :ExecutiveLeadership;
+    rdfs:range :KeyManagementChanges.
+
+:hasRiskAppetiteStatement a owl:ObjectProperty;
+    rdfs:domain :StrategicFramework;
+    rdfs:range :RiskAppetiteStatement.
+	
+:hasCompanyDescription a owl:DatatypeProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range xsd:string;
+    rdfs:comment "A brief description of the company's business and operations.".
+
+:hasIndustry a owl:DatatypeProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range xsd:string;
+    rdfs:comment "The primary industry in which the company operates.".
+
+:hasMarketCapitalization a owl:DatatypeProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range xsd:decimal;
+    rdfs:comment "The total market value of the company's outstanding shares.".
+
+:hasNumberOfEmployees a owl:DatatypeProperty;
+    rdfs:domain :Workforce;
+    rdfs:range xsd:integer;
+    rdfs:comment "The total number of employees in the company.".
+
+:hasCompanyWebsite a owl:DatatypeProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range xsd:anyURI;
+    rdfs:comment "The official website of the company.".
+
+:hasFinancialYear a owl:DatatypeProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range xsd:gYear;
+    rdfs:comment "The financial year for which the report is prepared.".
+
+:hasCoreValue a owl:DatatypeProperty;
+    rdfs:domain :MissionAndValues;
+    rdfs:range xsd:string;
+    rdfs:comment "A core value that guides the company's operations and decision-making.".
+
+:hasCompetitiveAdvantage a owl:DatatypeProperty;
+    rdfs:domain :StrengthsAndOpportunities;
+    rdfs:range xsd:string;
+    rdfs:comment "A specific competitive advantage of the company.".
+
+:hasMarketPosition a owl:DatatypeProperty;
+    rdfs:domain :CompetitiveLandscape;
+    rdfs:range xsd:string;
+    rdfs:comment "The company's position in its market or industry.".
+
+:hasInnovationInitiative a owl:DatatypeProperty;
+    rdfs:domain :TechnologyAndInnovation;
+    rdfs:range xsd:string;
+    rdfs:comment "A specific innovation initiative or technological advancement of the company.".
+
+:hasCultureDescription a owl:DatatypeProperty;
+    rdfs:domain :CorporateCulture;
+    rdfs:range xsd:string;
+    rdfs:comment "A description of the company's corporate culture.".
+
+:hasValueCreationDescription a owl:DatatypeProperty;
+    rdfs:domain :ValueCreationModel;
+    rdfs:range xsd:string;
+    rdfs:comment "A description of how the company creates value for its stakeholders.".
+
+#!!
+	
+#! Object Properties
+:isLocatedIn a owl:ObjectProperty;
+    rdfs:domain :HeadquartersLocation;
+    rdfs:range :GeographicLocations.
+
+:hasBusinessSegment a owl:ObjectProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range :BusinessSegments.
+
+:hasBoardMember a owl:ObjectProperty;
+    rdfs:domain :BoardOfDirectors;
+    rdfs:range :KeyExecutivesAndRoles.
+
+:hasExecutive a owl:ObjectProperty;
+    rdfs:domain :ExecutiveLeadership;
+    rdfs:range :KeyExecutivesAndRoles.
+
+:employs a owl:ObjectProperty;
+    rdfs:domain :CompanyOverview;
+    rdfs:range :KeyExecutivesAndRoles.
+
+:hasCommittee a owl:ObjectProperty;
+    rdfs:domain :CorporateGovernance;
+    rdfs:range :Committees.
+
+:isResponsibleFor a owl:ObjectProperty;
+    rdfs:domain :Committees;
+    rdfs:range :OversightResponsibilities.
+
+:reportsTo a owl:ObjectProperty;
+    rdfs:domain :KeyExecutivesAndRoles;
+    rdfs:range :KeyExecutivesAndRoles.
+	
+:hasMitigationStrategy a owl:ObjectProperty;
+    rdfs:domain :KeyManagementRisksAndMitigation;
+    rdfs:range :RetentionStrategies.
+	
+:hasSubsidiary a owl:ObjectProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range :CompanyInformation.
+
+:hasParentCompany a owl:ObjectProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range :CompanyInformation.
+
+:operatesIn a owl:ObjectProperty;
+    rdfs:domain :CompanyInformation;
+    rdfs:range :GeographicLocations.
+
+:hasInvestorRelationsContact a owl:ObjectProperty;
+    rdfs:domain :InvestorRelations;
+    rdfs:range :KeyExecutivesAndRoles.
+
+:implementsTechnology a owl:ObjectProperty;
+    rdfs:domain :TechnologyAndInnovation;
+    rdfs:range :KeyProductsAndServices.
+
+:contributesTo a owl:ObjectProperty;
+    rdfs:domain :ValueCreationModel;
+    rdfs:range :FinancialPerformance.
+
+:influencesCulture a owl:ObjectProperty;
+    rdfs:domain :MissionAndValues;
+    rdfs:range :CorporateCulture.
+
+:impactsWorkforce a owl:ObjectProperty;
+    rdfs:domain :CorporateCulture;
+    rdfs:range :HumanCapital.
+	
+:hasReasonForExiting a owl:DatatypeProperty;
+    rdfs:domain :BusinessExitsAndDivestitures;
+    rdfs:range xsd:string.
+
+:hasFinancialImpactOfExit a owl:DatatypeProperty;
+    rdfs:domain :BusinessExitsAndDivestitures;
+    rdfs:range xsd:string.
+
+:hasStrategicImplication a owl:DatatypeProperty;
+    rdfs:domain :BusinessExitsAndDivestitures;
+    rdfs:range xsd:string.
+
+:hasQualitativeDescription a owl:DatatypeProperty;
+    rdfs:domain :RiskAppetiteStatement;
+    rdfs:range xsd:string.
+
+:hasQuantitativeLimit a owl:DatatypeProperty;
+    rdfs:domain :RiskAppetiteStatement;
+    rdfs:range xsd:string.
+
+:hasGovernanceAndOversight a owl:DatatypeProperty;
+    rdfs:domain :RiskAppetiteStatement;
+    rdfs:range xsd:string.
+
+:hasKeyManagementChange a owl:DatatypeProperty;
+    rdfs:domain :KeyManagementChanges;
+    rdfs:range xsd:string.
+
+:hasRationaleForChange a owl:DatatypeProperty;
+    rdfs:domain :KeyManagementChanges;
+    rdfs:range xsd:string.
+
+:hasImplicationForStrategy a owl:DatatypeProperty;
+    rdfs:domain :KeyManagementChanges;
+    rdfs:range xsd:string.
+
+#!!
+#!!
+	
+   #####################################	
+#! ####    FINANCIAL PERFORMANCE    ####
+   #####################################	
+   
+#! Classes
+
+:FinancialPerformance a owl:Class;
+    rdfs:subClassOf :EarningsReport.
+
+:IncomeStatement a owl:Class;
+    rdfs:subClassOf :FinancialPerformance.
+
+:Revenue a owl:Class;
+    rdfs:subClassOf :IncomeStatement.
+
+:NetInterestIncome a owl:Class;
+    rdfs:subClassOf :Revenue.
+
+:InterestIncome a owl:Class;
+    rdfs:subClassOf :NetInterestIncome.
+
+:InterestExpense a owl:Class;
+    rdfs:subClassOf :NetInterestIncome.
+
+:NonInterestIncome a owl:Class;
+    rdfs:subClassOf :Revenue.
+
+:FeesAndCommissions a owl:Class;
+    rdfs:subClassOf :NonInterestIncome.
+
+:TradingFees a owl:Class;
+    rdfs:subClassOf :FeesAndCommissions.
+
+:InvestmentBankingFees a owl:Class;
+    rdfs:subClassOf :FeesAndCommissions.
+
+:ServiceCharges a owl:Class;
+    rdfs:subClassOf :FeesAndCommissions.
+
+:OtherFees a owl:Class;
+    rdfs:subClassOf :FeesAndCommissions.
+
+:TradingRevenue a owl:Class;
+    rdfs:subClassOf :NonInterestIncome.
+
+:OtherIncome a owl:Class;
+    rdfs:subClassOf :NonInterestIncome.
+
+:Expenses a owl:Class;
+    rdfs:subClassOf :IncomeStatement.
+
+:OperatingExpenses a owl:Class;
+    rdfs:subClassOf :Expenses.
+
+:CompensationAndBenefits a owl:Class;
+    rdfs:subClassOf :OperatingExpenses.
+
+:TechnologyAndCommunication a owl:Class;
+    rdfs:subClassOf :OperatingExpenses.
+
+:MarketingAndAdvertising a owl:Class;
+    rdfs:subClassOf :OperatingExpenses.
+
+:OccupancyAndEquipment a owl:Class;
+    rdfs:subClassOf :OperatingExpenses.
+
+:OtherExpenses a owl:Class;
+    rdfs:subClassOf :OperatingExpenses.
+
+:ProvisionForCreditLosses a owl:Class;
+    rdfs:subClassOf :Expenses.
+
+:NetIncome a owl:Class;
+    rdfs:subClassOf :IncomeStatement.
+
+:EarningsPerShare a owl:Class;
+    rdfs:subClassOf :IncomeStatement.
+
+:BasicEPS a owl:Class;
+    rdfs:subClassOf :EarningsPerShare.
+
+:DilutedEPS a owl:Class;
+    rdfs:subClassOf :EarningsPerShare.
+
+:BalanceSheet a owl:Class;
+    rdfs:subClassOf :FinancialPerformance.
+
+:Assets a owl:Class;
+    rdfs:subClassOf :BalanceSheet.
+
+:CashAndCashEquivalents a owl:Class;
+    rdfs:subClassOf :Assets.
+
+:Securities a owl:Class;
+    rdfs:subClassOf :Assets.
+
+:Loans a owl:Class;
+    rdfs:subClassOf :Assets.
+
+:CommercialAndIndustrialLoans a owl:Class;
+    rdfs:subClassOf :Loans.
+
+:RealEstateLoans a owl:Class;
+    rdfs:subClassOf :Loans.
+
+:ConsumerLoans a owl:Class;
+    rdfs:subClassOf :Loans.
+
+:OtherLoans a owl:Class;
+    rdfs:subClassOf :Loans.
+
+:OtherAssets a owl:Class;
+    rdfs:subClassOf :Assets.
+
+:Liabilities a owl:Class;
+    rdfs:subClassOf :BalanceSheet.
+
+:Deposits a owl:Class;
+    rdfs:subClassOf :Liabilities.
+
+:Borrowings a owl:Class;
+    rdfs:subClassOf :Liabilities.
+
+:OtherLiabilities a owl:Class;
+    rdfs:subClassOf :Liabilities.
+
+:Equity a owl:Class;
+    rdfs:subClassOf :BalanceSheet.
+
+:CommonStock a owl:Class;
+    rdfs:subClassOf :Equity.
+
+:PreferredStock a owl:Class;
+    rdfs:subClassOf :Equity.
+
+:RetainedEarnings a owl:Class;
+    rdfs:subClassOf :Equity.
+
+:AccumulatedOtherComprehensiveIncome a owl:Class;
+    rdfs:subClassOf :Equity.
+
+:CashFlowStatement a owl:Class;
+    rdfs:subClassOf :FinancialPerformance.
+
+:OperatingActivities a owl:Class;
+    rdfs:subClassOf :CashFlowStatement.
+
+:InvestingActivities a owl:Class;
+    rdfs:subClassOf :CashFlowStatement.
+
+:FinancingActivities a owl:Class;
+    rdfs:subClassOf :CashFlowStatement.
+
+:GroupChiefFinancialOfficersReview a owl:Class;
+    rdfs:subClassOf :FinancialPerformance.
+
+:FinancialSummary a owl:Class;
+    rdfs:subClassOf :GroupChiefFinancialOfficersReview.
+
+:SegmentPerformance a owl:Class;
+    rdfs:subClassOf :GroupChiefFinancialOfficersReview.
+
+:SummaryFinancialStatements a owl:Class;
+    rdfs:subClassOf :GroupChiefFinancialOfficersReview.
+
+:KeyPerformanceIndicators a owl:Class;
+    rdfs:subClassOf :FinancialPerformance.
+
+:ReturnOnEquity a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators.
+
+:ReturnOnAssets a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators.
+
+:ReturnOnTangibleCommonEquity a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators.
+
+:EfficiencyRatio a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators.
+
+:NetInterestMargin a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators.
+
+:CostOfCredit a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators.
+
+:CreditQualityMetrics a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators.
+
+:CapitalRatios a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators.
+
+:CommonEquityTier1 a owl:Class;
+    rdfs:subClassOf :CapitalRatios.
+
+:Tier1 a owl:Class;
+    rdfs:subClassOf :CapitalRatios.
+
+:TotalCapital a owl:Class;
+    rdfs:subClassOf :CapitalRatios.
+
+:SupplementaryLeverageRatio a owl:Class;
+    rdfs:subClassOf :CapitalRatios.
+
+:LeverageRatio a owl:Class;
+    rdfs:subClassOf :CapitalRatios.
+
+:LiquidityCoverageRatio a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators.
+
+:NetStableFundingRatio a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators.
+
+:ReturnOnTangibleEquity a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators.
+
+:NetInterestMargin a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators.
+
+:CostToIncomeRatio a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators.
+
+:LoansToCustomers a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators.
+
+:CustomerDeposits a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators.
+
+:MacroeconomicEnvironment a owl:Class;
+    rdfs:subClassOf :FinancialPerformance.
+
+:Inflation a owl:Class;
+    rdfs:subClassOf :MacroeconomicEnvironment.
+
+:InterestRates a owl:Class;
+    rdfs:subClassOf :MacroeconomicEnvironment.
+
+:GDPGrowth a owl:Class;
+    rdfs:subClassOf :MacroeconomicEnvironment.
+
+:UnemploymentRate a owl:Class .
+
+:MacroeconomicEnvironment a owl:Class;
+    rdfs:subClassOf :FinancialPerformance.
+
+:HousePriceIndex a owl:Class;
+    rdfs:subClassOf :MacroeconomicEnvironment.
+
+:CommercialRealEstatePriceIndex a owl:Class;
+    rdfs:subClassOf :MacroeconomicEnvironment.
+
+:UKStockPriceIndex a owl:Class;
+    rdfs:subClassOf :MacroeconomicEnvironment.
+
+:WorldGDP a owl:Class;
+    rdfs:subClassOf :MacroeconomicEnvironment.
+
+:SegmentPerformance a owl:Class;
+    rdfs:subClassOf :GroupChiefFinancialOfficersReview.
+
+:LoanModifications a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators.
+
+:NonPerformingLoans a owl:Class;
+    rdfs:subClassOf :CreditQualityMetrics.
+
+:Delinquencies a owl:Class;
+    rdfs:subClassOf :CreditQualityMetrics.
+
+	
+:LoanToValueRatios a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators;
+    rdfs:comment "The ratio of a loan to the value of an asset purchased, typically used for mortgage portfolios.".
+
+:DepositBetas a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators;
+    rdfs:comment "A measure of the sensitivity of deposit costs to changes in interest rates.".
+
+:CardSpendVolumeAndPaymentRates a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators;
+    rdfs:comment "Metrics related to credit card usage and repayment behavior.".
+
+:CustomerAcquisitionAndRetentionMetrics a owl:Class;
+    rdfs:subClassOf :KeyPerformanceIndicators;
+    rdfs:comment "Metrics measuring the company's ability to acquire new customers and retain existing ones.".
+	
+#!!
+
+#! Relationships
+	
+:FinancialPerformance :hasPart :IncomeStatement.
+:IncomeStatement :hasPart :Revenue.
+:IncomeStatement :hasPart :Expenses.
+:IncomeStatement :hasPart :NetIncome.
+:IncomeStatement :hasPart :EarningsPerShare.
+:Revenue :hasPart :NetInterestIncome.
+:Revenue :hasPart :NonInterestIncome.
+:NetInterestIncome :hasPart :InterestIncome.
+:NetInterestIncome :hasPart :InterestExpense.
+:NonInterestIncome :hasPart :FeesAndCommissions.
+:NonInterestIncome :hasPart :TradingRevenue.
+:NonInterestIncome :hasPart :OtherIncome.
+:FeesAndCommissions :hasPart :TradingFees.
+:FeesAndCommissions :hasPart :InvestmentBankingFees.
+:FeesAndCommissions :hasPart :ServiceCharges.
+:FeesAndCommissions :hasPart :OtherFees.
+:Expenses :hasPart :OperatingExpenses.
+:Expenses :hasPart :ProvisionForCreditLosses.
+:OperatingExpenses :hasPart :CompensationAndBenefits.
+:OperatingExpenses :hasPart :TechnologyAndCommunication.
+:OperatingExpenses :hasPart :MarketingAndAdvertising.
+:OperatingExpenses :hasPart :OccupancyAndEquipment.
+:OperatingExpenses :hasPart :OtherExpenses.
+:EarningsPerShare :hasPart :BasicEPS.
+:EarningsPerShare :hasPart :DilutedEPS.
+:FinancialPerformance :hasPart :BalanceSheet.
+:BalanceSheet :hasPart :Assets.
+:BalanceSheet :hasPart :Liabilities.
+:BalanceSheet :hasPart :Equity.
+:Assets :hasPart :CashAndCashEquivalents.
+:Assets :hasPart :Securities.
+:Assets :hasPart :Loans.
+:Assets :hasPart :OtherAssets.
+:Loans :hasPart :CommercialAndIndustrialLoans.
+:Loans :hasPart :RealEstateLoans.
+:Loans :hasPart :ConsumerLoans.
+:Loans :hasPart :OtherLoans.
+:Liabilities :hasPart :Deposits.
+:Liabilities :hasPart :Borrowings.
+:Liabilities :hasPart :OtherLiabilities.
+:Equity :hasPart :CommonStock.
+:Equity :hasPart :PreferredStock.
+:Equity :hasPart :RetainedEarnings.
+:Equity :hasPart :AccumulatedOtherComprehensiveIncome.
+:FinancialPerformance :hasPart :CashFlowStatement.
+:CashFlowStatement :hasPart :OperatingActivities.
+:CashFlowStatement :hasPart :InvestingActivities.
+:CashFlowStatement :hasPart :FinancingActivities.
+:FinancialPerformance :hasPart :GroupChiefFinancialOfficersReview.
+:GroupChiefFinancialOfficersReview :hasPart :FinancialSummary.
+:GroupChiefFinancialOfficersReview :hasPart :SegmentPerformance.
+:GroupChiefFinancialOfficersReview :hasPart :SummaryFinancialStatements.
+:FinancialPerformance :hasPart :KeyPerformanceIndicators.
+:KeyPerformanceIndicators :hasPart :ReturnOnEquity.
+:KeyPerformanceIndicators :hasPart :ReturnOnAssets.
+:KeyPerformanceIndicators :hasPart :ReturnOnTangibleCommonEquity.
+:KeyPerformanceIndicators :hasPart :EfficiencyRatio.
+:KeyPerformanceIndicators :hasPart :NetInterestMargin.
+:KeyPerformanceIndicators :hasPart :CostOfCredit.
+:KeyPerformanceIndicators :hasPart :CreditQualityMetrics.
+:KeyPerformanceIndicators :hasPart :CapitalRatios.
+:KeyPerformanceIndicators :hasPart :LiquidityCoverageRatio.
+:KeyPerformanceIndicators :hasPart :NetStableFundingRatio.
+:KeyPerformanceIndicators :hasPart :ReturnOnTangibleEquity.
+:KeyPerformanceIndicators :hasPart :NetInterestMargin.
+:KeyPerformanceIndicators :hasPart :CostToIncomeRatio.
+:KeyPerformanceIndicators :hasPart :LoansToCustomers.
+:KeyPerformanceIndicators :hasPart :CustomerDeposits.
+:KeyPerformanceIndicators :hasPart :LoanModifications.
+:CapitalRatios :hasPart :CommonEquityTier1.
+:CapitalRatios :hasPart :Tier1.
+:CapitalRatios :hasPart :TotalCapital.
+:CapitalRatios :hasPart :SupplementaryLeverageRatio.
+:CapitalRatios :hasPart :LeverageRatio.
+:FinancialPerformance :hasPart :MacroeconomicEnvironment.
+:MacroeconomicEnvironment :hasPart :Inflation.
+:MacroeconomicEnvironment :hasPart :InterestRates.
+:MacroeconomicEnvironment :hasPart :GDPGrowth.
+:MacroeconomicEnvironment :hasPart :UnemploymentRate.
+:CreditQualityMetrics :hasPart :NonPerformingLoans.
+:CreditQualityMetrics :hasPart :Delinquencies.
+:KeyPerformanceIndicators :hasPart :LoanToValueRatios.
+:KeyPerformanceIndicators :hasPart :DepositBetas.
+:KeyPerformanceIndicators :hasPart :CardSpendVolumeAndPaymentRates.
+:KeyPerformanceIndicators :hasPart :CustomerAcquisitionAndRetentionMetrics.
+
+#!!
+
+#! Data Type Properties
+:hasRevenue a owl:DatatypeProperty;
+    rdfs:domain :Revenue;
+    rdfs:range xsd:decimal.
+
+:hasNetInterestIncome a owl:DatatypeProperty;
+    rdfs:domain :NetInterestIncome;
+    rdfs:range xsd:decimal.
+
+:hasInterestIncome a owl:DatatypeProperty;
+    rdfs:domain :InterestIncome;
+    rdfs:range xsd:decimal.
+
+:hasInterestExpense a owl:DatatypeProperty;
+    rdfs:domain :InterestExpense;
+    rdfs:range xsd:decimal.
+
+:hasNonInterestIncome a owl:DatatypeProperty;
+    rdfs:domain :NonInterestIncome;
+    rdfs:range xsd:decimal.
+
+:hasTradingFees a owl:DatatypeProperty;
+    rdfs:domain :TradingFees;
+    rdfs:range xsd:decimal.
+
+:hasInvestmentBankingFees a owl:DatatypeProperty;
+    rdfs:domain :InvestmentBankingFees;
+    rdfs:range xsd:decimal.
+
+:hasServiceCharges a owl:DatatypeProperty;
+    rdfs:domain :ServiceCharges;
+    rdfs:range xsd:decimal.
+
+:hasOtherFees a owl:DatatypeProperty;
+    rdfs:domain :OtherFees;
+    rdfs:range xsd:decimal.
+
+:hasTradingRevenue a owl:DatatypeProperty;
+    rdfs:domain :TradingRevenue;
+    rdfs:range xsd:decimal.
+
+:hasOtherIncome a owl:DatatypeProperty;
+    rdfs:domain :OtherIncome;
+    rdfs:range xsd:decimal.
+
+:hasOperatingExpenses a owl:DatatypeProperty;
+    rdfs:domain :OperatingExpenses;
+    rdfs:range xsd:decimal.
+
+:hasCompensationAndBenefits a owl:DatatypeProperty;
+    rdfs:domain :CompensationAndBenefits;
+    rdfs:range xsd:decimal.
+
+:hasTechnologyAndCommunicationExpense a owl:DatatypeProperty;
+    rdfs:domain :TechnologyAndCommunication;
+    rdfs:range xsd:decimal.
+
+:hasMarketingAndAdvertisingExpense a owl:DatatypeProperty;
+    rdfs:domain :MarketingAndAdvertising;
+    rdfs:range xsd:decimal.
+
+:hasOccupancyAndEquipmentExpense a owl:DatatypeProperty;
+    rdfs:domain :OccupancyAndEquipment;
+    rdfs:range xsd:decimal.
+
+:hasOtherOperatingExpense a owl:DatatypeProperty;
+    rdfs:domain :OtherExpenses;
+    rdfs:range xsd:decimal.
+
+:hasProvisionForCreditLosses a owl:DatatypeProperty;
+    rdfs:domain :ProvisionForCreditLosses;
+    rdfs:range xsd:decimal.
+
+:hasNetIncome a owl:DatatypeProperty;
+    rdfs:domain :NetIncome;
+    rdfs:range xsd:decimal.
+
+:hasBasicEPS a owl:DatatypeProperty;
+    rdfs:domain :BasicEPS;
+    rdfs:range xsd:decimal.
+
+:hasDilutedEPS a owl:DatatypeProperty;
+    rdfs:domain :DilutedEPS;
+    rdfs:range xsd:decimal.
+
+:hasCashAndCashEquivalents a owl:DatatypeProperty;
+    rdfs:domain :CashAndCashEquivalents;
+    rdfs:range xsd:decimal.
+
+:hasTotalAssets a owl:DatatypeProperty;
+    rdfs:domain :Assets;
+    rdfs:range xsd:decimal.
+
+:hasTotalLiabilities a owl:DatatypeProperty;
+    rdfs:domain :Liabilities;
+    rdfs:range xsd:decimal.
+
+:hasTotalEquity a owl:DatatypeProperty;
+    rdfs:domain :Equity;
+    rdfs:range xsd:decimal.
+
+:hasReturnOnEquity a owl:DatatypeProperty;
+    rdfs:domain :ReturnOnEquity;
+    rdfs:range xsd:decimal.
+
+:hasReturnOnAssets a owl:DatatypeProperty;
+    rdfs:domain :ReturnOnAssets;
+    rdfs:range xsd:decimal.
+
+:hasReturnOnTangibleCommonEquity a owl:DatatypeProperty;
+    rdfs:domain :ReturnOnTangibleCommonEquity;
+    rdfs:range xsd:decimal.
+
+:hasEfficiencyRatio a owl:DatatypeProperty;
+    rdfs:domain :EfficiencyRatio;
+    rdfs:range xsd:decimal.
+
+:hasNetInterestMargin a owl:DatatypeProperty;
+    rdfs:domain :NetInterestMargin;
+    rdfs:range xsd:decimal.
+
+:hasCostOfCredit a owl:DatatypeProperty;
+    rdfs:domain :CostOfCredit;
+    rdfs:range xsd:decimal.
+
+:hasCreditQualityMetric a owl:DatatypeProperty;
+    rdfs:domain :CreditQualityMetrics;
+    rdfs:range xsd:string.
+
+:hasCommonEquityTier1Ratio a owl:DatatypeProperty;
+    rdfs:domain :CommonEquityTier1;
+    rdfs:range xsd:decimal.
+
+:hasTier1Ratio a owl:DatatypeProperty;
+    rdfs:domain :Tier1;
+    rdfs:range xsd:decimal.
+
+:hasTotalCapitalRatio a owl:DatatypeProperty;
+    rdfs:domain :TotalCapital;
+    rdfs:range xsd:decimal.
+
+:hasSupplementaryLeverageRatio a owl:DatatypeProperty;
+    rdfs:domain :SupplementaryLeverageRatio;
+    rdfs:range xsd:decimal.
+
+:hasLeverageRatio a owl:DatatypeProperty;
+    rdfs:domain :LeverageRatio;
+    rdfs:range xsd:decimal.
+
+:hasLiquidityCoverageRatio a owl:DatatypeProperty;
+    rdfs:domain :LiquidityCoverageRatio;
+    rdfs:range xsd:decimal.
+
+:hasNetStableFundingRatio a owl:DatatypeProperty;
+    rdfs:domain :NetStableFundingRatio;
+    rdfs:range xsd:decimal.
+
+:hasLoansToCustomers a owl:DatatypeProperty;
+    rdfs:domain :LoansToCustomers;
+    rdfs:range xsd:decimal.
+
+:hasCustomerDeposits a owl:DatatypeProperty;
+    rdfs:domain :CustomerDeposits;
+    rdfs:range xsd:decimal.
+
+:hasInflationRate a owl:DatatypeProperty;
+    rdfs:domain :Inflation;
+    rdfs:range xsd:decimal.
+
+:hasInterestRate a owl:DatatypeProperty;
+    rdfs:domain :InterestRates;
+    rdfs:range xsd:decimal.
+
+:hasGDPGrowth a owl:DatatypeProperty;
+    rdfs:domain :GDPGrowth;
+    rdfs:range xsd:decimal.
+
+:hasUnemploymentRate a owl:DatatypeProperty;
+    rdfs:domain :UnemploymentRate;
+    rdfs:range xsd:decimal.
+
+:hasInterestIncome a owl:DatatypeProperty;
+    rdfs:domain :NetInterestIncome;
+    rdfs:range xsd:decimal.
+
+:hasInterestExpense a owl:DatatypeProperty;
+    rdfs:domain :NetInterestIncome;
+    rdfs:range xsd:decimal.
+
+:hasTradingFees a owl:DatatypeProperty;
+    rdfs:domain :FeesAndCommissions;
+    rdfs:range xsd:decimal.
+
+:hasInvestmentBankingFees a owl:DatatypeProperty;
+    rdfs:domain :FeesAndCommissions;
+    rdfs:range xsd:decimal.
+
+:hasServiceCharges a owl:DatatypeProperty;
+    rdfs:domain :FeesAndCommissions;
+    rdfs:range xsd:decimal.
+
+:hasOtherFees a owl:DatatypeProperty;
+    rdfs:domain :FeesAndCommissions;
+    rdfs:range xsd:decimal.
+
+:hasTechnologyAndCommunicationExpense a owl:DatatypeProperty;
+    rdfs:domain :OperatingExpenses;
+    rdfs:range xsd:decimal.
+
+:hasMarketingAndAdvertisingExpense a owl:DatatypeProperty;
+    rdfs:domain :OperatingExpenses;
+    rdfs:range xsd:decimal.
+
+:hasOccupancyAndEquipmentExpense a owl:DatatypeProperty;
+    rdfs:domain :OperatingExpenses;
+    rdfs:range xsd:decimal.
+
+:hasReturnOnTangibleCommonEquity a owl:DatatypeProperty;
+    rdfs:domain :KeyPerformanceIndicators;
+    rdfs:range xsd:decimal.
+
+:hasSupplementaryLeverageRatio a owl:DatatypeProperty;
+    rdfs:domain :CapitalRatios;
+    rdfs:range xsd:decimal.
+
+:hasNetStableFundingRatio a owl:DatatypeProperty;
+    rdfs:domain :KeyPerformanceIndicators;
+    rdfs:range xsd:decimal.
+
+:hasLoansToCustomers a owl:DatatypeProperty;
+    rdfs:domain :KeyPerformanceIndicators;
+    rdfs:range xsd:decimal.
+
+:hasCustomerDeposits a owl:DatatypeProperty;
+    rdfs:domain :KeyPerformanceIndicators;
+    rdfs:range xsd:decimal.
+
+:hasHousePriceIndex a owl:DatatypeProperty;
+    rdfs:domain :HousePriceIndex;
+    rdfs:range xsd:decimal.
+
+:hasCommercialRealEstatePriceIndex a owl:DatatypeProperty;
+    rdfs:domain :CommercialRealEstatePriceIndex;
+    rdfs:range xsd:decimal.
+
+:hasUKStockPriceIndex a owl:DatatypeProperty;
+    rdfs:domain :UKStockPriceIndex;
+    rdfs:range xsd:decimal.
+
+:hasWorldGDP a owl:DatatypeProperty;
+    rdfs:domain :WorldGDP;
+    rdfs:range xsd:decimal.
+	
+:hasModificationType a owl:DatatypeProperty;
+    rdfs:domain :LoanModifications;
+    rdfs:range xsd:string.
+
+:hasModificationCriteria a owl:DatatypeProperty;
+    rdfs:domain :LoanModifications;
+    rdfs:range xsd:string.
+
+:hasModifiedLoanVolume a owl:DatatypeProperty;
+    rdfs:domain :LoanModifications;
+    rdfs:range xsd:integer.
+
+:hasModifiedLoanBalance a owl:DatatypeProperty;
+    rdfs:domain :LoanModifications;
+    rdfs:range xsd:decimal.
+
+:hasNonPerformingLoanAmount a owl:DatatypeProperty;
+    rdfs:domain :NonPerformingLoans;
+    rdfs:range xsd:decimal.
+
+:hasDelinquencyRate a owl:DatatypeProperty;
+    rdfs:domain :Delinquencies;
+    rdfs:range xsd:decimal.	
+	
+:hasLoanToValueRatio a owl:DatatypeProperty;
+    rdfs:domain :LoanToValueRatios;
+    rdfs:range xsd:decimal;
+    rdfs:comment "The loan-to-value ratio for a specific portfolio or loan type.".
+
+:hasDepositBeta a owl:DatatypeProperty;
+    rdfs:domain :DepositBetas;
+    rdfs:range xsd:decimal;
+    rdfs:comment "The deposit beta value for a specific deposit product or segment.".
+
+:hasCardSpendVolume a owl:DatatypeProperty;
+    rdfs:domain :CardSpendVolumeAndPaymentRates;
+    rdfs:range xsd:decimal;
+    rdfs:comment "The total volume of credit card spending for a given period.".
+
+:hasCardPaymentRate a owl:DatatypeProperty;
+    rdfs:domain :CardSpendVolumeAndPaymentRates;
+    rdfs:range xsd:decimal;
+    rdfs:comment "The rate at which credit card balances are being paid off.".
+
+:hasCustomerAcquisitionRate a owl:DatatypeProperty;
+    rdfs:domain :CustomerAcquisitionAndRetentionMetrics;
+    rdfs:range xsd:decimal;
+    rdfs:comment "The rate at which new customers are acquired.".
+
+:hasCustomerRetentionRate a owl:DatatypeProperty;
+    rdfs:domain :CustomerAcquisitionAndRetentionMetrics;
+    rdfs:range xsd:decimal;
+    rdfs:comment "The rate at which existing customers are retained.".
+	
+#!!
+	
+#! Object Properties
+:hasAssetClass a owl:ObjectProperty;
+    rdfs:domain :InterestIncome;
+    rdfs:range :AssetClass.
+
+:hasLiabilityClass a owl:ObjectProperty;
+    rdfs:domain :InterestExpense;
+    rdfs:range :LiabilityClass.
+
+:hasType a owl:ObjectProperty;
+    rdfs:domain :FeesAndCommissions;
+    rdfs:range :FeeType.
+
+:hasAssetClass a owl:ObjectProperty;
+    rdfs:domain :TradingRevenue;
+    rdfs:range :AssetClass.
+
+:hasSegment a owl:ObjectProperty;
+    rdfs:domain :ProvisionForCreditLosses;
+    rdfs:range :BusinessSegment.
+
+:hasProduct a owl:ObjectProperty;
+    rdfs:domain :ProvisionForCreditLosses;
+    rdfs:range :FinancialProduct.
+
+:hasType a owl:ObjectProperty;
+    rdfs:domain :Deposits;
+    rdfs:range :DepositType.
+
+:hasGeography a owl:ObjectProperty;
+    rdfs:domain :Deposits;
+    rdfs:range :GeographicLocation.
+
+:hasType a owl:ObjectProperty;
+    rdfs:domain :Borrowings;
+    rdfs:range :BorrowingType.
+
+:hasType a owl:ObjectProperty;
+    rdfs:domain :Securities;
+    rdfs:range :SecurityType.
+
+:hasClassification a owl:ObjectProperty;
+    rdfs:domain :Securities;
+    rdfs:range :SecurityClassification.
+
+:impactedBy a owl:ObjectProperty;
+    rdfs:domain :FinancialPerformance;
+    rdfs:range :MacroeconomicEnvironment.
+
+:includesSegment a owl:ObjectProperty;
+    rdfs:domain :SegmentPerformance;
+    rdfs:range :BusinessSegmentsAndProducts.
+
+:analyzedIn a owl:ObjectProperty;
+    rdfs:domain :FinancialPerformance;
+    rdfs:range :GroupChiefFinancialOfficersReview.
+
+:contributesTo a owl:ObjectProperty;
+    rdfs:domain :BusinessSegmentsAndProducts;
+    rdfs:range :FinancialPerformance.
+
+:affectedBy a owl:ObjectProperty;
+    rdfs:domain :FinancialPerformance;
+    rdfs:range :RiskFactors.
+
+:hasLoanModification a owl:ObjectProperty;
+    rdfs:domain :Loans;
+    rdfs:range :LoanModifications.
+
+:hasNonPerformingLoan a owl:ObjectProperty;
+    rdfs:domain :CreditPortfolio;
+    rdfs:range :NonPerformingLoans.
+
+:hasDelinquency a owl:ObjectProperty;
+    rdfs:domain :CreditPortfolio;
+    rdfs:range :Delinquencies.
+	
+:impactsMortgagePortfolio a owl:ObjectProperty;
+    rdfs:domain :LoanToValueRatios;
+    rdfs:range :Loans;
+    rdfs:comment "Indicates how LTV ratios impact the mortgage portfolio.".
+
+:influencesInterestExpense a owl:ObjectProperty;
+    rdfs:domain :DepositBetas;
+    rdfs:range :InterestExpense;
+    rdfs:comment "Shows how deposit betas influence interest expenses.".
+
+:impactsCreditCardRevenue a owl:ObjectProperty;
+    rdfs:domain :CardSpendVolumeAndPaymentRates;
+    rdfs:range :Revenue;
+    rdfs:comment "Indicates how card spend and payment rates impact credit card revenue.".
+
+:influencesCustomerBase a owl:ObjectProperty;
+    rdfs:domain :CustomerAcquisitionAndRetentionMetrics;
+    rdfs:range :BusinessSegmentsAndProducts;
+    rdfs:comment "Shows how acquisition and retention metrics influence the customer base across business segments.".
+
+	
+#!!	
+#!!
+
+   ########################################	
+#! #### BUSINESS SEGMENTS AND PRODUCTS ####
+   ########################################	
+	
+#! Classes	
+:BusinessSegmentsAndProducts a owl:Class;
+    rdfs:subClassOf :EarningsReport.
+
+:MarketEnvironment a owl:Class;
+    rdfs:subClassOf :BusinessSegmentsAndProducts.
+
+:IndustryTrends a owl:Class;
+    rdfs:subClassOf :MarketEnvironment.
+
+:CompetitiveLandscape a owl:Class;
+    rdfs:subClassOf :MarketEnvironment.
+
+:RegulatoryDevelopments a owl:Class;
+    rdfs:subClassOf :MarketEnvironment.
+
+:DetailedBreakdownOfEachSegment a owl:Class;
+    rdfs:subClassOf :BusinessSegmentsAndProducts.
+
+:ProductsAndServicesOffered a owl:Class;
+    rdfs:subClassOf :DetailedBreakdownOfEachSegment.
+
+:TargetClients a owl:Class;
+    rdfs:subClassOf :DetailedBreakdownOfEachSegment.
+
+:RevenueAndProfitabilityDrivers a owl:Class;
+    rdfs:subClassOf :DetailedBreakdownOfEachSegment.
+
+:KeyPerformanceMetrics a owl:Class;
+    rdfs:subClassOf :DetailedBreakdownOfEachSegment.
+
+:StrategicInitiativesAndPriorities a owl:Class;
+    rdfs:subClassOf :DetailedBreakdownOfEachSegment.
+
+:GeographicSegmentation a owl:Class;
+    rdfs:subClassOf :BusinessSegmentsAndProducts.
+
+:RevenueAndProfitabilityByRegion a owl:Class;
+    rdfs:subClassOf :GeographicSegmentation.
+
+:GrowthOpportunitiesAndChallenges a owl:Class;
+    rdfs:subClassOf :GeographicSegmentation.
+
+:UnitedKingdom a owl:Class;
+    rdfs:subClassOf :GeographicSegmentation.
+
+:RepublicOfIreland a owl:Class;
+    rdfs:subClassOf :GeographicSegmentation.
+
+:OtherEurope a owl:Class;
+    rdfs:subClassOf :GeographicSegmentation.
+
+:RestOfWorld a owl:Class;
+    rdfs:subClassOf :GeographicSegmentation.
+	
+:CompetitorAnalysis a owl:Class;
+    rdfs:subClassOf :MarketEnvironment.
+
+:IncumbentBanks a owl:Class;
+    rdfs:subClassOf :CompetitorAnalysis.
+
+:FintechCompanies a owl:Class;
+    rdfs:subClassOf :CompetitorAnalysis.
+
+:TechnologyConglomerates a owl:Class;
+    rdfs:subClassOf :CompetitorAnalysis.
+
+:OtherNewEntrants a owl:Class;
+    rdfs:subClassOf :CompetitorAnalysis.
+
+:SegmentBacklog a owl:Class;
+    rdfs:subClassOf :BusinessSegmentsAndProducts.
+
+:ValueOfFutureContractedRevenue a owl:Class;
+    rdfs:subClassOf :SegmentBacklog.
+
+:ExpectedTimingOfBacklogConversion a owl:Class;
+    rdfs:subClassOf :SegmentBacklog.
+
+:MarketEnvironment a owl:Class;
+    rdfs:subClassOf :BusinessSegmentsAndProducts.
+
+:CompetitorAnalysis a owl:Class;
+    rdfs:subClassOf :MarketEnvironment.
+
+:IncumbentBanks a owl:Class;
+    rdfs:subClassOf :CompetitorAnalysis.
+
+:FintechCompanies a owl:Class;
+    rdfs:subClassOf :CompetitorAnalysis.
+
+:TechnologyConglomerates a owl:Class;
+    rdfs:subClassOf :CompetitorAnalysis.
+
+:OtherNewEntrants a owl:Class;
+    rdfs:subClassOf :CompetitorAnalysis.
+
+:SegmentBacklog a owl:Class;
+    rdfs:subClassOf :BusinessSegmentsAndProducts.
+
+:ValueOfFutureContractedRevenue a owl:Class;
+    rdfs:subClassOf :SegmentBacklog.
+
+:ExpectedTimingOfBacklogConversion a owl:Class;
+    rdfs:subClassOf :SegmentBacklog.
+
+:GeographicSegmentation a owl:Class;
+    rdfs:subClassOf :BusinessSegmentsAndProducts.
+
+:UnitedKingdom a owl:Class;
+    rdfs:subClassOf :GeographicSegmentation.
+
+:RepublicOfIreland a owl:Class;
+    rdfs:subClassOf :GeographicSegmentation.
+
+:OtherEurope a owl:Class;
+    rdfs:subClassOf :GeographicSegmentation.
+
+
+
+:NorthAmerica a owl:Class;
+    rdfs:subClassOf :GeographicSegmentation;
+    rdfs:comment "A geographic region encompassing the United States and Canada.".
+
+:LatinAmerica a owl:Class;
+    rdfs:subClassOf :GeographicSegmentation;
+    rdfs:comment "A geographic region encompassing Mexico, Brazil, and other countries in Central and South America.".
+
+:Asia a owl:Class;
+    rdfs:subClassOf :GeographicSegmentation;
+    rdfs:comment "A geographic region encompassing Hong Kong, Singapore, and other countries in Asia.".
+
+:EMEA a owl:Class;
+    rdfs:subClassOf :GeographicSegmentation;
+    rdfs:comment "A geographic region encompassing countries in Europe, the Middle East, and Africa.".
+
+:SegmentBacklog a owl:Class;
+    rdfs:subClassOf :BusinessSegmentsAndProducts;
+    rdfs:comment "Represents the value of future contracted revenue and expected timing of backlog conversion for each business segment.".
+
+:ValueOfFutureContractedRevenue a owl:Class;
+    rdfs:subClassOf :SegmentBacklog;
+    rdfs:comment "The total value of contracted revenue that has not yet been recognized.".
+
+:ExpectedTimingOfBacklogConversion a owl:Class;
+    rdfs:subClassOf :SegmentBacklog;
+    rdfs:comment "The anticipated timeline for converting backlog into recognized revenue.".
+
+	
+#!!
+	
+#! Relationships (Object Properties)
+
+:BusinessSegmentsAndProducts :hasPart :MarketEnvironment.
+:BusinessSegmentsAndProducts :hasPart :DetailedBreakdownOfEachSegment.
+:BusinessSegmentsAndProducts :hasPart :GeographicSegmentation.
+:BusinessSegmentsAndProducts :hasPart :SegmentBacklog.
+
+:MarketEnvironment :hasPart :IndustryTrends.
+:MarketEnvironment :hasPart :CompetitiveLandscape.
+:MarketEnvironment :hasPart :RegulatoryDevelopments.
+:MarketEnvironment :hasPart :CompetitorAnalysis.
+:MarketEnvironment :hasPart :GeographicSegmentation.
+
+:DetailedBreakdownOfEachSegment :hasPart :ProductsAndServicesOffered.
+:DetailedBreakdownOfEachSegment :hasPart :TargetClients.
+:DetailedBreakdownOfEachSegment :hasPart :RevenueAndProfitabilityDrivers.
+:DetailedBreakdownOfEachSegment :hasPart :KeyPerformanceMetrics.
+:DetailedBreakdownOfEachSegment :hasPart :StrategicInitiativesAndPriorities.
+
+:GeographicSegmentation :hasPart :RevenueAndProfitabilityByRegion.
+:GeographicSegmentation :hasPart :GrowthOpportunitiesAndChallenges.
+:GeographicSegmentation :hasPart :UnitedKingdom.
+:GeographicSegmentation :hasPart :RepublicOfIreland.
+:GeographicSegmentation :hasPart :OtherEurope.
+:GeographicSegmentation :hasPart :RestOfWorld.
+:GeographicSegmentation :hasPart :NorthAmerica.
+:GeographicSegmentation :hasPart :LatinAmerica.
+:GeographicSegmentation :hasPart :Asia.
+:GeographicSegmentation :hasPart :EMEA.
+
+:CompetitorAnalysis :hasPart :IncumbentBanks.
+:CompetitorAnalysis :hasPart :FintechCompanies.
+:CompetitorAnalysis :hasPart :TechnologyConglomerates.
+:CompetitorAnalysis :hasPart :OtherNewEntrants.
+
+:SegmentBacklog :hasPart :ValueOfFutureContractedRevenue.
+:SegmentBacklog :hasPart :ExpectedTimingOfBacklogConversion.
+
+:RevenueAndProfitabilityByRegion :hasRegion :Region.
+:RevenueAndProfitabilityByRegion :hasCountry :Country.
+
+:BusinessSegmentsAndProducts :hasPart :SegmentBacklog.
+:SegmentBacklog :hasPart :ValueOfFutureContractedRevenue.
+:SegmentBacklog :hasPart :ExpectedTimingOfBacklogConversion.
+
+#!!
+
+#! Data Type Properties
+:hasIndustryTrend a owl:DatatypeProperty;
+    rdfs:domain :IndustryTrends;
+    rdfs:range xsd:string.
+
+:hasCompetitor a owl:DatatypeProperty;
+    rdfs:domain :CompetitiveLandscape;
+    rdfs:range xsd:string.
+
+:hasRegulatoryDevelopment a owl:DatatypeProperty;
+    rdfs:domain :RegulatoryDevelopments;
+    rdfs:range xsd:string.
+
+:hasProductOrService a owl:DatatypeProperty;
+    rdfs:domain :ProductsAndServicesOffered;
+    rdfs:range xsd:string.
+
+:hasTargetClient a owl:DatatypeProperty;
+    rdfs:domain :TargetClients;
+    rdfs:range xsd:string.
+
+:hasRevenueAndProfitabilityDriver a owl:DatatypeProperty;
+    rdfs:domain :RevenueAndProfitabilityDrivers;
+    rdfs:range xsd:string.
+
+:hasKeyPerformanceMetric a owl:DatatypeProperty;
+    rdfs:domain :KeyPerformanceMetrics;
+    rdfs:range xsd:string.
+
+:hasStrategicInitiative a owl:DatatypeProperty;
+    rdfs:domain :StrategicInitiativesAndPriorities;
+    rdfs:range xsd:string.
+
+:hasGrowthOpportunity a owl:DatatypeProperty;
+    rdfs:domain :GrowthOpportunitiesAndChallenges;
+    rdfs:range xsd:string.
+
+:hasChallenge a owl:DatatypeProperty;
+    rdfs:domain :GrowthOpportunitiesAndChallenges;
+    rdfs:range xsd:string.
+
+:hasValueOfFutureContractedRevenue a owl:DatatypeProperty;
+    rdfs:domain :ValueOfFutureContractedRevenue;
+    rdfs:range xsd:decimal.
+
+:hasExpectedTimingOfBacklogConversion a owl:DatatypeProperty;
+    rdfs:domain :ExpectedTimingOfBacklogConversion;
+    rdfs:range xsd:string.
+
+:hasRevenueAmount a owl:DatatypeProperty;
+    rdfs:domain :RevenueAndProfitabilityByRegion;
+    rdfs:range xsd:decimal.
+
+:hasProfitabilityAmount a owl:DatatypeProperty;
+    rdfs:domain :RevenueAndProfitabilityByRegion;
+    rdfs:range xsd:decimal.
+
+:hasMetricValue a owl:DatatypeProperty;
+    rdfs:domain :KeyPerformanceMetrics;
+    rdfs:range xsd:decimal.
+
+:hasMetricDate a owl:DatatypeProperty;
+    rdfs:domain :KeyPerformanceMetrics;
+    rdfs:range xsd:date.
+
+:hasIndustryTrend a owl:DatatypeProperty;
+    rdfs:domain :IndustryTrends;
+    rdfs:range xsd:string.
+
+:hasCompetitor a owl:DatatypeProperty;
+    rdfs:domain :CompetitiveLandscape;
+    rdfs:range xsd:string.
+
+:hasRegulatoryDevelopment a owl:DatatypeProperty;
+    rdfs:domain :RegulatoryDevelopments;
+    rdfs:range xsd:string.
+
+:hasProductOrService a owl:DatatypeProperty;
+    rdfs:domain :ProductsAndServicesOffered;
+    rdfs:range xsd:string.
+
+:hasTargetClient a owl:DatatypeProperty;
+    rdfs:domain :TargetClients;
+    rdfs:range xsd:string.
+
+:hasRevenueDriver a owl:DatatypeProperty;
+    rdfs:domain :RevenueAndProfitabilityDrivers;
+    rdfs:range xsd:string.
+
+:hasProfitabilityDriver a owl:DatatypeProperty;
+    rdfs:domain :RevenueAndProfitabilityDrivers;
+    rdfs:range xsd:string.
+
+:hasKeyPerformanceMetric a owl:DatatypeProperty;
+    rdfs:domain :KeyPerformanceMetrics;
+    rdfs:range xsd:string.
+
+:hasStrategicInitiative a owl:DatatypeProperty;
+    rdfs:domain :StrategicInitiativesAndPriorities;
+    rdfs:range xsd:string.
+
+:hasSegmentRevenue a owl:DatatypeProperty;
+    rdfs:domain :RevenueAndProfitabilityByRegion;
+    rdfs:range xsd:decimal.
+
+:hasSegmentProfitability a owl:DatatypeProperty;
+    rdfs:domain :RevenueAndProfitabilityByRegion;
+    rdfs:range xsd:decimal.
+
+:hasGrowthOpportunity a owl:DatatypeProperty;
+    rdfs:domain :GrowthOpportunitiesAndChallenges;
+    rdfs:range xsd:string.
+
+:hasChallenge a owl:DatatypeProperty;
+    rdfs:domain :GrowthOpportunitiesAndChallenges;
+    rdfs:range xsd:string.
+
+:hasBacklogValue a owl:DatatypeProperty;
+    rdfs:domain :ValueOfFutureContractedRevenue;
+    rdfs:range xsd:decimal.
+
+:hasExpectedConversionTiming a owl:DatatypeProperty;
+    rdfs:domain :ExpectedTimingOfBacklogConversion;
+    rdfs:range xsd:string.
+	
+:hasBacklogValue a owl:DatatypeProperty;
+    rdfs:domain :ValueOfFutureContractedRevenue;
+    rdfs:range xsd:decimal;
+    rdfs:comment "The monetary value of the future contracted revenue backlog.".
+
+:hasExpectedConversionTiming a owl:DatatypeProperty;
+    rdfs:domain :ExpectedTimingOfBacklogConversion;
+    rdfs:range xsd:string;
+    rdfs:comment "Description of when the backlog is expected to be converted into revenue.".
+	
+#!!	
+	
+#! Object Properties
+:hasIndustryTrend a owl:ObjectProperty;
+    rdfs:domain :IndustryTrends;
+    rdfs:range xsd:string.
+
+:hasCompetitor a owl:ObjectProperty;
+    rdfs:domain :CompetitiveLandscape;
+    rdfs:range xsd:string.
+
+:hasRegulatoryDevelopment a owl:ObjectProperty;
+    rdfs:domain :RegulatoryDevelopments;
+    rdfs:range xsd:string.
+
+:hasProductOrService a owl:ObjectProperty;
+    rdfs:domain :ProductsAndServicesOffered;
+    rdfs:range xsd:string.
+
+:hasTargetClient a owl:ObjectProperty;
+    rdfs:domain :TargetClients;
+    rdfs:range xsd:string.
+
+:hasRevenueAndProfitabilityDriver a owl:ObjectProperty;
+    rdfs:domain :RevenueAndProfitabilityDrivers;
+    rdfs:range xsd:string.
+
+:hasKeyPerformanceMetric a owl:ObjectProperty;
+    rdfs:domain :KeyPerformanceMetrics;
+    rdfs:range xsd:string.
+
+:hasStrategicInitiative a owl:ObjectProperty;
+    rdfs:domain :StrategicInitiativesAndPriorities;
+    rdfs:range xsd:string.
+
+:hasGrowthOpportunity a owl:ObjectProperty;
+    rdfs:domain :GrowthOpportunitiesAndChallenges;
+    rdfs:range xsd:string.
+
+:hasChallenge a owl:ObjectProperty;
+    rdfs:domain :GrowthOpportunitiesAndChallenges;
+    rdfs:range xsd:string.
+
+:isSoldTo a owl:ObjectProperty;
+    rdfs:domain :ProductsAndServicesOffered;
+    rdfs:range :TargetClients.
+
+:isCompetitorOf a owl:ObjectProperty;
+    rdfs:domain :CompanyName;
+    rdfs:range :CompanyName.
+
+:impacts a owl:ObjectProperty;
+    rdfs:domain :RegulatoryDevelopments;
+    rdfs:range :BusinessSegmentsAndProducts.
+
+:hasRegion a owl:ObjectProperty;
+    rdfs:domain :GeographicSegmentation;
+    rdfs:range :Region.
+
+:hasCountry a owl:ObjectProperty;
+    rdfs:domain :GeographicSegmentation;
+    rdfs:range :Country.
+	
+:hasFinancialStatement a owl:ObjectProperty;
+    rdfs:domain :GroupChiefFinancialOfficersReview;
+    rdfs:range :SummaryFinancialStatements.
+	
+:isCompetitorOf a owl:ObjectProperty;
+    rdfs:domain :CompetitorAnalysis;
+    rdfs:range :CompetitorAnalysis.
+	
+:competesWith a owl:ObjectProperty;
+    rdfs:domain :BusinessSegmentsAndProducts;
+    rdfs:range :CompetitorAnalysis.
+
+:operatesIn a owl:ObjectProperty;
+    rdfs:domain :BusinessSegmentsAndProducts;
+    rdfs:range :GeographicSegmentation.
+
+:offersProductOrService a owl:ObjectProperty;
+    rdfs:domain :BusinessSegmentsAndProducts;
+    rdfs:range :ProductsAndServicesOffered.
+
+:targetsClient a owl:ObjectProperty;
+    rdfs:domain :BusinessSegmentsAndProducts;
+    rdfs:range :TargetClients.
+
+:hasPerformanceMetric a owl:ObjectProperty;
+    rdfs:domain :BusinessSegmentsAndProducts;
+    rdfs:range :KeyPerformanceMetrics.
+
+:implementsStrategy a owl:ObjectProperty;
+    rdfs:domain :BusinessSegmentsAndProducts;
+    rdfs:range :StrategicInitiativesAndPriorities.
+
+:hasBacklog a owl:ObjectProperty;
+    rdfs:domain :BusinessSegmentsAndProducts;
+    rdfs:range :SegmentBacklog.
+
+:affectedByTrend a owl:ObjectProperty;
+    rdfs:domain :BusinessSegmentsAndProducts;
+    rdfs:range :IndustryTrends.
+
+:regulatedBy a owl:ObjectProperty;
+    rdfs:domain :BusinessSegmentsAndProducts;
+    rdfs:range :RegulatoryDevelopments.
+
+:hasBacklog a owl:ObjectProperty;
+    rdfs:domain :BusinessSegmentsAndProducts;
+    rdfs:range :SegmentBacklog;
+    rdfs:comment "Relates a business segment to its backlog information.".
+#!!
+#!!
+
+	
+   ############################################################	
+#! #### 		    	SUSTAINABILITY/ESG			       ####	
+   ############################################################
+	
+#! Classes
+:SustainabilityESG a owl:Class;
+    rdfs:subClassOf :EarningsReport.
+
+:ClimateStrategy a owl:Class;
+    rdfs:subClassOf :SustainabilityESG.
+
+:NetZeroAmbitions a owl:Class;
+    rdfs:subClassOf :ClimateStrategy.
+
+:ClimateTransitionPlan a owl:Class;
+    rdfs:subClassOf :ClimateStrategy.
+
+:ClimateRelatedDisclosures a owl:Class;
+    rdfs:subClassOf :ClimateStrategy.
+
+:EnvironmentalImpact a owl:Class;
+    rdfs:subClassOf :SustainabilityESG.
+
+:OperationalFootprint a owl:Class;
+    rdfs:subClassOf :EnvironmentalImpact.
+
+:EmissionsReductionTargets a owl:Class;
+    rdfs:subClassOf :EnvironmentalImpact.
+
+:SocialImpact a owl:Class;
+    rdfs:subClassOf :SustainabilityESG.
+
+:FinancialWellbeingInitiatives a owl:Class;
+    rdfs:subClassOf :SocialImpact.
+
+:CommunityInvestments a owl:Class;
+    rdfs:subClassOf :SocialImpact.
+
+:DiversityEquityAndInclusion a owl:Class;
+    rdfs:subClassOf :SocialImpact.
+	
+:NetZeroAmbitions a owl:Class;
+    rdfs:subClassOf :ClimateStrategy.
+
+:ClimateTransitionPlan a owl:Class;
+    rdfs:subClassOf :ClimateStrategy.
+
+:ClimateRelatedDisclosures a owl:Class;
+    rdfs:subClassOf :ClimateStrategy.
+
+:TCFD a owl:Class;
+    rdfs:subClassOf :ClimateRelatedDisclosures.
+
+:OperationalFootprint a owl:Class;
+    rdfs:subClassOf :EnvironmentalImpact.
+
+:EmissionsReductionTargets a owl:Class;
+    rdfs:subClassOf :EnvironmentalImpact.
+
+:FinancialWellbeingInitiatives a owl:Class;
+    rdfs:subClassOf :SocialImpact.
+
+:CommunityInvestments a owl:Class;
+    rdfs:subClassOf :SocialImpact.
+
+:DiversityEquityAndInclusion a owl:Class;
+    rdfs:subClassOf :SocialImpact.
+
+:Governance a owl:Class;
+    rdfs:subClassOf :SustainabilityESG;
+    rdfs:comment "The system of rules, practices, and processes by which a company is directed and controlled. It involves balancing the interests of a company's many stakeholders, such as shareholders, management, customers, suppliers, financiers, government, and the community.".
+
+:ClimateRiskManagement a owl:Class;
+    rdfs:subClassOf :ClimateStrategy;
+    rdfs:comment "The process of identifying, assessing, and managing the risks that climate change poses to a business.".
+
+#!!
+	
+#! Relationships (Object Properties)
+:SustainabilityESG :hasPart :ClimateStrategy.
+:SustainabilityESG :hasPart :EnvironmentalImpact.
+:SustainabilityESG :hasPart :SocialImpact.
+:SustainabilityESG :hasPart :Governance.
+
+:ClimateStrategy :hasPart :NetZeroAmbitions.
+:ClimateStrategy :hasPart :ClimateTransitionPlan.
+:ClimateStrategy :hasPart :ClimateRelatedDisclosures.
+:ClimateStrategy :hasPart :ClimateRiskManagement.
+
+:EnvironmentalImpact :hasPart :OperationalFootprint.
+:EnvironmentalImpact :hasPart :EmissionsReductionTargets.
+
+:SocialImpact :hasPart :FinancialWellbeingInitiatives.
+:SocialImpact :hasPart :CommunityInvestments.
+:SocialImpact :hasPart :DiversityEquityAndInclusion.
+
+#!!
+
+#! Data Type Properties
+:hasNetZeroAmbition a owl:DatatypeProperty;
+    rdfs:domain :NetZeroAmbitions;
+    rdfs:range xsd:string.
+
+:hasClimateTransitionPlan a owl:DatatypeProperty;
+    rdfs:domain :ClimateTransitionPlan;
+    rdfs:range xsd:string.
+
+:hasClimateRelatedDisclosure a owl:DatatypeProperty;
+    rdfs:domain :ClimateRelatedDisclosures;
+    rdfs:range xsd:string.
+
+:hasOperationalFootprint a owl:DatatypeProperty;
+    rdfs:domain :OperationalFootprint;
+    rdfs:range xsd:string.
+
+:hasEmissionsReductionTarget a owl:DatatypeProperty;
+    rdfs:domain :EmissionsReductionTargets;
+    rdfs:range xsd:decimal.
+
+:hasFinancialWellbeingInitiative a owl:DatatypeProperty;
+    rdfs:domain :FinancialWellbeingInitiatives;
+    rdfs:range xsd:string.
+
+:hasCommunityInvestment a owl:DatatypeProperty;
+    rdfs:domain :CommunityInvestments;
+    rdfs:range xsd:decimal.
+
+:hasDiversityEquityAndInclusionMetric a owl:DatatypeProperty;
+    rdfs:domain :DiversityEquityAndInclusion;
+    rdfs:range xsd:string.
+	
+:hasNetZeroTarget a owl:DatatypeProperty;
+    rdfs:domain :NetZeroAmbitions;
+    rdfs:range xsd:string.
+
+:hasTransitionPlanElement a owl:DatatypeProperty;
+    rdfs:domain :ClimateTransitionPlan;
+    rdfs:range xsd:string.
+
+:hasTCFDDisclosure a owl:DatatypeProperty;
+    rdfs:domain :TCFD;
+    rdfs:range xsd:string.
+
+:hasOperationalFootprintMetric a owl:DatatypeProperty;
+    rdfs:domain :OperationalFootprint;
+    rdfs:range xsd:string.
+
+:hasEmissionsReductionTarget a owl:DatatypeProperty;
+    rdfs:domain :EmissionsReductionTargets;
+    rdfs:range xsd:string.
+
+:hasFinancialWellbeingInitiative a owl:DatatypeProperty;
+    rdfs:domain :FinancialWellbeingInitiatives;
+    rdfs:range xsd:string.
+
+:hasCommunityInvestmentAmount a owl:DatatypeProperty;
+    rdfs:domain :CommunityInvestments;
+    rdfs:range xsd:decimal.
+
+:hasDEIMetric a owl:DatatypeProperty;
+    rdfs:domain :DiversityEquityAndInclusion;
+    rdfs:range xsd:string.
+
+:hasGreenhouseGasEmissions a owl:DatatypeProperty;
+    rdfs:domain :OperationalFootprint;
+    rdfs:range xsd:decimal.
+
+:hasEnergyConsumption a owl:DatatypeProperty;
+    rdfs:domain :OperationalFootprint;
+    rdfs:range xsd:decimal.
+
+:hasWaterUsage a owl:DatatypeProperty;
+    rdfs:domain :OperationalFootprint;
+    rdfs:range xsd:decimal.
+
+:hasWasteGeneration a owl:DatatypeProperty;
+    rdfs:domain :OperationalFootprint;
+    rdfs:range xsd:decimal.
+	
+:hasScenarioAnalysis a owl:DatatypeProperty;
+    rdfs:domain :ClimateRiskManagement;
+    rdfs:range xsd:string;
+    rdfs:comment "Describes the scenario analysis used in climate risk management.".
+
+:hasRiskAssessment a owl:DatatypeProperty;
+    rdfs:domain :ClimateRiskManagement;
+    rdfs:range xsd:string;
+    rdfs:comment "Describes the risk assessment used in climate risk management.".
+
+:hasBoardOversight a owl:DatatypeProperty;
+    rdfs:domain :Governance;
+    rdfs:range xsd:string;
+    rdfs:comment "Describes the board's oversight of ESG matters.".
+
+:hasExecutiveResponsibility a owl:DatatypeProperty;
+    rdfs:domain :Governance;
+    rdfs:range xsd:string;
+    rdfs:comment "Describes the executive leadership's responsibility for ESG.".
+
+:hasESGReporting a owl:DatatypeProperty;
+    rdfs:domain :Governance;
+    rdfs:range xsd:string;
+    rdfs:comment "Describes the company's ESG reporting and disclosure practices.".
+
+:hasStakeholderEngagement a owl:DatatypeProperty;
+    rdfs:domain :Governance;
+    rdfs:range xsd:string;
+    rdfs:comment "Describes the company's stakeholder engagement on ESG issues.".
+
+#!!	
+	
+#! Object Properties	
+:hasFinancialStatement a owl:ObjectProperty;
+    rdfs:domain :GroupChiefFinancialOfficersReview;
+    rdfs:range :SummaryFinancialStatements.
+
+:isCompetitorOf a owl:ObjectProperty;
+    rdfs:domain :CompetitorAnalysis;
+    rdfs:range :CompetitorAnalysis.
+
+:hasRegion a owl:ObjectProperty;
+    rdfs:domain :RevenueAndProfitabilityByRegion;
+    rdfs:range :GeographicSegmentation.
+
+:hasCountry a owl:ObjectProperty;
+    rdfs:domain :RevenueAndProfitabilityByRegion;
+    rdfs:range :GeographicSegmentation.
+
+	
+:addresses a owl:ObjectProperty;
+    rdfs:domain :SustainabilityESG;
+    rdfs:range :Risk.
+
+:relatesTo a owl:ObjectProperty;
+    rdfs:domain :ClimateRelatedDisclosures;
+    rdfs:range :TCFD.
+
+:contributesToNetZero a owl:ObjectProperty;
+    rdfs:domain :ClimateTransitionPlan;
+    rdfs:range :NetZeroAmbitions.
+
+:disclosesVia a owl:ObjectProperty;
+    rdfs:domain :ClimateStrategy;
+    rdfs:range :TCFD.
+
+:reducesFootprintThrough a owl:ObjectProperty;
+    rdfs:domain :OperationalFootprint;
+    rdfs:range :EmissionsReductionTargets.
+
+:impactsCommunity a owl:ObjectProperty;
+    rdfs:domain :CommunityInvestments;
+    rdfs:range :SocialImpact.
+
+:promotesWellbeingThrough a owl:ObjectProperty;
+    rdfs:domain :FinancialWellbeingInitiatives;
+    rdfs:range :SocialImpact.
+
+:enhancesDEIThrough a owl:ObjectProperty;
+    rdfs:domain :DiversityEquityAndInclusion;
+    rdfs:range :SocialImpact.
+
+:alignsWith a owl:ObjectProperty;
+    rdfs:domain :SustainabilityESG;
+    rdfs:range :StrategicFramework.
+
+:impactsReputation a owl:ObjectProperty;
+    rdfs:domain :SustainabilityESG;
+    rdfs:range :CompanyOverview.
+
+:influencesInvestorDecisions a owl:ObjectProperty;
+    rdfs:domain :SustainabilityESG;
+    rdfs:range :InvestorRelations.
+
+:mitigatesRisk a owl:ObjectProperty;
+    rdfs:domain :SustainabilityESG;
+    rdfs:range :RiskManagement.
+	
+:hasClimateRiskManagement a owl:ObjectProperty;
+    rdfs:domain :ClimateStrategy;
+    rdfs:range :ClimateRiskManagement;
+    rdfs:comment "Relates a climate strategy to its risk management component.".
+
+:hasGovernance a owl:ObjectProperty;
+    rdfs:domain :SustainabilityESG;
+    rdfs:range :Governance;
+    rdfs:comment "Relates a sustainability report to its governance section.".
+
+#!!
+#!!
+	
+    #################################################
+#!  ####             RISK MANAGEMENT             ####
+    #################################################
+
+#! Classes	
+:RiskManagement a owl:Class;
+    rdfs:subClassOf :EarningsReport.
+
+:RiskFactors a owl:Class;
+    rdfs:subClassOf :RiskManagement.
+
+:DetailedDescriptionOfEachRisk a owl:Class;
+    rdfs:subClassOf :RiskFactors.
+
+:QuantitativeAndQualitativeAssessment a owl:Class;
+    rdfs:subClassOf :RiskFactors.
+
+:PotentialImpactOnFinancialPerformance a owl:Class;
+    rdfs:subClassOf :RiskFactors.
+
+:RiskMitigationStrategies a owl:Class;
+    rdfs:subClassOf :RiskManagement.
+
+:HedgingPrograms a owl:Class;
+    rdfs:subClassOf :RiskMitigationStrategies.
+
+:DiversificationEfforts a owl:Class;
+    rdfs:subClassOf :RiskMitigationStrategies.
+
+:CapitalAllocationAndManagement a owl:Class;
+    rdfs:subClassOf :RiskMitigationStrategies.
+
+:StressTestingAndScenarioAnalysis a owl:Class;
+    rdfs:subClassOf :RiskMitigationStrategies.
+
+:RegulatoryCapitalAndLiquidity a owl:Class;
+    rdfs:subClassOf :RiskManagement.
+
+:CapitalRatiosAndRequirements a owl:Class;
+    rdfs:subClassOf :RegulatoryCapitalAndLiquidity.
+
+:RiskWeightedAssetsCalculation a owl:Class;
+    rdfs:subClassOf :RegulatoryCapitalAndLiquidity.
+
+:LiquidityBuffersAndManagement a owl:Class;
+    rdfs:subClassOf :RegulatoryCapitalAndLiquidity.
+
+:StressTestResultsAndCapitalPlanning a owl:Class;
+    rdfs:subClassOf :RegulatoryCapitalAndLiquidity.
+
+:OperationalEfficiency a owl:Class;
+    rdfs:subClassOf :RiskManagement.
+
+:CostToIncomeRatio a owl:Class;
+    rdfs:subClassOf :OperationalEfficiency.
+
+:ProcessAutomationRates a owl:Class;
+    rdfs:subClassOf :OperationalEfficiency.
+
+:DigitalAdoptionRates a owl:Class;
+    rdfs:subClassOf :OperationalEfficiency.
+
+:RiskManagementOverview a owl:Class;
+    rdfs:subClassOf :RiskManagement.
+
+:CreditLossRates a owl:Class;
+    rdfs:subClassOf :RiskManagementOverview.
+
+:OperationalLossEvents a owl:Class;
+    rdfs:subClassOf :RiskManagementOverview.
+
+:ConductRiskIncidents a owl:Class;
+    rdfs:subClassOf :RiskManagementOverview.
+
+:RegulatoryEnvironment a owl:Class;
+    rdfs:subClassOf :RiskManagement.
+
+:UKPrudentialRegulationAuthority a owl:Class;
+    rdfs:subClassOf :RegulatoryEnvironment.
+
+:FinancialConductAuthority a owl:Class;
+    rdfs:subClassOf :RegulatoryEnvironment.
+
+:BaselIII a owl:Class;
+    rdfs:subClassOf :RegulatoryEnvironment.
+
+:UKConsumerDuty a owl:Class;
+    rdfs:subClassOf :RegulatoryEnvironment.
+
+:OtherRelevantRegulations a owl:Class;
+    rdfs:subClassOf :RegulatoryEnvironment.
+
+:LegalProceedings a owl:Class;
+    rdfs:subClassOf :RiskManagement.
+
+:LIBORAndOtherRatesLitigation a owl:Class;
+    rdfs:subClassOf :LegalProceedings.
+
+:ForeignExchangeLitigation a owl:Class;
+    rdfs:subClassOf :LegalProceedings.
+
+:GovernmentSecuritiesAntitrustLitigation a owl:Class;
+    rdfs:subClassOf :LegalProceedings.
+
+:OtherLegalProceedings a owl:Class;
+    rdfs:subClassOf :LegalProceedings.
+
+:QuantitativeMarketRiskDisclosures a owl:Class;
+    rdfs:subClassOf :RiskManagement.
+
+:ValueAtRisk a owl:Class;
+    rdfs:subClassOf :QuantitativeMarketRiskDisclosures.
+
+:SensitivityAnalyses a owl:Class;
+    rdfs:subClassOf :QuantitativeMarketRiskDisclosures.
+
+:StressTestResults a owl:Class;
+    rdfs:subClassOf :QuantitativeMarketRiskDisclosures.
+
+:OffBalanceSheetCommitments a owl:Class;
+    rdfs:subClassOf :RiskManagement.
+
+:Guarantees a owl:Class;
+    rdfs:subClassOf :OffBalanceSheetCommitments.
+
+:LettersOfCredit a owl:Class;
+    rdfs:subClassOf :OffBalanceSheetCommitments.
+
+:OtherCommitments a owl:Class;
+    rdfs:subClassOf :OffBalanceSheetCommitments.
+
+:QuantitativeAndQualitativeAssessment a owl:Class;
+    rdfs:subClassOf :RiskFactors.
+
+:PotentialImpactOnFinancialPerformance a owl:Class;
+    rdfs:subClassOf :RiskFactors.
+
+:OperationalEfficiency a owl:Class;
+    rdfs:subClassOf :RiskManagement.
+
+:ProcessAutomationRates a owl:Class;
+    rdfs:subClassOf :OperationalEfficiency.
+
+:DigitalAdoptionRates a owl:Class;
+    rdfs:subClassOf :OperationalEfficiency.
+
+:UKPrudentialRegulationAuthority a owl:Class;
+    rdfs:subClassOf :RegulatoryEnvironment.
+
+:FinancialConductAuthority a owl:Class;
+    rdfs:subClassOf :RegulatoryEnvironment.
+
+:BaselIII a owl:Class;
+    rdfs:subClassOf :RegulatoryEnvironment.
+
+:UKConsumerDuty a owl:Class;
+    rdfs:subClassOf :RegulatoryEnvironment.
+
+:LIBORAndOtherRatesLitigation a owl:Class;
+    rdfs:subClassOf :LegalProceedings.
+
+:ForeignExchangeLitigation a owl:Class;
+    rdfs:subClassOf :LegalProceedings.
+
+:GovernmentSecuritiesAntitrustLitigation a owl:Class;
+    rdfs:subClassOf :LegalProceedings.
+	
+:LoanModifications a owl:Class ;
+    rdfs:subClassOf :KeyPerformanceIndicators ;
+    rdfs:comment "Changes made to the terms of a loan, typically to help a borrower avoid default" .
+	
+	
+:CapitalAllocationAndManagement a owl:Class;
+    rdfs:subClassOf :RegulatoryCapitalAndLiquidity;
+    rdfs:comment "Describes the company's framework for allocating capital and managing it across different business lines and risk types.".
+
+:Cybersecurity a owl:Class;
+    rdfs:subClassOf :RiskManagement;
+    rdfs:comment "Encompasses the company's approach to protecting its digital assets, systems, and data from cyber threats and attacks.".
+
+	
+#!!	
+	
+#! Relationships (Object Properties)
+:RiskManagement :hasPart :RiskFactors.
+:RiskManagement :hasPart :RiskMitigationStrategies.
+:RiskManagement :hasPart :RegulatoryCapitalAndLiquidity.
+:RiskManagement :hasPart :OperationalEfficiency.
+:RiskManagement :hasPart :RiskManagementOverview.
+:RiskManagement :hasPart :RegulatoryEnvironment.
+:RiskManagement :hasPart :LegalProceedings.
+:RiskManagement :hasPart :QuantitativeMarketRiskDisclosures.
+:RiskManagement :hasPart :OffBalanceSheetCommitments.
+
+:RiskFactors :hasPart :DetailedDescriptionOfEachRisk.
+:RiskFactors :hasPart :QuantitativeAndQualitativeAssessment.
+:RiskFactors :hasPart :PotentialImpactOnFinancialPerformance.
+
+:RiskMitigationStrategies :hasPart :HedgingPrograms.
+:RiskMitigationStrategies :hasPart :DiversificationEfforts.
+:RiskMitigationStrategies :hasPart :CapitalAllocationAndManagement.
+:RiskMitigationStrategies :hasPart :StressTestingAndScenarioAnalysis.
+
+:RegulatoryCapitalAndLiquidity :hasPart :CapitalRatiosAndRequirements.
+:RegulatoryCapitalAndLiquidity :hasPart :RiskWeightedAssetsCalculation.
+:RegulatoryCapitalAndLiquidity :hasPart :LiquidityBuffersAndManagement.
+:RegulatoryCapitalAndLiquidity :hasPart :StressTestResultsAndCapitalPlanning.
+
+:OperationalEfficiency :hasPart :CostToIncomeRatio.
+:OperationalEfficiency :hasPart :ProcessAutomationRates.
+:OperationalEfficiency :hasPart :DigitalAdoptionRates.
+
+:RiskManagementOverview :hasPart :CreditLossRates.
+:RiskManagementOverview :hasPart :OperationalLossEvents.
+:RiskManagementOverview :hasPart :ConductRiskIncidents.
+
+:RegulatoryEnvironment :hasPart :UKPrudentialRegulationAuthority.
+:RegulatoryEnvironment :hasPart :FinancialConductAuthority.
+:RegulatoryEnvironment :hasPart :BaselIII.
+:RegulatoryEnvironment :hasPart :UKConsumerDuty.
+:RegulatoryEnvironment :hasPart :OtherRelevantRegulations.
+
+:LegalProceedings :hasPart :LIBORAndOtherRatesLitigation.
+:LegalProceedings :hasPart :ForeignExchangeLitigation.
+:LegalProceedings :hasPart :GovernmentSecuritiesAntitrustLitigation.
+:LegalProceedings :hasPart :OtherLegalProceedings.
+
+:QuantitativeMarketRiskDisclosures :hasPart :ValueAtRisk.
+:QuantitativeMarketRiskDisclosures :hasPart :SensitivityAnalyses.
+:QuantitativeMarketRiskDisclosures :hasPart :StressTestResults.
+
+:OffBalanceSheetCommitments :hasPart :Guarantees.
+:OffBalanceSheetCommitments :hasPart :LettersOfCredit.
+:OffBalanceSheetCommitments :hasPart :OtherCommitments.
+	
+:KeyPerformanceIndicators :hasPart :LoanModifications .
+
+:RegulatoryCapitalAndLiquidity :hasPart :CapitalAllocationAndManagement.
+:RiskManagement :hasPart :Cybersecurity.
+
+	
+#!! 
+
+#! Data Type Properties
+:hasRiskDescription a owl:DatatypeProperty;
+    rdfs:domain :DetailedDescriptionOfEachRisk;
+    rdfs:range xsd:string.
+
+:hasQuantitativeAssessment a owl:DatatypeProperty;
+    rdfs:domain :QuantitativeAndQualitativeAssessment;
+    rdfs:range xsd:string.
+
+:hasQualitativeAssessment a owl:DatatypeProperty;
+    rdfs:domain :QuantitativeAndQualitativeAssessment;
+    rdfs:range xsd:string.
+
+:hasPotentialImpact a owl:DatatypeProperty;
+    rdfs:domain :PotentialImpactOnFinancialPerformance;
+    rdfs:range xsd:string.
+
+:hasHedgingProgram a owl:DatatypeProperty;
+    rdfs:domain :HedgingPrograms;
+    rdfs:range xsd:string.
+
+:hasDiversificationEffort a owl:DatatypeProperty;
+    rdfs:domain :DiversificationEfforts;
+    rdfs:range xsd:string.
+
+:hasCapitalAllocationStrategy a owl:DatatypeProperty;
+    rdfs:domain :CapitalAllocationAndManagement;
+    rdfs:range xsd:string.
+
+:hasStressTest a owl:DatatypeProperty;
+    rdfs:domain :StressTestingAndScenarioAnalysis;
+    rdfs:range xsd:string.
+
+:hasScenarioAnalysis a owl:DatatypeProperty;
+    rdfs:domain :StressTestingAndScenarioAnalysis;
+    rdfs:range xsd:string.
+
+:hasCapitalRatio a owl:DatatypeProperty;
+    rdfs:domain :CapitalRatiosAndRequirements;
+    rdfs:range xsd:decimal.
+
+:hasCapitalRequirement a owl:DatatypeProperty;
+    rdfs:domain :CapitalRatiosAndRequirements;
+    rdfs:range xsd:decimal.
+
+:hasRiskWeightedAssets a owl:DatatypeProperty;
+    rdfs:domain :RiskWeightedAssetsCalculation;
+    rdfs:range xsd:decimal.
+
+:hasLiquidityBuffer a owl:DatatypeProperty;
+    rdfs:domain :LiquidityBuffersAndManagement;
+    rdfs:range xsd:decimal.
+
+:hasStressTestResult a owl:DatatypeProperty;
+    rdfs:domain :StressTestResultsAndCapitalPlanning;
+    rdfs:range xsd:string.
+
+:hasCostToIncomeRatio a owl:DatatypeProperty;
+    rdfs:domain :CostToIncomeRatio;
+    rdfs:range xsd:decimal.
+
+:hasProcessAutomationRate a owl:DatatypeProperty;
+    rdfs:domain :ProcessAutomationRates;
+    rdfs:range xsd:decimal.
+
+:hasDigitalAdoptionRate a owl:DatatypeProperty;
+    rdfs:domain :DigitalAdoptionRates;
+    rdfs:range xsd:decimal.
+
+:hasCreditLossRate a owl:DatatypeProperty;
+    rdfs:domain :CreditLossRates;
+    rdfs:range xsd:decimal.
+
+:hasOperationalLossEvent a owl:DatatypeProperty;
+    rdfs:domain :OperationalLossEvents;
+    rdfs:range xsd:string.
+
+:hasConductRiskIncident a owl:DatatypeProperty;
+    rdfs:domain :ConductRiskIncidents;
+    rdfs:range xsd:string.
+
+:hasValueAtRisk a owl:DatatypeProperty;
+    rdfs:domain :ValueAtRisk;
+    rdfs:range xsd:decimal.
+
+:hasSensitivityAnalysis a owl:DatatypeProperty;
+    rdfs:domain :SensitivityAnalyses;
+    rdfs:range xsd:string.
+
+:hasStressTestResult a owl:DatatypeProperty;
+    rdfs:domain :StressTestResults;
+    rdfs:range xsd:string.
+
+:hasGuaranteeAmount a owl:DatatypeProperty;
+    rdfs:domain :Guarantees;
+    rdfs:range xsd:decimal.
+
+:hasLetterOfCreditAmount a owl:DatatypeProperty;
+    rdfs:domain :LettersOfCredit;
+    rdfs:range xsd:decimal.
+
+:hasOtherCommitmentAmount a owl:DatatypeProperty;
+    rdfs:domain :OtherCommitments;
+    rdfs:range xsd:decimal.
+	
+:hasRiskDescription a owl:DatatypeProperty;
+    rdfs:domain :DetailedDescriptionOfEachRisk;
+    rdfs:range xsd:string.
+
+:hasQuantitativeAssessment a owl:DatatypeProperty;
+    rdfs:domain :QuantitativeAndQualitativeAssessment;
+    rdfs:range xsd:string.
+
+:hasQualitativeAssessment a owl:DatatypeProperty;
+    rdfs:domain :QuantitativeAndQualitativeAssessment;
+    rdfs:range xsd:string.
+
+:hasPotentialFinancialImpact a owl:DatatypeProperty;
+    rdfs:domain :PotentialImpactOnFinancialPerformance;
+    rdfs:range xsd:decimal.
+
+:hasHedgingStrategy a owl:DatatypeProperty;
+    rdfs:domain :HedgingPrograms;
+    rdfs:range xsd:string.
+
+:hasDiversificationStrategy a owl:DatatypeProperty;
+    rdfs:domain :DiversificationEfforts;
+    rdfs:range xsd:string.
+
+:hasCapitalAllocationStrategy a owl:DatatypeProperty;
+    rdfs:domain :CapitalAllocationAndManagement;
+    rdfs:range xsd:string.
+
+:hasStressTestScenario a owl:DatatypeProperty;
+    rdfs:domain :StressTestingAndScenarioAnalysis;
+    rdfs:range xsd:string.
+
+:hasCapitalRatio a owl:DatatypeProperty;
+    rdfs:domain :CapitalRatiosAndRequirements;
+    rdfs:range xsd:decimal.
+
+:hasRWAAmount a owl:DatatypeProperty;
+    rdfs:domain :RiskWeightedAssetsCalculation;
+    rdfs:range xsd:decimal.
+
+:hasLiquidityBuffer a owl:DatatypeProperty;
+    rdfs:domain :LiquidityBuffersAndManagement;
+    rdfs:range xsd:decimal.
+
+:hasCostToIncomeRatio a owl:DatatypeProperty;
+    rdfs:domain :CostToIncomeRatio;
+    rdfs:range xsd:decimal.
+
+:hasProcessAutomationRate a owl:DatatypeProperty;
+    rdfs:domain :ProcessAutomationRates;
+    rdfs:range xsd:decimal.
+
+:hasDigitalAdoptionRate a owl:DatatypeProperty;
+    rdfs:domain :DigitalAdoptionRates;
+    rdfs:range xsd:decimal.
+
+:hasCreditLossRate a owl:DatatypeProperty;
+    rdfs:domain :CreditLossRates;
+    rdfs:range xsd:decimal.
+
+:hasOperationalLossEvent a owl:DatatypeProperty;
+    rdfs:domain :OperationalLossEvents;
+    rdfs:range xsd:string.
+
+:hasConductRiskIncident a owl:DatatypeProperty;
+    rdfs:domain :ConductRiskIncidents;
+    rdfs:range xsd:string.
+
+:hasValueAtRisk a owl:DatatypeProperty;
+    rdfs:domain :ValueAtRisk;
+    rdfs:range xsd:decimal.
+
+:hasSensitivityAnalysis a owl:DatatypeProperty;
+    rdfs:domain :SensitivityAnalyses;
+    rdfs:range xsd:string.
+
+:hasGuaranteeAmount a owl:DatatypeProperty;
+    rdfs:domain :Guarantees;
+    rdfs:range xsd:decimal.
+
+:hasLetterOfCreditAmount a owl:DatatypeProperty;
+    rdfs:domain :LettersOfCredit;
+    rdfs:range xsd:decimal.
+	
+:hasLoanModificationTypeDescription a owl:DatatypeProperty ;
+    rdfs:domain :LoanModifications ;
+    rdfs:range xsd:string .
+
+:hasLoanModificationCriteriaDescription a owl:DatatypeProperty ;
+    rdfs:domain :LoanModifications ;
+    rdfs:range xsd:string .
+
+:hasLoanModificationVolumeDescription a owl:DatatypeProperty ;
+    rdfs:domain :LoanModifications ;
+    rdfs:range xsd:string .
+
+:hasLoanModificationPerformanceDescription a owl:DatatypeProperty ;
+    rdfs:domain :LoanModifications ;
+    rdfs:range xsd:string .
+	
+:hasCapitalAllocationFramework a owl:DatatypeProperty;
+    rdfs:domain :CapitalAllocationAndManagement;
+    rdfs:range xsd:string;
+    rdfs:comment "Description of the company's capital allocation framework.".
+
+:hasCapitalDeploymentPriority a owl:DatatypeProperty;
+    rdfs:domain :CapitalAllocationAndManagement;
+    rdfs:range xsd:string;
+    rdfs:comment "Priorities for capital deployment (e.g., organic growth, acquisitions, dividends, buybacks).".
+
+:hasCapitalAllocationFactor a owl:DatatypeProperty;
+    rdfs:domain :CapitalAllocationAndManagement;
+    rdfs:range xsd:string;
+    rdfs:comment "Factors influencing capital allocation decisions (e.g., risk profile, regulatory requirements, market conditions).".
+
+:hasCybersecurityFramework a owl:DatatypeProperty;
+    rdfs:domain :Cybersecurity;
+    rdfs:range xsd:string;
+    rdfs:comment "Description of the company's cybersecurity framework and governance.".
+
+:hasCybersecurityIncident a owl:DatatypeProperty;
+    rdfs:domain :Cybersecurity;
+    rdfs:range xsd:string;
+    rdfs:comment "Description of recent cybersecurity incidents and their impact.".
+
+:hasCybersecurityInvestment a owl:DatatypeProperty;
+    rdfs:domain :Cybersecurity;
+    rdfs:range xsd:decimal;
+    rdfs:comment "Investments in cybersecurity technology and personnel.".
+
+:hasCybersecurityInsurance a owl:DatatypeProperty;
+    rdfs:domain :Cybersecurity;
+    rdfs:range xsd:string;
+    rdfs:comment "Description of cybersecurity insurance coverage and limitations.".
+	
+#!!
+
+#! Object Properties
+	
+:mitigates a owl:ObjectProperty;
+    rdfs:domain :RiskMitigationStrategies;
+    rdfs:range :RiskFactors.
+
+:isSubjectTo a owl:ObjectProperty;
+    rdfs:domain :RegulatoryCapitalAndLiquidity;
+    rdfs:range :CapitalRatiosAndRequirements.
+
+:isCalculatedBy a owl:ObjectProperty;
+    rdfs:domain :RiskWeightedAssetsCalculation;
+    rdfs:range :Risk.
+
+:isManagedBy a owl:ObjectProperty;
+    rdfs:domain :LiquidityBuffersAndManagement;
+    rdfs:range :Liquidity.
+
+:hasResult a owl:ObjectProperty;
+    rdfs:domain :StressTestResultsAndCapitalPlanning;
+    rdfs:range :StressTestResult.
+
+:isOverseenBy a owl:ObjectProperty;
+    rdfs:domain :RiskManagement;
+    rdfs:range :RegulatoryEnvironment.
+
+:isGovernedBy a owl:ObjectProperty;
+    rdfs:domain :RiskManagement;
+    rdfs:range :RegulatoryEnvironment.
+	
+:mitigates a owl:ObjectProperty;
+    rdfs:domain :RiskMitigationStrategies;
+    rdfs:range :RiskFactors.
+
+:impactsCapitalRequirement a owl:ObjectProperty;
+    rdfs:domain :RiskWeightedAssetsCalculation;
+    rdfs:range :CapitalRatiosAndRequirements.
+
+:influencesLiquidity a owl:ObjectProperty;
+    rdfs:domain :StressTestingAndScenarioAnalysis;
+    rdfs:range :LiquidityBuffersAndManagement.
+
+:regulatedBy a owl:ObjectProperty;
+    rdfs:domain :RiskManagement;
+    rdfs:range :RegulatoryEnvironment.
+
+:affectsOperationalEfficiency a owl:ObjectProperty;
+    rdfs:domain :ProcessAutomationRates;
+    rdfs:range :CostToIncomeRatio.
+
+:influencesRiskProfile a owl:ObjectProperty;
+    rdfs:domain :DigitalAdoptionRates;
+    rdfs:range :RiskFactors.
+
+:resultsInLoss a owl:ObjectProperty;
+    rdfs:domain :OperationalLossEvents;
+    rdfs:range :FinancialPerformance.
+
+:impactsReputation a owl:ObjectProperty;
+    rdfs:domain :ConductRiskIncidents;
+    rdfs:range :CompanyOverview.
+
+:disclosedIn a owl:ObjectProperty;
+    rdfs:domain :QuantitativeMarketRiskDisclosures;
+    rdfs:range :FinancialPerformance.
+
+:representsContingentLiability a owl:ObjectProperty;
+    rdfs:domain :OffBalanceSheetCommitments;
+    rdfs:range :Liabilities.
+
+:hasLoanModificationType a owl:ObjectProperty ;
+    rdfs:domain :LoanModifications ;
+    rdfs:range :Description .
+
+:hasLoanModificationCriteria a owl:ObjectProperty ;
+    rdfs:domain :LoanModifications ;
+    rdfs:range :Description .
+
+:hasLoanModificationVolume a owl:ObjectProperty ;
+    rdfs:domain :LoanModifications ;
+    rdfs:range :Description .
+
+:hasLoanModificationPerformance a owl:ObjectProperty ;
+    rdfs:domain :LoanModifications ;
+    rdfs:range :Description .
+
+:allocatesCapitalTo a owl:ObjectProperty;
+    rdfs:domain :CapitalAllocationAndManagement;
+    rdfs:range :BusinessSegmentsAndProducts;
+    rdfs:comment "Relates capital allocation decisions to specific business segments or products.".
+
+:protects a owl:ObjectProperty;
+    rdfs:domain :Cybersecurity;
+    rdfs:range :TechnologyAndInnovation;
+    rdfs:comment "Indicates how cybersecurity measures protect the company's technological assets.".
+
+#!!	
+#!!
+
+   #########################################################	
+#! ####                OTHER DISCLOSURES               #####
+   #########################################################	
+
+ #! Classes
+:OtherDisclosures a owl:Class;
+    rdfs:subClassOf :EarningsReport.
+
+:AccountingPolicies a owl:Class;
+    rdfs:subClassOf :OtherDisclosures.
+
+:SummaryOfSignificantAccountingPolicies a owl:Class;
+    rdfs:subClassOf :AccountingPolicies.
+
+:RecentAccountingChangesAndImpacts a owl:Class;
+    rdfs:subClassOf :AccountingPolicies.
+
+:RegulatoryEnvironment a owl:Class;
+    rdfs:subClassOf :OtherDisclosures.
+
+:OverviewOfRelevantRegulations a owl:Class;
+    rdfs:subClassOf :RegulatoryEnvironment.
+
+:RecentRegulatoryDevelopmentsAndImpacts a owl:Class;
+    rdfs:subClassOf :RegulatoryEnvironment.
+
+:LegalProceedingsAndContingencies a owl:Class;
+    rdfs:subClassOf :OtherDisclosures.
+
+:PendingLitigationAndInvestigations a owl:Class;
+    rdfs:subClassOf :LegalProceedingsAndContingencies.
+
+:RegulatoryActionsAndEnforcement a owl:Class;
+    rdfs:subClassOf :LegalProceedingsAndContingencies.
+
+:EstimatedPotentialLosses a owl:Class;
+    rdfs:subClassOf :LegalProceedingsAndContingencies.
+
+:ForwardLookingStatements a owl:Class;
+    rdfs:subClassOf :OtherDisclosures.
+
+:ManagementsOutlookAndStrategicPriorities a owl:Class;
+    rdfs:subClassOf :ForwardLookingStatements.
+
+:KeyAssumptionsAndUncertainties a owl:Class;
+    rdfs:subClassOf :ForwardLookingStatements.
+
+:PotentialRisksAndOpportunities a owl:Class;
+    rdfs:subClassOf :ForwardLookingStatements.
+
+:AlternativePerformanceMeasures a owl:Class;
+    rdfs:subClassOf :OtherDisclosures.
+
+:DefinitionsAndExplanations a owl:Class;
+    rdfs:subClassOf :AlternativePerformanceMeasures.
+
+:ReconciliationToGAAPMeasures a owl:Class;
+    rdfs:subClassOf :AlternativePerformanceMeasures.
+
+:BusinessOutlook a owl:Class;
+    rdfs:subClassOf :OtherDisclosures.
+
+:NextQuarterYearProjections a owl:Class;
+    rdfs:subClassOf :BusinessOutlook.
+
+:KeyGrowthDrivers a owl:Class;
+    rdfs:subClassOf :BusinessOutlook.
+
+:PotentialRisksAndOpportunities a owl:Class;
+    rdfs:subClassOf :BusinessOutlook.
+
+:ShareholderAnalysis a owl:Class;
+    rdfs:subClassOf :OtherDisclosures.
+
+:InstitutionalOwnership a owl:Class;
+    rdfs:subClassOf :ShareholderAnalysis.
+
+:RetailOwnership a owl:Class;
+    rdfs:subClassOf :ShareholderAnalysis.
+
+:GeographicDistribution a owl:Class;
+    rdfs:subClassOf :ShareholderAnalysis.
+
+:GreenhouseGasEmissions a owl:Class;
+    rdfs:subClassOf :EnvironmentalImpact.	
+	
+:RecentAccountingChangesAndImpacts a owl:Class;
+    rdfs:subClassOf :AccountingPolicies.
+
+:OverviewOfRelevantRegulations a owl:Class;
+    rdfs:subClassOf :RegulatoryEnvironment.
+
+:RecentRegulatoryDevelopmentsAndImpacts a owl:Class;
+    rdfs:subClassOf :RegulatoryEnvironment.
+
+:PendingLitigationAndInvestigations a owl:Class;
+    rdfs:subClassOf :LegalProceedingsAndContingencies.
+
+:RegulatoryActionsAndEnforcement a owl:Class;
+    rdfs:subClassOf :LegalProceedingsAndContingencies.
+
+:EstimatedPotentialLosses a owl:Class;
+    rdfs:subClassOf :LegalProceedingsAndContingencies.
+
+:ManagementsOutlookAndStrategicPriorities a owl:Class;
+    rdfs:subClassOf :ForwardLookingStatements.
+
+:KeyAssumptionsAndUncertainties a owl:Class;
+    rdfs:subClassOf :ForwardLookingStatements.
+
+:PotentialRisksAndOpportunities a owl:Class;
+    rdfs:subClassOf :ForwardLookingStatements.
+
+:DefinitionsAndExplanations a owl:Class;
+    rdfs:subClassOf :AlternativePerformanceMeasures.
+
+:ReconciliationToGAAPMeasures a owl:Class;
+    rdfs:subClassOf :AlternativePerformanceMeasures.
+
+:NextQuarterYearProjections a owl:Class;
+    rdfs:subClassOf :BusinessOutlook.
+
+:KeyGrowthDrivers a owl:Class;
+    rdfs:subClassOf :BusinessOutlook.
+
+:InstitutionalOwnership a owl:Class;
+    rdfs:subClassOf :ShareholderAnalysis.
+
+:RetailOwnership a owl:Class;
+    rdfs:subClassOf :ShareholderAnalysis.
+
+:ConsentOrders a owl:Class ;
+    rdfs:subClassOf :RegulatoryActionsAndEnforcement ;
+    rdfs:comment "A legal agreement between a financial institution and a regulator to address and remediate identified violations or deficiencies" .
+
+:FairValueMeasurement a owl:Class ;
+    rdfs:subClassOf :OtherDisclosures ;
+    rdfs:comment "The process of determining the estimated price at which an asset or liability could be exchanged in an arm's length transaction between willing parties" .
+
+:MarketValuationAdjustments a owl:Class ;
+    rdfs:subClassOf :FairValueMeasurement ;
+    rdfs:comment "Adjustments made to the fair value of a derivative to account for counterparty credit risk, own credit risk, and funding costs" .
+
+:CreditRiskRelatedContingentFeaturesInDerivatives a owl:Class ;
+    rdfs:subClassOf :FairValueMeasurement ;
+    rdfs:comment "Features embedded in derivatives that could trigger changes in cash flows or fair value due to credit risk events" .
+
+:LoanModifications a owl:Class ;
+    rdfs:subClassOf :KeyPerformanceIndicators ;
+    rdfs:comment "Changes made to the terms of a loan, typically to help a borrower avoid default" .
+
+#!!	
+	
+#! Relationships (Object Properties)
+:OtherDisclosures :hasPart :AccountingPolicies.
+:OtherDisclosures :hasPart :RegulatoryEnvironment.
+:OtherDisclosures :hasPart :LegalProceedingsAndContingencies.
+:OtherDisclosures :hasPart :ForwardLookingStatements.
+:OtherDisclosures :hasPart :AlternativePerformanceMeasures.
+:OtherDisclosures :hasPart :BusinessOutlook.
+:OtherDisclosures :hasPart :ShareholderAnalysis.
+
+:AccountingPolicies :hasPart :SummaryOfSignificantAccountingPolicies.
+:AccountingPolicies :hasPart :RecentAccountingChangesAndImpacts.
+
+:RegulatoryEnvironment :hasPart :OverviewOfRelevantRegulations.
+:RegulatoryEnvironment :hasPart :RecentRegulatoryDevelopmentsAndImpacts.
+
+:LegalProceedingsAndContingencies :hasPart :PendingLitigationAndInvestigations.
+:LegalProceedingsAndContingencies :hasPart :RegulatoryActionsAndEnforcement.
+:LegalProceedingsAndContingencies :hasPart :EstimatedPotentialLosses.
+
+:ForwardLookingStatements :hasPart :ManagementsOutlookAndStrategicPriorities.
+:ForwardLookingStatements :hasPart :KeyAssumptionsAndUncertainties.
+:ForwardLookingStatements :hasPart :PotentialRisksAndOpportunities.
+
+:AlternativePerformanceMeasures :hasPart :DefinitionsAndExplanations.
+:AlternativePerformanceMeasures :hasPart :ReconciliationToGAAPMeasures.
+
+:BusinessOutlook :hasPart :NextQuarterYearProjections.
+:BusinessOutlook :hasPart :KeyGrowthDrivers.
+:BusinessOutlook :hasPart :PotentialRisksAndOpportunities.
+
+:ShareholderAnalysis :hasPart :InstitutionalOwnership.
+:ShareholderAnalysis :hasPart :RetailOwnership.
+:ShareholderAnalysis :hasPart :GeographicDistribution.
+
+:EnvironmentalImpact :hasPart :GreenhouseGasEmissions.
+	
+:RegulatoryActionsAndEnforcement :hasPart :ConsentOrders .
+
+:OtherDisclosures :hasPart :FairValueMeasurement .
+
+:FairValueMeasurement :hasPart :MarketValuationAdjustments .
+:FairValueMeasurement :hasPart :CreditRiskRelatedContingentFeaturesInDerivatives .
+
+:KeyPerformanceIndicators :hasPart :LoanModifications .
+
+#!!
+	
+#! Data Properties for OTHER DISCLOSURES
+
+# Accounting Policies
+:hasSignificantAccountingPolicy a owl:DatatypeProperty;
+    rdfs:domain :SummaryOfSignificantAccountingPolicies;
+    rdfs:range xsd:string.
+
+:hasRecentAccountingChange a owl:DatatypeProperty;
+    rdfs:domain :RecentAccountingChangesAndImpacts;
+    rdfs:range xsd:string.
+
+:hasAccountingChangeImpact a owl:DatatypeProperty;
+    rdfs:domain :RecentAccountingChangesAndImpacts;
+    rdfs:range xsd:string.
+
+# Regulatory Environment
+:hasRelevantRegulation a owl:DatatypeProperty;
+    rdfs:domain :OverviewOfRelevantRegulations;
+    rdfs:range xsd:string.
+
+:hasRecentRegulatoryDevelopment a owl:DatatypeProperty;
+    rdfs:domain :RecentRegulatoryDevelopmentsAndImpacts;
+    rdfs:range xsd:string.
+
+:hasRegulatoryImpact a owl:DatatypeProperty;
+    rdfs:domain :RecentRegulatoryDevelopmentsAndImpacts;
+    rdfs:range xsd:string.
+
+# Legal Proceedings and Contingencies
+:hasPendingLitigation a owl:DatatypeProperty;
+    rdfs:domain :PendingLitigationAndInvestigations;
+    rdfs:range xsd:string.
+
+:hasRegulatoryAction a owl:DatatypeProperty;
+    rdfs:domain :RegulatoryActionsAndEnforcement;
+    rdfs:range xsd:string.
+
+:hasEstimatedPotentialLoss a owl:DatatypeProperty;
+    rdfs:domain :EstimatedPotentialLosses;
+    rdfs:range xsd:decimal.
+
+# Forward-Looking Statements
+:hasManagementOutlook a owl:DatatypeProperty;
+    rdfs:domain :ManagementsOutlookAndStrategicPriorities;
+    rdfs:range xsd:string.
+
+:hasStrategicPriority a owl:DatatypeProperty;
+    rdfs:domain :ManagementsOutlookAndStrategicPriorities;
+    rdfs:range xsd:string.
+
+:hasKeyAssumption a owl:DatatypeProperty;
+    rdfs:domain :KeyAssumptionsAndUncertainties;
+    rdfs:range xsd:string.
+
+:hasUncertainty a owl:DatatypeProperty;
+    rdfs:domain :KeyAssumptionsAndUncertainties;
+    rdfs:range xsd:string.
+
+:hasPotentialRisk a owl:DatatypeProperty;
+    rdfs:domain :PotentialRisksAndOpportunities;
+    rdfs:range xsd:string.
+
+:hasPotentialOpportunity a owl:DatatypeProperty;
+    rdfs:domain :PotentialRisksAndOpportunities;
+    rdfs:range xsd:string.
+
+# Alternative Performance Measures
+:hasAlternativePerformanceMeasureDefinition a owl:DatatypeProperty;
+    rdfs:domain :DefinitionsAndExplanations;
+    rdfs:range xsd:string.
+
+:hasReconciliationToGAAPMeasure a owl:DatatypeProperty;
+    rdfs:domain :ReconciliationToGAAPMeasures;
+    rdfs:range xsd:string.
+
+# Business Outlook
+:hasNextQuarterProjection a owl:DatatypeProperty;
+    rdfs:domain :NextQuarterYearProjections;
+    rdfs:range xsd:string.
+
+:hasNextYearProjection a owl:DatatypeProperty;
+    rdfs:domain :NextQuarterYearProjections;
+    rdfs:range xsd:string.
+
+:hasKeyGrowthDriver a owl:DatatypeProperty;
+    rdfs:domain :KeyGrowthDrivers;
+    rdfs:range xsd:string.
+
+# Shareholder Analysis
+:hasInstitutionalOwnershipPercentage a owl:DatatypeProperty;
+    rdfs:domain :InstitutionalOwnership;
+    rdfs:range xsd:decimal.
+
+:hasRetailOwnershipPercentage a owl:DatatypeProperty;
+    rdfs:domain :RetailOwnership;
+    rdfs:range xsd:decimal.
+
+:hasShareholderGeographicDistribution a owl:DatatypeProperty;
+    rdfs:domain :GeographicDistribution;
+    rdfs:range xsd:string.
+	
+:hasSignificantAccountingPolicy a owl:DatatypeProperty;
+    rdfs:domain :SummaryOfSignificantAccountingPolicies;
+    rdfs:range xsd:string.
+
+:hasRecentAccountingChange a owl:DatatypeProperty;
+    rdfs:domain :RecentAccountingChangesAndImpacts;
+    rdfs:range xsd:string.
+
+:hasRelevantRegulation a owl:DatatypeProperty;
+    rdfs:domain :OverviewOfRelevantRegulations;
+    rdfs:range xsd:string.
+
+:hasRecentRegulatoryDevelopment a owl:DatatypeProperty;
+    rdfs:domain :RecentRegulatoryDevelopmentsAndImpacts;
+    rdfs:range xsd:string.
+
+:hasPendingLitigation a owl:DatatypeProperty;
+    rdfs:domain :PendingLitigationAndInvestigations;
+    rdfs:range xsd:string.
+
+:hasRegulatoryAction a owl:DatatypeProperty;
+    rdfs:domain :RegulatoryActionsAndEnforcement;
+    rdfs:range xsd:string.
+
+:hasEstimatedPotentialLoss a owl:DatatypeProperty;
+    rdfs:domain :EstimatedPotentialLosses;
+    rdfs:range xsd:decimal.
+
+:hasManagementOutlook a owl:DatatypeProperty;
+    rdfs:domain :ManagementsOutlookAndStrategicPriorities;
+    rdfs:range xsd:string.
+
+:hasStrategicPriority a owl:DatatypeProperty;
+    rdfs:domain :ManagementsOutlookAndStrategicPriorities;
+    rdfs:range xsd:string.
+
+:hasKeyAssumption a owl:DatatypeProperty;
+    rdfs:domain :KeyAssumptionsAndUncertainties;
+    rdfs:range xsd:string.
+
+:hasUncertainty a owl:DatatypeProperty;
+    rdfs:domain :KeyAssumptionsAndUncertainties;
+    rdfs:range xsd:string.
+
+:hasPotentialRisk a owl:DatatypeProperty;
+    rdfs:domain :PotentialRisksAndOpportunities;
+    rdfs:range xsd:string.
+
+:hasPotentialOpportunity a owl:DatatypeProperty;
+    rdfs:domain :PotentialRisksAndOpportunities;
+    rdfs:range xsd:string.
+
+:hasAlternativePerformanceMeasureDefinition a owl:DatatypeProperty;
+    rdfs:domain :DefinitionsAndExplanations;
+    rdfs:range xsd:string.
+
+:hasReconciliationToGAAPMeasure a owl:DatatypeProperty;
+    rdfs:domain :ReconciliationToGAAPMeasures;
+    rdfs:range xsd:string.
+
+:hasNextQuarterProjection a owl:DatatypeProperty;
+    rdfs:domain :NextQuarterYearProjections;
+    rdfs:range xsd:string.
+
+:hasNextYearProjection a owl:DatatypeProperty;
+    rdfs:domain :NextQuarterYearProjections;
+    rdfs:range xsd:string.
+
+:hasKeyGrowthDriver a owl:DatatypeProperty;
+    rdfs:domain :KeyGrowthDrivers;
+    rdfs:range xsd:string.
+
+:hasInstitutionalOwnershipPercentage a owl:DatatypeProperty;
+    rdfs:domain :InstitutionalOwnership;
+    rdfs:range xsd:decimal.
+
+:hasRetailOwnershipPercentage a owl:DatatypeProperty;
+    rdfs:domain :RetailOwnership;
+    rdfs:range xsd:decimal.
+
+:hasGeographicDistribution a owl:DatatypeProperty;
+    rdfs:domain :GeographicDistribution;
+    rdfs:range xsd:string.
+	
+:hasConsentOrderDescription a owl:DatatypeProperty ;
+    rdfs:domain :ConsentOrders ;
+    rdfs:range xsd:string .
+
+:hasRemediationEffortDescription a owl:DatatypeProperty ;
+    rdfs:domain :ConsentOrders ;
+    rdfs:range xsd:string .
+
+:hasFairValueHierarchyDescription a owl:DatatypeProperty ;
+    rdfs:domain :FairValueMeasurement ;
+    rdfs:range xsd:string .
+
+:hasValuationTechniqueDescription a owl:DatatypeProperty ;
+    rdfs:domain :FairValueMeasurement ;
+    rdfs:range xsd:string .
+
+:hasSensitivityAnalysisDescription a owl:DatatypeProperty ;
+    rdfs:domain :FairValueMeasurement ;
+    rdfs:range xsd:string .
+
+:hasMarketValuationAdjustmentDescription a owl:DatatypeProperty ;
+    rdfs:domain :MarketValuationAdjustments ;
+    rdfs:range xsd:string .
+
+:hasCreditRiskRelatedContingentFeatureDescription a owl:DatatypeProperty ;
+    rdfs:domain :CreditRiskRelatedContingentFeaturesInDerivatives ;
+    rdfs:range xsd:string .
+
+:hasLoanModificationTypeDescription a owl:DatatypeProperty ;
+    rdfs:domain :LoanModifications ;
+    rdfs:range xsd:string .
+
+:hasLoanModificationCriteriaDescription a owl:DatatypeProperty ;
+    rdfs:domain :LoanModifications ;
+    rdfs:range xsd:string .
+
+:hasLoanModificationVolumeDescription a owl:DatatypeProperty ;
+    rdfs:domain :LoanModifications ;
+    rdfs:range xsd:string .
+
+:hasLoanModificationPerformanceDescription a owl:DatatypeProperty ;
+    rdfs:domain :LoanModifications ;
+    rdfs:range xsd:string .
+	
+#!!
+	
+#! Object Properties for OTHER DISCLOSURES
+
+# Accounting Policies
+:impactsFinancialStatement a owl:ObjectProperty;
+    rdfs:domain :AccountingPolicies;
+    rdfs:range :FinancialStatement.
+
+:relatesTo a owl:ObjectProperty;
+    rdfs:domain :RecentAccountingChangesAndImpacts;
+    rdfs:range :FinancialPerformance.
+
+# Regulatory Environment
+:governsBusinessSegment a owl:ObjectProperty;
+    rdfs:domain :OverviewOfRelevantRegulations;
+    rdfs:range :BusinessSegmentsAndProducts.
+
+:impactsOperations a owl:ObjectProperty;
+    rdfs:domain :RecentRegulatoryDevelopmentsAndImpacts;
+    rdfs:range :CompanyOverview.
+
+# Legal Proceedings and Contingencies
+:involvesParty a owl:ObjectProperty;
+    rdfs:domain :PendingLitigationAndInvestigations;
+    rdfs:range :LegalEntity.
+
+:enforcedBy a owl:ObjectProperty;
+    rdfs:domain :RegulatoryActionsAndEnforcement;
+    rdfs:range :RegulatoryBody.
+
+:affectsFinancialPosition a owl:ObjectProperty;
+    rdfs:domain :EstimatedPotentialLosses;
+    rdfs:range :FinancialPerformance.
+
+# Forward-Looking Statements
+:alignsWithStrategy a owl:ObjectProperty;
+    rdfs:domain :ManagementsOutlookAndStrategicPriorities;
+    rdfs:range :StrategicFramework.
+
+:dependsOn a owl:ObjectProperty;
+    rdfs:domain :KeyAssumptionsAndUncertainties;
+    rdfs:range :MacroeconomicEnvironment.
+
+:relatesTo a owl:ObjectProperty;
+    rdfs:domain :PotentialRisksAndOpportunities;
+    rdfs:range :RiskFactors.
+
+# Alternative Performance Measures
+:complementsGAAPMeasure a owl:ObjectProperty;
+    rdfs:domain :AlternativePerformanceMeasures;
+    rdfs:range :FinancialPerformance.
+
+:explainedIn a owl:ObjectProperty;
+    rdfs:domain :AlternativePerformanceMeasures;
+    rdfs:range :DefinitionsAndExplanations.
+
+# Business Outlook
+:projectsForSegment a owl:ObjectProperty;
+    rdfs:domain :NextQuarterYearProjections;
+    rdfs:range :BusinessSegmentsAndProducts.
+
+:influencedBy a owl:ObjectProperty;
+    rdfs:domain :KeyGrowthDrivers;
+    rdfs:range :MarketEnvironment.
+
+# Shareholder Analysis
+:hasShareholderType a owl:ObjectProperty;
+    rdfs:domain :ShareholderAnalysis;
+    rdfs:range :ShareholderType.
+
+:locatedIn a owl:ObjectProperty;
+    rdfs:domain :GeographicDistribution;
+    rdfs:range :GeographicLocation.
+
+# Additional general object properties
+:disclosedIn a owl:ObjectProperty;
+    rdfs:domain :OtherDisclosures;
+    rdfs:range :EarningsReport.
+
+:relatesTo a owl:ObjectProperty;
+    rdfs:domain :OtherDisclosures;
+    rdfs:range :FinancialPerformance.
+
+:impactsValuation a owl:ObjectProperty;
+    rdfs:domain :OtherDisclosures;
+    rdfs:range :CompanyOverview.
+	
+:impactsFinancialStatements a owl:ObjectProperty;
+    rdfs:domain :AccountingPolicies;
+    rdfs:range :FinancialPerformance.
+
+:governsOperations a owl:ObjectProperty;
+    rdfs:domain :RegulatoryEnvironment;
+    rdfs:range :CompanyOverview.
+
+:potentiallyImpactsFinancials a owl:ObjectProperty;
+    rdfs:domain :LegalProceedingsAndContingencies;
+    rdfs:range :FinancialPerformance.
+
+:influencesFuturePerformance a owl:ObjectProperty;
+    rdfs:domain :ForwardLookingStatements;
+    rdfs:range :FinancialPerformance.
+
+:complementsGAAPMeasures a owl:ObjectProperty;
+    rdfs:domain :AlternativePerformanceMeasures;
+    rdfs:range :FinancialPerformance.
+
+:projectsFuturePerformance a owl:ObjectProperty;
+    rdfs:domain :BusinessOutlook;
+    rdfs:range :FinancialPerformance.
+
+:influencesSharePrice a owl:ObjectProperty;
+    rdfs:domain :ShareholderAnalysis;
+    rdfs:range :FinancialPerformance.	
+	
+:hasOutstandingConsentOrder a owl:ObjectProperty ;
+    rdfs:domain :ConsentOrders ;
+    rdfs:range :Description .
+
+:hasRemediationEffort a owl:ObjectProperty ;
+    rdfs:domain :ConsentOrders ;
+    rdfs:range :Description .
+
+:hasFairValueHierarchy a owl:ObjectProperty ;
+    rdfs:domain :FairValueMeasurement ;
+    rdfs:range :Description .
+
+:hasValuationTechnique a owl:ObjectProperty ;
+    rdfs:domain :FairValueMeasurement ;
+    rdfs:range :Description .
+
+:hasSensitivityAnalysis a owl:ObjectProperty ;
+    rdfs:domain :FairValueMeasurement ;
+    rdfs:range :Description .
+
+:hasMarketValuationAdjustment a owl:ObjectProperty ;
+    rdfs:domain :MarketValuationAdjustments ;
+    rdfs:range :Description .
+
+:hasCreditRiskRelatedContingentFeature a owl:ObjectProperty ;
+    rdfs:domain :CreditRiskRelatedContingentFeaturesInDerivatives ;
+    rdfs:range :Description .
+	
+:hasLoanModificationType a owl:ObjectProperty ;
+    rdfs:domain :LoanModifications ;
+    rdfs:range :Description .
+
+:hasLoanModificationCriteria a owl:ObjectProperty ;
+    rdfs:domain :LoanModifications ;
+    rdfs:range :Description .
+
+:hasLoanModificationVolume a owl:ObjectProperty ;
+    rdfs:domain :LoanModifications ;
+    rdfs:range :Description .
+
+:hasLoanModificationPerformance a owl:ObjectProperty ;
+    rdfs:domain :LoanModifications ;
+    rdfs:range :Description .
+	
+#!!
+#!!
